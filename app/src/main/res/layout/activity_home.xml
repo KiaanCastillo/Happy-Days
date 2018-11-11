@@ -6,11 +6,23 @@
     android:layout_height="match_parent"
     tools:context=".HomeActivity">
 
+    <FrameLayout
+        android:id="@+id/fragment_container"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_marginBottom="56dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+
+    </FrameLayout>
+
     <android.support.design.widget.BottomNavigationView xmlns:android="http://schemas.android.com/apk/res/android"
         xmlns:app="http://schemas.android.com/apk/res-auto"
         android:id="@+id/navigation"
         android:layout_width="match_parent"
-        android:layout_height="66dp"
+        android:layout_height="56dp"
         android:layout_gravity="start"
         android:layout_marginStart="8dp"
         android:layout_marginEnd="8dp"
@@ -38,6 +50,7 @@
         android:id="@+id/activity_fab"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:onClick="loadActivities"
         android:layout_marginBottom="40dp"
         android:clickable="true"
         android:focusable="true"
@@ -48,16 +61,5 @@
         app:layout_constraintStart_toStartOf="@+id/navigation"
         app:rippleColor="@color/fabEndColour"
         app:srcCompat="@drawable/ic_activities_icon" />
-
-    <ImageView
-        android:id="@+id/logo"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="28dp"
-        android:layout_marginTop="40dp"
-        android:contentDescription="@string/logo_description"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:srcCompat="@drawable/ic_happydays_logo" />
 
 </android.support.constraint.ConstraintLayout>
