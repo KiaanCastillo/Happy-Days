@@ -7,5 +7,10 @@
         <item name="colorPrimaryDark">@color/colorPrimaryDark</item>
         <item name="colorAccent">@color/colorAccent</item>
     </style>
+    
+    <style name="FragmentTitle" parent="TextAppearance.AppCompat">
+        <item name="android:textColor">@color/selectedNavItem</item>
+        <item name="android:textSize">50sp</item>
+    </style>
 
 </resources>
