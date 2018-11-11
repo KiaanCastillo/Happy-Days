@@ -10,11 +10,13 @@ import android.view.View;
 
 public class MainActivity extends AppCompatActivity implements BottomNavigationView.OnNavigationItemSelectedListener {
 
+    BottomNavigationView bottomNavigationView;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_home);
-        BottomNavigationView bottomNavigationView = findViewById(R.id.navigation);
+        bottomNavigationView = findViewById(R.id.navigation);
         bottomNavigationView.setOnNavigationItemSelectedListener(this);
 
         loadFragment(new HomeFragment());
@@ -31,6 +33,11 @@ public class MainActivity extends AppCompatActivity implements BottomNavigationV
     public void loadActivities(View v) {
         Fragment fragment = new ActivitiesFragment();
         loadFragment(fragment);
+
+        //Un checks all other navigation items
+        int size = bottomNavigationView.getMenu().size();
+        for (int i = 0; i < size; i++)
+            bottomNavigationView.getMenu().getItem(i).setCheckable(false).setChecked(false);
     }
 
     @Override
@@ -50,6 +57,10 @@ public class MainActivity extends AppCompatActivity implements BottomNavigationV
                 fragment = new MenuFragment();
                 break;
         }
+
+        int size = bottomNavigationView.getMenu().size();
+        for (int i = 0; i < size; i++)
+            bottomNavigationView.getMenu().getItem(i).setCheckable(true);
 
         return loadFragment(fragment);
     }
