@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="colorPrimary">#9FDFF7</color>
+    <color name="colorPrimaryDark">#CDDADF</color>
+    <color name="colorAccent">#D81B60</color>
+    <color name="colourWhite">#ffffff</color>
+    <color name="selectedNavItem">#3E4143</color>
+
+    <color name="fabStartColour">#00adee</color>
+    <color name="fabEndColour">#8fe0ff</color>
+</resources>
