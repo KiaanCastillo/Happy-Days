@@ -2,9 +2,12 @@
 <resources>
     <color name="colorPrimary">#9FDFF7</color>
     <color name="colorPrimaryDark">#CDDADF</color>
-    <color name="colorAccent">#FF5555</color>
+    <color name="colorAccent">#ff5555</color>
+
     <color name="colourWhite">#ffffff</color>
     <color name="selectedNavItem">#3E4143</color>
+
+    <color name="logs_bg">#E1EDF2</color>
 
     <color name="fabStartColour">#00adee</color>
     <color name="fabEndColour">#8fe0ff</color>
