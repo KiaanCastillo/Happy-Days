@@ -54,12 +54,12 @@
         android:layout_marginBottom="40dp"
         android:clickable="true"
         android:focusable="true"
-        app:backgroundTint="@color/fabStartColour"
+        app:backgroundTint="@color/colorLogoBlue"
         app:fabSize="normal"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="@+id/navigation"
         app:layout_constraintStart_toStartOf="@+id/navigation"
-        app:rippleColor="@color/fabEndColour"
+        app:rippleColor="@color/colorPrimaryDark"
         app:srcCompat="@drawable/ic_activities_icon" />
 
 </android.support.constraint.ConstraintLayout>
