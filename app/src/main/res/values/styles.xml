@@ -10,7 +10,13 @@
     
     <style name="FragmentTitle" parent="TextAppearance.AppCompat">
         <item name="android:textColor">@color/selectedNavItem</item>
-        <item name="android:textSize">50sp</item>
+        <item name="android:textSize">40sp</item>
+        <item name="android:textStyle">bold</item>
+    </style>
+
+    <style name="FragmentSubTitle" parent="TextAppearance.AppCompat">
+        <item name="android:textColor">@color/selectedNavItem</item>
+        <item name="android:textSize">25sp</item>
     </style>
 
 </resources>

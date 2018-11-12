@@ -13,8 +13,16 @@
         android:layout_marginStart="24dp"
         android:layout_marginTop="28dp"
         android:text="@string/menu_title"
-        android:textStyle="bold"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/textView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="TextView"
+        style="@style/FragmentSubTitle"
+        tools:layout_editor_absoluteX="176dp"
+        tools:layout_editor_absoluteY="262dp" />
 
 </android.support.constraint.ConstraintLayout>
