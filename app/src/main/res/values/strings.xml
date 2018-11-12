@@ -8,6 +8,11 @@
     <string name="logs_title">Logs</string>
     <string name="profile_title">Profile</string>
 
+    <!--Menu Items-->
+    <string name="about_label">About</string>
+    <string name="developers_label">Developers</string>
+    <string name="restart_label">Restart</string>
+
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
 </resources>
