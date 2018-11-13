@@ -74,13 +74,23 @@ public class UserDatabaseHelper extends SQLiteOpenHelper {
 
         //Storing activity info in MENTAL_ACTIVITIES_INFO table
         ContentValues activities_values = new ContentValues();
-        List<Activity> m_activities_list = user.getM_activities_list();
-        for (int i = 0; i < m_activities_list.size(); i++) {
-            activities_values.put("NAME", m_activities_list.get(i).getName());
-            activities_values.put("AVG", m_activities_list.get(i).getAvg_mood());
-            activities_values.put("FAV", m_activities_list.get(i).isIs_favourite());
+        Activity m_activities_list[] = user.getM_activities_list();
+        for (int i = 0; i < m_activities_list.length; i++) {
+            activities_values.put("NAME", m_activities_list[i].getName());
+            activities_values.put("AVG", m_activities_list[i].getAvg_mood());
+            activities_values.put("FAV", m_activities_list[i].isIs_favourite());
         }
         db.insert(MENTAL_ACTIVITIES_INFO, null, activities_values);
+
+        //Storing activity info in PHYSICAL_ACTIVITIES_INFO table
+        activities_values = new ContentValues();
+        Activity p_activities_list[] = user.getP_activities_list();
+        for (int i = 0; i < m_activities_list.length; i++) {
+            activities_values.put("NAME", p_activities_list[i].getName());
+            activities_values.put("AVG", p_activities_list[i].getAvg_mood());
+            activities_values.put("FAV", p_activities_list[i].isIs_favourite());
+        }
+        db.insert(PHYSICAL_ACTIVITIES_INFO, null, activities_values);
 
 
     }
