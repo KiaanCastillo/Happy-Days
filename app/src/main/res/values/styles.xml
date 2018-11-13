@@ -25,5 +25,18 @@
         <item name="android:textSize">15sp</item>
         <item name="android:textStyle">bold</item>
     </style>
+    
+    <style name="activity_square_display">
+        <item name="android:background">@drawable/square_btn</item>
+        <item name="android:backgroundTint">@color/colorPrimaryBlack</item>
+        <item name="android:layout_marginLeft">10dp</item>
+        <item name="android:layout_marginRight">10dp</item>
+        <item name="android:layout_marginTop">15dp</item>
+        <item name="android:layout_marginBottom">15dp</item>
+        <item name="android:padding">15dp</item>
+        <item name="android:layout_width">75dp</item>
+        <item name="android:layout_height">75dp</item>
+        <item name="android:tint">@color/colorWhite</item>
+    </style>
 
 </resources>
