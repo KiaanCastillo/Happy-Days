@@ -19,6 +19,10 @@ public class User {
                                         , new Activity("workingout")
                                         , new Activity("walking")};
 
+    public static final User[] USERS = {
+            new User("Bob", "Parker")
+    };
+
     public User(String first_name, String last_name) {
         this.first_name = first_name;
         this.last_name = last_name;
