@@ -5,8 +5,6 @@ import android.content.Context;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
 
-import java.util.List;
-
 public class UserDatabaseHelper extends SQLiteOpenHelper {
 
     /**
@@ -60,18 +58,24 @@ public class UserDatabaseHelper extends SQLiteOpenHelper {
         String sql = "";
         sql += "CREATE TABLE USER_INFO (";
         sql += "FIRST_NAME TEXT, ";
+        sql += "LAST_NAME TEXT,";
         sql += "LAST_NAME TEXT);";
 
         return sql;
     }
 
-    private void initializeUser(SQLiteDatabase db, User user) {
+    public void initializeUser(SQLiteDatabase db, User user) {
         //Storing user info in USER_INFO table
         ContentValues user_values = new ContentValues();
         user_values.put("FIRST_NAME", user.getFirst_name());
         user_values.put("LAST_NAME", user.getLast_name());
         db.insert(USER_INFO, null, user_values);
 
+        insertMentalActivities(db, user);
+        insertPhysicalActivities(db, user);
+    }
+
+    public void insertMentalActivities(SQLiteDatabase db, User user) {
         //Storing activity info in MENTAL_ACTIVITIES_INFO table
         ContentValues activities_values = new ContentValues();
         Activity m_activities_list[] = user.getM_activities_list();
@@ -81,18 +85,18 @@ public class UserDatabaseHelper extends SQLiteOpenHelper {
             activities_values.put("FAV", m_activities_list[i].isIs_favourite());
         }
         db.insert(MENTAL_ACTIVITIES_INFO, null, activities_values);
+    }
 
-        //Storing activity info in PHYSICAL_ACTIVITIES_INFO table
-        activities_values = new ContentValues();
+    public void insertPhysicalActivities(SQLiteDatabase db, User user) {
+        //Storing activity info in MENTAL_ACTIVITIES_INFO table
+        ContentValues activities_values = new ContentValues();
         Activity p_activities_list[] = user.getP_activities_list();
-        for (int i = 0; i < m_activities_list.length; i++) {
+        for (int i = 0; i < p_activities_list.length; i++) {
             activities_values.put("NAME", p_activities_list[i].getName());
             activities_values.put("AVG", p_activities_list[i].getAvg_mood());
             activities_values.put("FAV", p_activities_list[i].isIs_favourite());
         }
         db.insert(PHYSICAL_ACTIVITIES_INFO, null, activities_values);
-
-
     }
 
     private String createMentalActivitiesTable() {

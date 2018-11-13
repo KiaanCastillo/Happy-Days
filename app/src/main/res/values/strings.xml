@@ -21,4 +21,9 @@
     <string name="super_busy_label">Super Busy</string>
     <string name="normal_label">Normal</string>
     <string name="chill_label">Chill</string>
+
+    <!--Profile Fragment-->
+    <string name="favourites_label">Favourites</string>
+    <string name="fav_mental_label">Mental Activities</string>
+    <string name="fav_physical_label">Physical Activities</string>
 </resources>
