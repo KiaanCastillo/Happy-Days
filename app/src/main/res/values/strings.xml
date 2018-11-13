@@ -1,6 +1,8 @@
 <resources>
     <string name="app_name">Happy Days</string>
 
+    <string name="channel_name">Happy Days Channel</string>
+
     <string name="navigation_selected">▬</string>
     <string name="logo_description">Happy Days Logo (Gradient)</string>
 
