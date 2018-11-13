@@ -4,6 +4,9 @@ import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteException;
 import android.database.sqlite.SQLiteOpenHelper;
+import android.app.NotificationChannel;
+import android.app.NotificationManager;
+import android.os.Build;
 import android.support.annotation.NonNull;
 import android.support.design.widget.BottomNavigationView;
 import android.support.v4.app.Fragment;
@@ -23,6 +26,7 @@ public class MainActivity extends AppCompatActivity implements BottomNavigationV
     public static final int MAX_FAVOURITES = 6;
     private SQLiteDatabase db;
     private Cursor cursor;
+    static final String CHANNEL_ID = "happy_days";
     BottomNavigationView bottomNavigationView;
 
     @Override
@@ -51,6 +55,35 @@ public class MainActivity extends AppCompatActivity implements BottomNavigationV
         int size = bottomNavigationView.getMenu().size();
         for (int i = 0; i < size; i++)
             bottomNavigationView.getMenu().getItem(i).setCheckable(false).setChecked(false);
+    }
+
+    // Will return appropriate fragment based on the fragment Id passed to the main activity through
+    // a notification intent
+    public Fragment getFragmentFromId(int fragmentId) {
+
+        Fragment newFragment = null;
+
+        switch (fragmentId) {
+
+            default:
+                break;
+        }
+
+        return newFragment;
+    }
+
+    private void createNotificationChannel() {
+        // Create the NotificationChannel, but only on API 26+ because
+        // the NotificationChannel class is new and not in the support library
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
+            CharSequence name = getString(R.string.channel_name);
+            int importance = NotificationManager.IMPORTANCE_DEFAULT;
+            NotificationChannel channel = new NotificationChannel(CHANNEL_ID, name, importance);
+            // Register the channel with the system; you can't change the importance
+            // or other notification behaviors after this
+            NotificationManager notificationManager = getSystemService(NotificationManager.class);
+            notificationManager.createNotificationChannel(channel);
+        }
     }
 
     @Override
