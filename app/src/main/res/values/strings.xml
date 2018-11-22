@@ -46,6 +46,9 @@
     <string name="text_prompt2">Why not try…</string>
     <string name="label_start">Start</string>
     <string name="label_stop">No Thanks</string>
-    <string name="label_another">Another One</string>
+    <string name="label_another">Pick Another</string>
+    <string name="activity_logo_base">Activity Logo Base</string>
+    <string name="activity_logo_image">Activity Logo Image</string>
+    <string name="prompt_start">STARTING NEW ACTIVITY</string>
 
 </resources>

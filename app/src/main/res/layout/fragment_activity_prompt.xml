@@ -4,88 +4,127 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".ActivityPromptFragment">
+    tools:context=".ActivityPromptFragment"
+    tools:layout_editor_absoluteY="25dp">
 
 
     <TextView
         android:id="@+id/text_prompt1"
+        style="@style/FragmentSubTitle"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="63dp"
+        android:layout_marginTop="40dp"
         android:text="@string/text_prompt1"
+        android:textSize="14sp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
     <TextView
         android:id="@+id/text_prompt2"
+        style="@style/FragmentSubTitle"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="@string/text_prompt2"
-        app:layout_constraintBaseline_toBaselineOf="@+id/activity_name"
+        android:textSize="14sp"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent" />
+        app:layout_constraintHorizontal_bias="0.498"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/text_prompt1" />
 
     <TextView
         android:id="@+id/activity_name"
+        style="@style/FragmentTitle"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="@string/text_placeholder"
-        app:layout_constraintBaseline_toBaselineOf="@+id/activity_type"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent" />
-
-    <TextView
-        android:id="@+id/activity_type"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="8dp"
+        android:layout_marginTop="100dp"
         android:text="@string/text_placeholder"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
+    <TextView
+        android:id="@+id/activity_type"
+        style="@style/FragmentTitle"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="22dp"
+        android:text="@string/text_placeholder"
+        android:textSize="24sp"
+        android:textStyle="normal"
+        app:layout_constraintBottom_toTopOf="@+id/activity_logo"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.497"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/activity_name" />
+
     <ImageView
         android:id="@+id/activity_logo"
-        android:layout_width="115dp"
-        android:layout_height="115dp"
+        android:layout_width="175dp"
+        android:layout_height="175dp"
+        android:layout_marginTop="16dp"
         android:background="@drawable/square_btn"
         android:backgroundTint="@color/colorPrimaryDark"
-        app:layout_constraintBottom_toBottomOf="parent"
+        android:textAlignment="center"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.413" />
+        app:layout_constraintTop_toBottomOf="@+id/activity_type"
+        android:contentDescription="@string/activity_logo_base" />
+
+    <ImageView
+        android:id="@+id/logo_image"
+        android:layout_width="115dp"
+        android:layout_height="115dp"
+        android:textAlignment="center"
+        app:layout_constraintBottom_toBottomOf="@+id/activity_logo"
+        app:layout_constraintEnd_toEndOf="@+id/activity_logo"
+        app:layout_constraintStart_toStartOf="@+id/activity_logo"
+        app:layout_constraintTop_toTopOf="@+id/activity_logo"
+        android:contentDescription="@string/activity_logo_image" />
 
     <Button
         android:id="@+id/btn_start"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginBottom="28dp"
+        android:layout_width="135dp"
+        android:layout_height="45dp"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="8dp"
+        android:layout_marginEnd="8dp"
+        android:backgroundTint="@color/colorAccent"
         android:text="@string/label_start"
-        app:layout_constraintBottom_toTopOf="@+id/btn_another"
+        android:textAllCaps="false"
+        android:textColor="@color/colorWhite"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.489"
-        app:layout_constraintStart_toStartOf="parent" />
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/activity_logo" />
 
     <Button
         android:id="@+id/btn_another"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginBottom="16dp"
+        android:layout_width="135dp"
+        android:layout_height="45dp"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="2dp"
+        android:layout_marginEnd="8dp"
+        android:backgroundTint="@color/colorAccent"
         android:text="@string/label_another"
-        app:layout_constraintBottom_toTopOf="@+id/btn_stop"
+        android:textAllCaps="false"
+        android:textColor="@color/colorWhite"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent" />
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/btn_start" />
 
     <Button
         android:id="@+id/btn_stop"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginBottom="73dp"
+        android:layout_width="135dp"
+        android:layout_height="45dp"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="2dp"
+        android:layout_marginEnd="8dp"
+        android:backgroundTint="@color/colorAccent"
         android:text="@string/label_stop"
-        app:layout_constraintBottom_toBottomOf="parent"
+        android:textAllCaps="false"
+        android:textColor="@color/colorWhite"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent" />
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/btn_another" />
 
 </android.support.constraint.ConstraintLayout>

@@ -13,11 +13,13 @@ public class Activity implements Serializable {
     private boolean isPhysical;
     private int avg_mood;
     private boolean is_favourite;
+    private int logoId;
 
-    public Activity(int id, String name, String description, boolean isPhysical) {
+    public Activity(int id, String name, String description, int logoId, boolean isPhysical) {
         this.id = id;
         this.name = name;
         this.description = description;
+        this.logoId = logoId;
         this.isPhysical = isPhysical;
     }
 
@@ -26,6 +28,7 @@ public class Activity implements Serializable {
         this.id = temp.getId();
         this.name = temp.getName();
         this.description = temp.getDescription();
+        this.logoId = temp.getLogo();
         this.isPhysical = temp.isPhysical();
     }
 
@@ -39,6 +42,7 @@ public class Activity implements Serializable {
     public String getName() {return name; }
     public String getDescription() { return description; }
     public boolean isPhysical() { return isPhysical; }
+    public int getLogo() { return this.logoId; }
 
     public int getAvg_mood() {
         return avg_mood;
@@ -57,11 +61,11 @@ public class Activity implements Serializable {
     }
 
     public static Activity[] ACTIVITIES = {
-            new Activity(R.id.btn_reading, "Reading", "Description Reading", false),
-            new Activity(R.id.btn_meditating, "Meditating", "Description Meditating", false),
-            new Activity(R.id.btn_stretching, "Stretching", "Description Stretching", false),
-            new Activity(R.id.btn_journaling, "Journaling", "Description Journaling", false),
-            new Activity(R.id.btn_mindmap, "Mind Map", "Description Mind Map", false)
+            new Activity(R.id.btn_reading, "Reading", "Description Reading", R.drawable.ic_reading, false),
+            new Activity(R.id.btn_meditating, "Meditating", "Description Meditating", R.drawable.ic_meditating, false),
+            new Activity(R.id.btn_stretching, "Stretching", "Description Stretching", R.drawable.ic_stretching, false),
+            new Activity(R.id.btn_journaling, "Journaling", "Description Journaling", R.drawable.ic_journaling, false),
+            new Activity(R.id.btn_mindmap, "Mind Map", "Description Mind Map", R.drawable.ic_mindmap, false)
     };
 
     private Activity getActivityByID(int id) {
