@@ -90,10 +90,11 @@ public class MainActivity extends AppCompatActivity implements BottomNavigationV
     }
 
     public void onActivityClick(View view) {
-        ActivityDetailFragment detailFragment = new ActivityDetailFragment();
+        ActivityPromptFragment promptFragment = new ActivityPromptFragment();
         Bundle activityBundle = new Bundle();
         activityBundle.putSerializable("myActivity", new Activity(view.getId()));
-        detailFragment.setArguments(activityBundle);
-        loadFragment(detailFragment);
+        activityBundle.putSerializable("isNotification", false);
+        promptFragment.setArguments(activityBundle);
+        loadFragment(promptFragment);
     }
 }

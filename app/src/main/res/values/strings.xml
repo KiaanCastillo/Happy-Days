@@ -1,6 +1,7 @@
 <resources>
     <string name="app_name">Happy Days</string>
 
+    <string name="text_placeholder">Placeholder Text</string>
     <string name="navigation_selected">▬</string>
     <string name="logo_description">Happy Days Logo (Gradient)</string>
 
@@ -40,7 +41,11 @@
     <string name="desc_workout">Work Out</string>
     <string name="desc_walking">Walking</string>
 
-    <!-- TODO: Remove or change this placeholder text -->
-    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <!-- Activity Prompt Fragment -->
+    <string name="text_prompt1">Welcome back!</string>
+    <string name="text_prompt2">Why not try…</string>
+    <string name="label_start">Start</string>
+    <string name="label_stop">No Thanks</string>
+    <string name="label_another">Another One</string>
 
 </resources>
