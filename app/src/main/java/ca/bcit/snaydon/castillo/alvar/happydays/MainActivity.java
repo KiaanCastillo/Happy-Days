@@ -22,10 +22,14 @@ public class MainActivity extends AppCompatActivity implements BottomNavigationV
     public static final int MAX_FAVOURITES = 6;
     private SQLiteDatabase db;
     private Cursor cursor;
+    private UserDatabaseHelper dbHelper;
     BottomNavigationView bottomNavigationView;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
+        dbHelper = new UserDatabaseHelper(this);
+        User user = new User("Bob", "Parker");
+        dbHelper.initializeUser(dbHelper.getReadableDatabase(), user);
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_home);
         bottomNavigationView = findViewById(R.id.navigation);
