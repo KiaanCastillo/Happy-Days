@@ -97,4 +97,9 @@ public class MainActivity extends AppCompatActivity implements BottomNavigationV
         promptFragment.setArguments(activityBundle);
         loadFragment(promptFragment);
     }
+
+    public void finishActivityClick(View view) {
+        // Save Activity in Database
+        loadFragment(new HomeFragment());
+    }
 }

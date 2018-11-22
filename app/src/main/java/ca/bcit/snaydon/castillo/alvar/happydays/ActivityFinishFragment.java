@@ -13,6 +13,7 @@ import android.view.ViewGroup;
  */
 public class ActivityFinishFragment extends Fragment {
 
+    private Activity myActivity;
 
     public ActivityFinishFragment() {
         // Required empty public constructor
