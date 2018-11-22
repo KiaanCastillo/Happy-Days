@@ -92,9 +92,9 @@ public class UserDatabaseHelper extends SQLiteOpenHelper {
         ContentValues activities_values = new ContentValues();
         Activity p_activities_list[] = user.getP_activities_list();
         for (int i = 0; i < p_activities_list.length; i++) {
-            activities_values.put("NAME", p_activities_list[i].getName());
-            activities_values.put("AVG", p_activities_list[i].getAvg_mood());
-            activities_values.put("FAV", p_activities_list[i].isIs_favourite());
+//            activities_values.put("NAME", p_activities_list[i].getName());
+//            activities_values.put("AVG", p_activities_list[i].getAvg_mood());
+//            activities_values.put("FAV", p_activities_list[i].isIs_favourite());
         }
         db.insert(PHYSICAL_ACTIVITIES_INFO, null, activities_values);
     }
