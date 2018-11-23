@@ -4,160 +4,186 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".ActivityFinishFragment">
+    tools:context=".ActivityFinishFragment"
+    tools:layout_editor_absoluteY="25dp">
 
 
     <TextView
-        android:id="@+id/textView17"
+        android:id="@+id/text_finished"
+        style="@style/FragmentSubTitle"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="67dp"
-        android:layout_marginBottom="24dp"
-        android:text="TextView"
-        app:layout_constraintBottom_toTopOf="@+id/textView18"
+        android:layout_marginTop="32dp"
+        android:text="@string/text_finished"
+        android:textSize="18sp"
+        android:textStyle="normal"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.498"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/activity_name"
+        style="@style/FragmentTitle"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="60dp"
+        android:text="@string/text_placeholder"
+        android:textSize="36sp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
     <TextView
-        android:id="@+id/textView18"
+        android:id="@+id/activity_type"
+        style="@style/FragmentSubTitle"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginBottom="17dp"
-        android:text="TextView"
-        app:layout_constraintBottom_toTopOf="@+id/textView19"
+        android:text="@string/text_placeholder"
+        android:textSize="20sp"
+        android:textStyle="normal"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textView17" />
-
-    <TextView
-        android:id="@+id/textView19"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginBottom="7dp"
-        android:text="TextView"
-        app:layout_constraintBottom_toTopOf="@+id/imageView2"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textView18" />
+        app:layout_constraintTop_toBottomOf="@+id/activity_name" />
 
     <ImageView
-        android:id="@+id/imageView2"
-        android:layout_width="115dp"
-        android:layout_height="115dp"
-        android:layout_marginTop="172dp"
-        android:layout_marginBottom="79dp"
+        android:id="@+id/activity_logo"
+        android:layout_width="125dp"
+        android:layout_height="125dp"
+        android:layout_marginTop="8dp"
         android:background="@drawable/square_btn"
         android:backgroundTint="@color/colorPrimaryDark"
-        app:layout_constraintBottom_toTopOf="@+id/imageButton4"
+        android:contentDescription="@string/activity_logo_base"
+        android:textAlignment="center"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toBottomOf="@+id/activity_type" />
+
+    <ImageView
+        android:id="@+id/logo_image"
+        android:layout_width="85dp"
+        android:layout_height="85dp"
+        android:contentDescription="@string/activity_logo_image"
+        android:textAlignment="center"
+        app:layout_constraintBottom_toBottomOf="@+id/activity_logo"
+        app:layout_constraintEnd_toEndOf="@+id/activity_logo"
+        app:layout_constraintStart_toStartOf="@+id/activity_logo"
+        app:layout_constraintTop_toTopOf="@+id/activity_logo" />
 
     <TextView
-        android:id="@+id/textView20"
+        android:id="@+id/label_response"
+        style="@style/FragmentTitle"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="29dp"
-        android:layout_marginBottom="47dp"
-        android:text="TextView"
-        app:layout_constraintBottom_toTopOf="@+id/imageButton3"
-        app:layout_constraintStart_toStartOf="@+id/imageView2"
-        app:layout_constraintTop_toBottomOf="@+id/imageView2" />
+        android:layout_marginTop="14dp"
+        android:text="@string/label_response"
+        android:textSize="18sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/activity_logo" />
 
     <ImageButton
         android:id="@+id/imageButton"
         android:layout_width="65dp"
         android:layout_height="65dp"
-        android:layout_marginEnd="25dp"
+        android:layout_marginTop="16dp"
         android:background="@drawable/square_btn"
         android:backgroundTint="@color/colorPrimary"
         android:src="@drawable/ic_mood_5"
-        app:layout_constraintBottom_toBottomOf="@+id/imageButton2"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toEndOf="@+id/imageButton2"
-        app:layout_constraintTop_toTopOf="@+id/imageButton2"
-        app:layout_constraintVertical_bias="0.0" />
+        app:layout_constraintTop_toBottomOf="@+id/label_response" />
 
     <ImageButton
         android:id="@+id/imageButton2"
         android:layout_width="65dp"
         android:layout_height="65dp"
-        android:layout_marginEnd="12dp"
+        android:layout_marginTop="16dp"
         android:background="@drawable/square_btn"
         android:backgroundTint="@color/colorPrimary"
         android:src="@drawable/ic_mood_4"
-        app:layout_constraintBottom_toBottomOf="@+id/imageButton3"
         app:layout_constraintEnd_toStartOf="@+id/imageButton"
+        app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toEndOf="@+id/imageButton3"
-        app:layout_constraintTop_toTopOf="@+id/imageButton3"
-        app:layout_constraintVertical_bias="0.0" />
+        app:layout_constraintTop_toBottomOf="@+id/label_response" />
 
     <ImageButton
         android:id="@+id/imageButton3"
         android:layout_width="65dp"
         android:layout_height="65dp"
-        android:layout_marginEnd="10dp"
-        android:layout_marginBottom="228dp"
+        android:layout_marginTop="16dp"
         android:background="@drawable/square_btn"
         android:backgroundTint="@color/colorPrimary"
         android:src="@drawable/ic_mood_3"
-        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toStartOf="@+id/imageButton2"
-        app:layout_constraintStart_toEndOf="@+id/imageButton4"
-        app:layout_constraintTop_toBottomOf="@+id/textView20" />
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toEndOf="@+id/imageButton5"
+        app:layout_constraintTop_toBottomOf="@+id/label_response" />
 
     <ImageButton
         android:id="@+id/imageButton4"
         android:layout_width="65dp"
         android:layout_height="65dp"
-        android:layout_marginEnd="11dp"
-        android:layout_marginBottom="228dp"
+        android:layout_marginTop="16dp"
         android:background="@drawable/square_btn"
         android:backgroundTint="@color/colorPrimary"
         android:src="@drawable/ic_mood_2"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toStartOf="@+id/imageButton3"
-        app:layout_constraintStart_toEndOf="@+id/imageButton5"
-        app:layout_constraintTop_toBottomOf="@+id/imageView2" />
+        app:layout_constraintEnd_toStartOf="@+id/imageButton5"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/label_response" />
 
     <ImageButton
         android:id="@+id/imageButton5"
         android:layout_width="65dp"
         android:layout_height="65dp"
-        android:layout_marginStart="16dp"
-        android:layout_marginEnd="12dp"
+        android:layout_marginTop="16dp"
         android:background="@drawable/square_btn"
         android:backgroundTint="@color/colorPrimary"
         android:src="@drawable/ic_mood_1"
-        app:layout_constraintBottom_toBottomOf="@+id/imageButton4"
-        app:layout_constraintEnd_toStartOf="@+id/imageButton4"
+        app:layout_constraintEnd_toStartOf="@+id/imageButton3"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toEndOf="@+id/imageButton4"
+        app:layout_constraintTop_toBottomOf="@+id/label_response" />
+
+    <TextView
+        android:id="@+id/text_notes"
+        style="@style/FragmentTitle"
+        android:layout_width="wrap_content"
+        android:layout_height="20dp"
+        android:layout_marginTop="10dp"
+        android:text="@string/text_notes"
+        android:textSize="18sp"
+        app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="@+id/imageButton4"
-        app:layout_constraintVertical_bias="0.0" />
+        app:layout_constraintTop_toBottomOf="@+id/imageButton3" />
 
     <EditText
-        android:id="@+id/editText"
-        android:layout_width="wrap_content"
+        android:id="@+id/edit_notes"
+        android:layout_width="370dp"
         android:layout_height="wrap_content"
-        android:layout_marginTop="11dp"
+        android:layout_marginTop="12dp"
         android:ems="10"
         android:inputType="textPersonName"
-        android:text="Name"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/imageButton4" />
+        app:layout_constraintTop_toBottomOf="@+id/text_notes" />
 
     <Button
-        android:id="@+id/button4"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="10dp"
+        android:id="@+id/btn_save"
+        android:layout_width="135dp"
+        android:layout_height="45dp"
+        android:layout_marginTop="12dp"
+        android:backgroundTint="@color/colorAccent"
         android:onClick="finishActivityClick"
-        android:text="Button"
+        android:text="@string/text_save"
+        android:textAllCaps="false"
+        android:textColor="@color/colorWhite"
+        android:textSize="20sp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/editText" />
+        app:layout_constraintTop_toBottomOf="@+id/edit_notes" />
 
 
 </android.support.constraint.ConstraintLayout>
