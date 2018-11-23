@@ -60,5 +60,10 @@
     <string name="text_finished">FINISHED!</string>
     <string name="label_response">How did it go?</string>
     <string name="text_save">Save</string>
+    <string name="mood_5_button">Mood 5 Button</string>
+    <string name="mood_4_button">Mood 4 Button</string>
+    <string name="mood_3_button">Mood 3 Button</string>
+    <string name="mood_1_button">Mood 1 Button</string>
+    <string name="mood_2_button">Mood 2 Button</string>
 
 </resources>

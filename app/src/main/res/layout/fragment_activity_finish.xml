@@ -83,7 +83,7 @@
         app:layout_constraintTop_toBottomOf="@+id/activity_logo" />
 
     <ImageButton
-        android:id="@+id/imageButton"
+        android:id="@+id/btn_mood5"
         android:layout_width="65dp"
         android:layout_height="65dp"
         android:layout_marginTop="16dp"
@@ -92,60 +92,65 @@
         android:src="@drawable/ic_mood_5"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.5"
-        app:layout_constraintStart_toEndOf="@+id/imageButton2"
-        app:layout_constraintTop_toBottomOf="@+id/label_response" />
+        app:layout_constraintStart_toEndOf="@+id/btn_mood4"
+        app:layout_constraintTop_toBottomOf="@+id/label_response"
+        android:contentDescription="@string/mood_5_button" />
 
     <ImageButton
-        android:id="@+id/imageButton2"
+        android:id="@+id/btn_mood4"
         android:layout_width="65dp"
         android:layout_height="65dp"
         android:layout_marginTop="16dp"
         android:background="@drawable/square_btn"
         android:backgroundTint="@color/colorPrimary"
         android:src="@drawable/ic_mood_4"
-        app:layout_constraintEnd_toStartOf="@+id/imageButton"
+        app:layout_constraintEnd_toStartOf="@+id/btn_mood5"
         app:layout_constraintHorizontal_bias="0.5"
-        app:layout_constraintStart_toEndOf="@+id/imageButton3"
-        app:layout_constraintTop_toBottomOf="@+id/label_response" />
+        app:layout_constraintStart_toEndOf="@+id/btn_mood3"
+        app:layout_constraintTop_toBottomOf="@+id/label_response"
+        android:contentDescription="@string/mood_4_button" />
 
     <ImageButton
-        android:id="@+id/imageButton3"
+        android:id="@+id/btn_mood3"
         android:layout_width="65dp"
         android:layout_height="65dp"
         android:layout_marginTop="16dp"
         android:background="@drawable/square_btn"
         android:backgroundTint="@color/colorPrimary"
         android:src="@drawable/ic_mood_3"
-        app:layout_constraintEnd_toStartOf="@+id/imageButton2"
+        app:layout_constraintEnd_toStartOf="@+id/btn_mood4"
         app:layout_constraintHorizontal_bias="0.5"
-        app:layout_constraintStart_toEndOf="@+id/imageButton5"
-        app:layout_constraintTop_toBottomOf="@+id/label_response" />
+        app:layout_constraintStart_toEndOf="@+id/btn_mood2"
+        app:layout_constraintTop_toBottomOf="@+id/label_response"
+        android:contentDescription="@string/mood_3_button" />
 
     <ImageButton
-        android:id="@+id/imageButton4"
-        android:layout_width="65dp"
-        android:layout_height="65dp"
-        android:layout_marginTop="16dp"
-        android:background="@drawable/square_btn"
-        android:backgroundTint="@color/colorPrimary"
-        android:src="@drawable/ic_mood_2"
-        app:layout_constraintEnd_toStartOf="@+id/imageButton5"
-        app:layout_constraintHorizontal_bias="0.5"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/label_response" />
-
-    <ImageButton
-        android:id="@+id/imageButton5"
+        android:id="@+id/btn_mood1"
         android:layout_width="65dp"
         android:layout_height="65dp"
         android:layout_marginTop="16dp"
         android:background="@drawable/square_btn"
         android:backgroundTint="@color/colorPrimary"
         android:src="@drawable/ic_mood_1"
-        app:layout_constraintEnd_toStartOf="@+id/imageButton3"
+        app:layout_constraintEnd_toStartOf="@+id/btn_mood2"
         app:layout_constraintHorizontal_bias="0.5"
-        app:layout_constraintStart_toEndOf="@+id/imageButton4"
-        app:layout_constraintTop_toBottomOf="@+id/label_response" />
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/label_response"
+        android:contentDescription="@string/mood_1_button" />
+
+    <ImageButton
+        android:id="@+id/btn_mood2"
+        android:layout_width="65dp"
+        android:layout_height="65dp"
+        android:layout_marginTop="16dp"
+        android:background="@drawable/square_btn"
+        android:backgroundTint="@color/colorPrimary"
+        android:src="@drawable/ic_mood_2"
+        app:layout_constraintEnd_toStartOf="@+id/btn_mood3"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toEndOf="@+id/btn_mood1"
+        app:layout_constraintTop_toBottomOf="@+id/label_response"
+        android:contentDescription="@string/mood_2_button" />
 
     <TextView
         android:id="@+id/text_notes"
@@ -157,7 +162,7 @@
         android:textSize="18sp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/imageButton3" />
+        app:layout_constraintTop_toBottomOf="@+id/btn_mood3" />
 
     <EditText
         android:id="@+id/edit_notes"
