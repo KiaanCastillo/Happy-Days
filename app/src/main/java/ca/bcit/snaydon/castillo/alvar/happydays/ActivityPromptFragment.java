@@ -43,8 +43,6 @@ public class ActivityPromptFragment extends Fragment implements View.OnClickList
             isNotification = (boolean) getArguments().getSerializable("isNotification");
         }
 
-        Log.e("PROMPT_FRAGMENT", myActivity.getName());
-
         startBtn = v.findViewById(R.id.btn_start);
         startBtn.setOnClickListener(this);
         anotherBtn = v.findViewById(R.id.btn_another);
@@ -53,8 +51,6 @@ public class ActivityPromptFragment extends Fragment implements View.OnClickList
         stopBtn.setOnClickListener(this);
 
         fillInFields(v);
-
-        Log.e("PASSED_ACTIVITY", myActivity.getName() + "isNotification: " + isNotification);
 
         return v;
     }
@@ -84,6 +80,7 @@ public class ActivityPromptFragment extends Fragment implements View.OnClickList
                 Bundle activityBundle = new Bundle();
                 activityBundle.putSerializable("myActivity", myActivity);
                 promptFragment.setArguments(activityBundle);
+                ((MainActivity) getActivity()).loadFragment(promptFragment);
                 break;
             case R.id.btn_another:
                 ((MainActivity) getActivity()).loadFragment(new ActivitiesFragment());

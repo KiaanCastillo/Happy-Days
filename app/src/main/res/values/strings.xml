@@ -1,7 +1,7 @@
 <resources>
     <string name="app_name">Happy Days</string>
 
-    <string name="text_placeholder">Placeholder Text</string>
+    <string name="text_placeholder">Placeholder</string>
     <string name="navigation_selected">▬</string>
     <string name="logo_description">Happy Days Logo (Gradient)</string>
 
@@ -50,5 +50,9 @@
     <string name="activity_logo_base">Activity Logo Base</string>
     <string name="activity_logo_image">Activity Logo Image</string>
     <string name="prompt_start">STARTING NEW ACTIVITY</string>
+    <string name="prompt_inprogress">ACTIVITY IN PROGRESS</string>
+    <string name="btn_finish">Finish</string>
+
+    <!-- Activity Detail Fragment -->
 
 </resources>

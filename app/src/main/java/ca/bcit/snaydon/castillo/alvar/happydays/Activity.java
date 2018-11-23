@@ -15,6 +15,14 @@ public class Activity implements Serializable {
     private boolean is_favourite;
     private int logoId;
 
+    private static String[] MENTAL_DESCRIPTIONS = {
+            "Reading is a great way to gain knowledge or go on an adventure without ever leaving the room!",
+            "Meditating ",
+            "Stretching ",
+            "Journaling ",
+            "Mind Maps "
+    };
+
     public Activity(int id, String name, String description, int logoId, boolean isPhysical) {
         this.id = id;
         this.name = name;
@@ -61,11 +69,11 @@ public class Activity implements Serializable {
     }
 
     public static Activity[] ACTIVITIES = {
-            new Activity(R.id.btn_reading, "Reading", "Description Reading", R.drawable.ic_reading, false),
-            new Activity(R.id.btn_meditating, "Meditating", "Description Meditating", R.drawable.ic_meditating, false),
-            new Activity(R.id.btn_stretching, "Stretching", "Description Stretching", R.drawable.ic_stretching, false),
-            new Activity(R.id.btn_journaling, "Journaling", "Description Journaling", R.drawable.ic_journaling, false),
-            new Activity(R.id.btn_mindmap, "Mind Map", "Description Mind Map", R.drawable.ic_mindmap, false)
+            new Activity(R.id.btn_reading, "Reading", MENTAL_DESCRIPTIONS[0], R.drawable.ic_reading, false),
+            new Activity(R.id.btn_meditating, "Meditating", MENTAL_DESCRIPTIONS[1], R.drawable.ic_meditating, false),
+            new Activity(R.id.btn_stretching, "Stretching", MENTAL_DESCRIPTIONS[2], R.drawable.ic_stretching, false),
+            new Activity(R.id.btn_journaling, "Journaling", MENTAL_DESCRIPTIONS[3], R.drawable.ic_journaling, false),
+            new Activity(R.id.btn_mindmap, "Mind Map", MENTAL_DESCRIPTIONS[4], R.drawable.ic_mindmap, false)
     };
 
     private Activity getActivityByID(int id) {
