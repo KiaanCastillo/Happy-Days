@@ -1,5 +1,6 @@
 package ca.bcit.snaydon.castillo.alvar.happydays;
 
+import android.content.Intent;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteException;
@@ -36,7 +37,24 @@ public class MainActivity extends AppCompatActivity implements BottomNavigationV
         bottomNavigationView = findViewById(R.id.navigation);
         bottomNavigationView.setOnNavigationItemSelectedListener(this);
 
-        loadFragment(new HomeFragment());
+        Intent intent = getIntent();
+        boolean fromNotification = intent.getBooleanExtra("NOTIFICATION", false);
+        int activityId = intent.getIntExtra("ACTIVITY_ID", 0);
+
+        if (fromNotification) {
+
+            ActivitiesFragment actFrag = new ActivitiesFragment();
+            Bundle bundle = new Bundle();
+            bundle.putBoolean("NOTIFICATION", true);
+            bundle.putInt("ID", activityId);
+            actFrag.setArguments(bundle);
+
+            loadFragment(actFrag);
+        } else {
+
+            loadFragment(new HomeFragment());
+        }
+
     }
 
     public boolean loadFragment(Fragment fragment) {

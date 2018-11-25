@@ -30,11 +30,14 @@ public class SchedulerBroadcastReceiver extends BroadcastReceiver {
 
             long wakeTime = calendar.getTimeInMillis();
 
+            String title = "Time for a check in";
+            String description = "Ready for a happy day?";
+
             // change type to check-in fragment type
             if (curTime < wakeTime)
-                scheduler.createNotification(0, 6, 0);
+                scheduler.createNotification(" ", 6, 0, title, description);
             else
-                scheduler.createNotification(0, calendar.get(Calendar.HOUR_OF_DAY), calendar.get(Calendar.MINUTE) + 3);
+                scheduler.createNotification(" ", calendar.get(Calendar.HOUR_OF_DAY), calendar.get(Calendar.MINUTE), title, description);
 
         } else {
 
