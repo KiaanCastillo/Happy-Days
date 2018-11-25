@@ -86,7 +86,7 @@ public class ActivityPromptFragment extends Fragment implements View.OnClickList
                 ((MainActivity) getActivity()).loadFragment(new ActivitiesFragment());
                 break;
             case R.id.btn_stop:
-
+                ((MainActivity) getActivity()).loadFragment(new HomeFragment());
         }
     }
 }

@@ -35,7 +35,7 @@ public class ActivityDetailFragment extends Fragment implements View.OnClickList
             myActivity = (Activity) getArguments().getSerializable("myActivity");
         }
 
-        Button finishBtn = v.findViewById(R.id.btn_finish);
+        Button finishBtn = v.findViewById(R.id.btn_detail);
         finishBtn.setOnClickListener(this);
 
         fillInFields(v);
@@ -53,14 +53,25 @@ public class ActivityDetailFragment extends Fragment implements View.OnClickList
         activityDesc.setText(myActivity.getDescription());
         ImageView activityLogo = v.findViewById(R.id.logo_image);
         activityLogo.setImageDrawable(ResourcesCompat.getDrawable(getResources(), myActivity.getLogo(), null));
+        if (myActivity.isPhysical() && !myActivity.getName().equals("Workout")) {
+            Button browseBtn = v.findViewById(R.id.btn_detail);
+            browseBtn.setText(R.string.btn_browse);
+        }
     }
 
     @Override
     public void onClick(View v) {
-        ActivityFinishFragment finishFragment = new ActivityFinishFragment();
+        Button browseBtn = v.findViewById(R.id.btn_detail);
         Bundle activityBundle = new Bundle();
         activityBundle.putSerializable("myActivity", myActivity);
-        finishFragment.setArguments(activityBundle);
-        ((MainActivity) getActivity()).loadFragment(finishFragment);
+        if (browseBtn.getText().toString().equals("Finish")) {
+            ActivityFinishFragment finishFragment = new ActivityFinishFragment();
+            finishFragment.setArguments(activityBundle);
+            ((MainActivity) getActivity()).loadFragment(finishFragment);
+        } else {
+            ActivityBrowseFragment browseFragment = new ActivityBrowseFragment();
+            browseFragment.setArguments(activityBundle);
+            ((MainActivity) getActivity()).loadFragment(browseFragment);
+        }
     }
 }
