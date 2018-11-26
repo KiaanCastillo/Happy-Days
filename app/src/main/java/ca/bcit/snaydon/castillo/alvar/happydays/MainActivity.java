@@ -27,6 +27,8 @@ public class MainActivity extends AppCompatActivity implements BottomNavigationV
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
+        //CHECK IF LOG ALREADY EXISTS FOR THIS DAY
+        //IF NOT, PROMPT FOR BUSY-NESS THEN MAKE A NEW LOG
         dbHelper = new UserDatabaseHelper(this);
         User user = new User("Bob", "Parker");
         dbHelper.initializeUser(dbHelper.getReadableDatabase(), user);

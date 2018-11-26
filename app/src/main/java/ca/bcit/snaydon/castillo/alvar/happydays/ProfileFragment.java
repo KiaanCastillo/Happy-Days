@@ -10,6 +10,7 @@ import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.TextView;
 
 public class ProfileFragment extends Fragment {
     private SQLiteDatabase db;
@@ -19,11 +20,19 @@ public class ProfileFragment extends Fragment {
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
-        return inflater.inflate(R.layout.fragment_profile, null);
+        View v = inflater.inflate(R.layout.fragment_profile, null);
+        initProfileFragment(v);
+        return v;
     }
 
-    private void initProfileFragment() {
+    private void initProfileFragment(View v) {
+        dbHelper = new UserDatabaseHelper(getContext());
+        User user = dbHelper.getUser();
+        TextView tv = v.findViewById(R.id.profile_first_name);
+        tv.setText(user.getFirst_name());
 
+        tv = v.findViewById(R.id.profile_last_name);
+        tv.setText(user.getLast_name());
     }
 
 }

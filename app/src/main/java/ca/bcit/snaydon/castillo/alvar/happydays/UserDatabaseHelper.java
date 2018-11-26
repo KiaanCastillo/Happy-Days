@@ -57,6 +57,7 @@ public class UserDatabaseHelper extends SQLiteOpenHelper {
         db.execSQL(createMentalActivitiesTable());
         db.execSQL(createPhysicalActivitiesTable());
         db.execSQL(createLogsTable());
+        db.execSQL(createNotifScheduleTable());
     }
 
     @Override
@@ -65,20 +66,13 @@ public class UserDatabaseHelper extends SQLiteOpenHelper {
         db.execSQL(createMentalActivitiesTable());
         db.execSQL(createPhysicalActivitiesTable());
         db.execSQL(createLogsTable());
+        db.execSQL(createNotifScheduleTable());
     }
 
     public void initializeUser(SQLiteDatabase db, User user) {
         insertUser(db, user);
         initializeMentalActivitiesTable(db);
         initializePhysicalActivitiesTable(db);
-    }
-
-    private void insertUser(SQLiteDatabase db, User user) {
-        //Storing user info in USER_INFO table
-        ContentValues user_values = new ContentValues();
-        user_values.put("FIRST_NAME", user.getFirst_name());
-        user_values.put("LAST_NAME", user.getLast_name());
-        db.insert(USER_INFO, null, user_values);
     }
 
     private void initializeMentalActivitiesTable(SQLiteDatabase db) {
@@ -95,13 +89,47 @@ public class UserDatabaseHelper extends SQLiteOpenHelper {
     private void initializePhysicalActivitiesTable(SQLiteDatabase db) {
         //Storing activity info in MENTAL_ACTIVITIES_INFO table
         for (String pActivity : PHYSICAL_ACTIVITIES_LIST) {
-            ContentValues activities_values = new ContentValues();
-            activities_values.put("NAME", pActivity);
-            activities_values.put("AVG", 5);
-            activities_values.put("FAV", 0);
-            db.insert("PHYSICAL_ACTIVITIES_INFO", null, activities_values);
+            ContentValues activitiesValues = new ContentValues();
+            activitiesValues.put("NAME", pActivity);
+            activitiesValues.put("AVG", 5);
+            activitiesValues.put("FAV", 0);
+            db.insert("PHYSICAL_ACTIVITIES_INFO", null, activitiesValues);
         }
     }
+
+    public void insertUser(SQLiteDatabase db, User user) {
+        //Storing user info in USER_INFO table
+        ContentValues userValues = new ContentValues();
+        userValues.put("FIRST_NAME", user.getFirst_name());
+        userValues.put("LAST_NAME", user.getLast_name());
+        db.insert(USER_INFO, null, userValues);
+    }
+
+    public void insertLog(SQLiteDatabase db, Log log) {
+        ContentValues logValues = new ContentValues();
+        logValues.put("MONTH", log.getMonth());
+        logValues.put("DAY", log.getDay());
+        logValues.put("YEAR", log.getYear());
+        logValues.put("DAY_TYPE", log.getDayType());
+        logValues.put("ACTIVITIES", log.getActivities());
+        logValues.put("ACTIVITIES_MOOD", log.getActivities_moods());
+        logValues.put("OVERALL_MOOD", log.getOverallMood());
+        logValues.put("WATER_CONSUMPTION", log.getWaterConsumption());
+        logValues.put("NOTES", log.getNotes());
+        db.insert(LOGS, null, logValues);
+    }
+
+    public void updateLog(SQLiteDatabase db, Log log, int log_id) {
+        ContentValues logValues = new ContentValues();
+        logValues.put("ACTIVITIES", log.getActivities());
+        logValues.put("ACTIVITIES_MOOD", log.getActivities_moods());
+        logValues.put("OVERALL_MOOD", log.getOverallMood());
+        logValues.put("WATER_CONSUMPTION", log.getWaterConsumption());
+        logValues.put("NOTES", log.getNotes());
+        db.update(LOGS, logValues, "_id = " + log_id, null);
+    }
+
+    /**********************************************TABLE CREATION**************************************************************/
 
     private String createUserInfoTable() {
         String sql = "";
@@ -135,6 +163,7 @@ public class UserDatabaseHelper extends SQLiteOpenHelper {
     private String createLogsTable() {
         String sql = "";
         sql += "CREATE TABLE LOGS (";
+        sql += "_id INTEGER PRIMARY KEY AUTOINCREMENT, ";
         sql += "MONTH INTEGER, ";
         sql += "DAY INTEGER, ";
         sql += "YEAR INTEGER, ";
@@ -147,6 +176,36 @@ public class UserDatabaseHelper extends SQLiteOpenHelper {
         return sql;
     }
 
+    private String createNotifScheduleTable() {
+        String sql = "";
+        sql += "CREATE TABLE NOTIF_SCHEDULE (";
+        sql += "ACTIVITY STRING, ";
+        sql += "HOUR INTEGER);";
+        return sql;
+    }
+
+    public User getUser() {
+        User user = null;
+
+        try {
+            SQLiteDatabase db = getReadableDatabase();
+            Cursor cursor = db.rawQuery("SELECT * FROM USER_INFO",null);
+
+            // move to the first record
+            if (cursor.moveToFirst()) {
+                user = new User(
+                        cursor.getString(0),
+                        cursor.getString(1));
+            }
+            cursor.close();
+        } catch (SQLiteException sqlex) {
+            sqlex.printStackTrace();
+        }
+
+
+        return user;
+    }
+
     public ArrayList<Log> getAllLogs() {
         ArrayList<Log> logs = new ArrayList<>();
         try {
@@ -157,14 +216,15 @@ public class UserDatabaseHelper extends SQLiteOpenHelper {
             if (cursor.moveToFirst()) {
                 while (!cursor.isAfterLast()) {
                     Log log = new Log(
-                            cursor.getInt(0),
                             cursor.getInt(1),
                             cursor.getInt(2),
                             cursor.getInt(3),
-                            cursor.getString(4),
+                            cursor.getInt(4),
                             cursor.getString(5),
+                            cursor.getString(6),
                             cursor.getInt(7),
                             cursor.getString(8));
+                    log.setID(cursor.getInt(0));
                     logs.add(log);
                     cursor.moveToNext();
                 }

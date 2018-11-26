@@ -6,6 +6,8 @@ import java.util.Scanner;
 
 public class Log {
 
+    private int id;
+
     private int month;
 
     private int day;
@@ -32,7 +34,6 @@ public class Log {
         this.waterConsumption = waterConsumption;
         this.notes = notes;
 
-
         overallMood = calculateAvg();
     }
 
@@ -57,6 +58,12 @@ public class Log {
         for (Integer i : activities_moods)
             avg += i;
         return avg;
+    }
+
+    public int getID() { return id; }
+
+    public void setID(int id) {
+        this.id = id;
     }
 
     public int getMonth() {
@@ -91,16 +98,22 @@ public class Log {
         this.dayType = dayType;
     }
 
-    public ArrayList<String> getActivities() {
-        return activities;
+    public String getActivities() {
+        StringBuilder activitiesString = new StringBuilder();
+        for (String s : activities)
+            activitiesString.append(s);
+        return activitiesString.toString();
     }
 
     public void setActivities(ArrayList<String> activities) {
         this.activities = activities;
     }
 
-    public ArrayList<Integer> getActivities_moods() {
-        return activities_moods;
+    public String getActivities_moods() {
+        StringBuilder activitiesMoodsString = new StringBuilder();
+        for (Integer i : activities_moods)
+            activitiesMoodsString.append(i);
+        return activitiesMoodsString.toString();
     }
 
     public void setActivities_moods(ArrayList<Integer> activities_moods) {
