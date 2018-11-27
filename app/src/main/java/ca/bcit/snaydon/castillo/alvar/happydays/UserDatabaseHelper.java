@@ -112,7 +112,7 @@ public class UserDatabaseHelper extends SQLiteOpenHelper {
         logValues.put("YEAR", log.getYear());
         logValues.put("DAY_TYPE", log.getDayType());
         logValues.put("ACTIVITIES", log.getActivities());
-        logValues.put("ACTIVITIES_MOOD", log.getActivitiesMoods());
+        logValues.put("ACTIVITIES_MOODS", log.getActivitiesMoods());
         logValues.put("OVERALL_MOOD", log.getOverallMood());
         logValues.put("WATER_CONSUMPTION", log.getWaterConsumption());
         logValues.put("NOTES", log.getNotes());
@@ -216,7 +216,6 @@ public class UserDatabaseHelper extends SQLiteOpenHelper {
             if (cursor.moveToFirst()) {
                 while (!cursor.isAfterLast()) {
                     Log log = new Log(
-                            cursor.getInt(0),
                             cursor.getInt(1),
                             cursor.getInt(2),
                             cursor.getInt(3),
@@ -225,6 +224,7 @@ public class UserDatabaseHelper extends SQLiteOpenHelper {
                             cursor.getString(6),
                             cursor.getInt(7),
                             cursor.getString(8));
+                    log.setID(cursor.getInt(0));
                     logs.add(log);
                     cursor.moveToNext();
                 }

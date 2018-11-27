@@ -16,15 +16,15 @@
         app:layout_constraintTop_toTopOf="parent" />
 
     <ImageView
-        android:id="@+id/logs_fave_1"
+        android:id="@+id/logs_best_1"
         style="@style/logs_activity_display" />
 
     <ImageView
-        android:id="@+id/logs_fave_2"
+        android:id="@+id/logs_best_2"
         style="@style/logs_activity_display" />
 
     <ImageView
-        android:id="@+id/logs_fave_3"
+        android:id="@+id/logs_best_3"
         style="@style/logs_activity_display" />
 
     <TextView

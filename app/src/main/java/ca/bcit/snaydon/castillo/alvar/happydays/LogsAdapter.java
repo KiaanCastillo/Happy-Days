@@ -50,16 +50,8 @@ public class LogsAdapter extends ArrayAdapter<Log> {
                 break;
         }
 
-        String topActivities[] = currentLog.getTopActivities();
-        iv = (ImageView)listItem.findViewById(R.id.logs_fave_1);
-        iv.setImageResource(getActivityIcon(topActivities[0]));
-
-        iv = (ImageView)listItem.findViewById(R.id.logs_fave_2);
-        iv.setImageResource(getActivityIcon(topActivities[1]));
-
-        iv = (ImageView)listItem.findViewById(R.id.logs_fave_3);
-        iv.setImageResource(getActivityIcon(topActivities[2]));
-
+//        String topActivities[] = currentLog.getTopActivities();
+//        populateBestDisplays(topActivities.length, topActivities, listItem);
 
         return convertView;
     }
@@ -85,5 +77,21 @@ public class LogsAdapter extends ArrayAdapter<Log> {
             default:
                 return R.drawable.ic_workout;
         }
+    }
+
+    private void populateBestDisplays(int num, String topActivities[], View listItem) {
+        ImageView iv = (ImageView)listItem.findViewById(R.id.logs_best_1);
+        iv.setImageResource(getActivityIcon(topActivities[0]));
+
+        if (num > 1) {
+            iv = (ImageView)listItem.findViewById(R.id.logs_best_2);
+            iv.setImageResource(getActivityIcon(topActivities[1]));
+        }
+
+        if (num > 2) {
+            iv = (ImageView)listItem.findViewById(R.id.logs_best_3);
+            iv.setImageResource(getActivityIcon(topActivities[2]));
+        }
+
     }
 }

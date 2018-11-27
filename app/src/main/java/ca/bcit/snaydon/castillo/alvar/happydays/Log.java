@@ -4,6 +4,7 @@ import android.content.Intent;
 
 import java.util.ArrayList;
 import java.util.Collections;
+import java.util.HashMap;
 import java.util.Iterator;
 import java.util.LinkedHashMap;
 import java.util.List;
@@ -34,8 +35,8 @@ public class Log {
 
     private String notes;
 
-    public Log(int id, int month, int day, int year, int dayType, String activitiesString, String moodsString, int waterConsumption, String notes) {
-        this.id = id;
+    public Log(int month, int day, int year, int dayType, String activitiesString, String moodsString, int waterConsumption, String notes) {
+        activities = new HashMap<>();
         this.month = month;
         this.day = day;
         this.year = year;
@@ -44,7 +45,7 @@ public class Log {
         this.notes = notes;
         populateActivitiesList(activitiesString, moodsString);
         overallMood = calculateAvg();
-        sortActivities();
+//        sortActivities();
     }
 
     private void populateActivitiesList(String activitiesString, String moodsString) {
@@ -55,12 +56,11 @@ public class Log {
     }
 
     public int calculateAvg() {
-        ArrayList<Integer> moods = (ArrayList<Integer>) activities.values();
         int average = 0;
-        for (Integer i : moods)
+        for (Integer i : activities.values())
             average += i;
 
-        average = (int) Math.ceil(average / moods.size());
+        average = (int) Math.ceil(average / activities.size());
         return average;
     }
 
@@ -76,34 +76,25 @@ public class Log {
         return topActivities;
     }
 
-    private void sortActivities() {
-        List<String> mapKeys = new ArrayList<>(activities.keySet());
-        List<Integer> mapValues = new ArrayList<>(activities.values());
-        Collections.sort(mapValues);
-        Collections.sort(mapKeys);
-
-        LinkedHashMap<String, Integer> sortedMap =
-                new LinkedHashMap<>();
-
-        Iterator<Integer> valueIt = mapValues.iterator();
-        while (valueIt.hasNext()) {
-            int val = valueIt.next();
-            Iterator<String> keyIt = mapKeys.iterator();
-
-            while (keyIt.hasNext()) {
-                String key = keyIt.next();
-                int comp1 = activities.get(key);
-                int comp2 = val;
-
-                if (comp1 == comp2) {
-                    keyIt.remove();
-                    sortedMap.put(key, val);
-                    break;
-                }
-            }
-        }
-        activities = sortedMap;
-    }
+//    private void sortActivities() {
+//        List<String> mapKeys = new ArrayList<>(activities.keySet());
+//        List<Integer> mapValues = new ArrayList<>(activities.values());
+//
+//        Map<String, Integer> sortedMap = new HashMap<>();
+//        int largest = mapValues.get(0);
+//        int indexCounter = 0;
+//        for (int j = 1; j < mapValues.size(); j++) {
+//            for (int i = 1; i < mapValues.size(); i++) {
+//                if (mapValues.get(i) > largest) {
+//                    indexCounter = i;
+//                    largest = mapValues.get(i);
+//                }
+//            }
+//        }
+//
+//
+//        activities = sortedMap;
+//    }
 
     public int getID() { return id; }
 

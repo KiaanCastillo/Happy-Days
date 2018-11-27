@@ -32,6 +32,8 @@ public class MainActivity extends AppCompatActivity implements BottomNavigationV
         dbHelper = new UserDatabaseHelper(this);
         User user = new User("Bob", "Parker");
         dbHelper.initializeUser(dbHelper.getReadableDatabase(), user);
+        Log log = new Log(11, 2, 2018, 3, "Running Biking Mindmap Stretching", "5 5 4 2", 4, "Yeet");
+        dbHelper.insertLog(dbHelper.getReadableDatabase(), log);
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_home);
         bottomNavigationView = findViewById(R.id.navigation);

@@ -9,11 +9,18 @@ import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ListView;
+import android.widget.Toast;
+
+import java.util.ArrayList;
 
 public class LogsFragment extends Fragment {
     private SQLiteDatabase db;
     private Cursor cursor;
     private UserDatabaseHelper dbHelper;
+
+    private ArrayList<Log> logList = new ArrayList<Log>();
+    private ListView logsListView;
 
     @Nullable
     @Override
@@ -24,6 +31,13 @@ public class LogsFragment extends Fragment {
     }
 
     private void initLogsFragment(View v) {
+        dbHelper = new UserDatabaseHelper(getContext());
+        logsListView = (ListView) v.findViewById(R.id.logs_listview);
+        logList = dbHelper.getAllLogs();
+
+        LogsAdapter adapter = new LogsAdapter(getContext(), logList);
+        logsListView.setAdapter(adapter);
+
 
     }
 }
