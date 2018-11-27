@@ -26,8 +26,10 @@ public class LogsAdapter extends ArrayAdapter<Log> {
     @Override
     public View getView(int position, View convertView, ViewGroup parent) {
         View listItem = convertView;
-        if (listItem == null)
+        if (listItem == null) {
             listItem = LayoutInflater.from(context).inflate(R.layout.log_list_row, parent, false);
+
+        }
 
         Log currentLog = logsList.get(position);
 
@@ -50,10 +52,10 @@ public class LogsAdapter extends ArrayAdapter<Log> {
                 break;
         }
 
-//        String topActivities[] = currentLog.getTopActivities();
-//        populateBestDisplays(topActivities.length, topActivities, listItem);
+        String topActivities[] = currentLog.getTopActivities();
+        populateBestDisplays(topActivities.length, topActivities, listItem);
 
-        return convertView;
+        return listItem;
     }
 
     private int getActivityIcon(String activityName) {

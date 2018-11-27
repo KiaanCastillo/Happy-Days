@@ -16,11 +16,7 @@ import java.util.ArrayList;
 
 public class LogsFragment extends Fragment {
     private SQLiteDatabase db;
-    private Cursor cursor;
     private UserDatabaseHelper dbHelper;
-
-    private ArrayList<Log> logList = new ArrayList<Log>();
-    private ListView logsListView;
 
     @Nullable
     @Override
@@ -32,12 +28,10 @@ public class LogsFragment extends Fragment {
 
     private void initLogsFragment(View v) {
         dbHelper = new UserDatabaseHelper(getContext());
-        logsListView = (ListView) v.findViewById(R.id.logs_listview);
-        logList = dbHelper.getAllLogs();
+        ListView logsListView = (ListView) v.findViewById(R.id.logs_listview);
+        ArrayList<Log> logList = dbHelper.getAllLogs();
 
-        LogsAdapter adapter = new LogsAdapter(getContext(), logList);
+        LogsAdapter adapter = new LogsAdapter(getActivity(), logList);
         logsListView.setAdapter(adapter);
-
-
     }
 }
