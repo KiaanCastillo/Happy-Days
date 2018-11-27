@@ -1,10 +1,20 @@
 package ca.bcit.snaydon.castillo.alvar.happydays;
 
-import java.lang.reflect.Array;
+import android.content.Intent;
+
 import java.util.ArrayList;
+import java.util.Collections;
+import java.util.Iterator;
+import java.util.LinkedHashMap;
+import java.util.List;
+import java.util.Map;
 import java.util.Scanner;
+import java.util.TreeMap;
+import java.util.Vector;
 
 public class Log {
+
+    public static final int MAX_FAVS = 3;
 
     private int id;
 
@@ -16,9 +26,7 @@ public class Log {
 
     private int dayType;
 
-    private ArrayList<String> activities;
-
-    private ArrayList<Integer> activities_moods;
+    private Map<String, Integer> activities;
 
     private int overallMood;
 
@@ -26,38 +34,75 @@ public class Log {
 
     private String notes;
 
-    public Log(int month, int day, int year, int dayType, String activitiesString, String moodsString, int waterConsumption,String notes) {
+    public Log(int id, int month, int day, int year, int dayType, String activitiesString, String moodsString, int waterConsumption, String notes) {
+        this.id = id;
         this.month = month;
         this.day = day;
         this.year = year;
         this.dayType = dayType;
         this.waterConsumption = waterConsumption;
         this.notes = notes;
-
+        populateActivitiesList(activitiesString, moodsString);
         overallMood = calculateAvg();
+        sortActivities();
     }
 
-    private ArrayList<String> populateActivitiesList(String activitiesString) {
-        ArrayList<String> activitiesList = new ArrayList<>();
-        Scanner s = new Scanner(activitiesString);
-        while (s.hasNext())
-            activitiesList.add(s.next());
-        return activitiesList;
+    private void populateActivitiesList(String activitiesString, String moodsString) {
+        Scanner aScanner = new Scanner(activitiesString);
+        Scanner mScanner = new Scanner(moodsString);
+        while (aScanner.hasNext() && mScanner.hasNext())
+            activities.put(aScanner.next(), mScanner.nextInt());
     }
 
-    private ArrayList<Integer> populateMoodList(String moodsString) {
-        ArrayList<Integer> moodsList = new ArrayList<>();
-        Scanner s = new Scanner(moodsString);
-        while (s.hasNext())
-            moodsList.add(s.nextInt());
-        return moodsList;
+    public int calculateAvg() {
+        ArrayList<Integer> moods = (ArrayList<Integer>) activities.values();
+        int average = 0;
+        for (Integer i : moods)
+            average += i;
+
+        average = (int) Math.ceil(average / moods.size());
+        return average;
     }
 
-    private int calculateAvg() {
-        int avg = 0;
-        for (Integer i : activities_moods)
-            avg += i;
-        return avg;
+    public String[] getTopActivities() {
+        String topActivities[] = new String[MAX_FAVS];
+        int counter = 0;
+        for (String activity : activities.keySet()) {
+            if (counter < 3)
+                topActivities[counter] = activity;
+
+            counter++;
+        }
+        return topActivities;
+    }
+
+    private void sortActivities() {
+        List<String> mapKeys = new ArrayList<>(activities.keySet());
+        List<Integer> mapValues = new ArrayList<>(activities.values());
+        Collections.sort(mapValues);
+        Collections.sort(mapKeys);
+
+        LinkedHashMap<String, Integer> sortedMap =
+                new LinkedHashMap<>();
+
+        Iterator<Integer> valueIt = mapValues.iterator();
+        while (valueIt.hasNext()) {
+            int val = valueIt.next();
+            Iterator<String> keyIt = mapKeys.iterator();
+
+            while (keyIt.hasNext()) {
+                String key = keyIt.next();
+                int comp1 = activities.get(key);
+                int comp2 = val;
+
+                if (comp1 == comp2) {
+                    keyIt.remove();
+                    sortedMap.put(key, val);
+                    break;
+                }
+            }
+        }
+        activities = sortedMap;
     }
 
     public int getID() { return id; }
@@ -86,6 +131,20 @@ public class Log {
         return year;
     }
 
+    public String getActivities() {
+        String activitiesString = "";
+        for (String activity : activities.keySet())
+            activitiesString += activity + " ";
+        return activitiesString;
+    }
+
+    public String getActivitiesMoods() {
+        String moodString = "";
+        for (String activity : activities.keySet())
+            moodString += activities.get(activity) + " ";
+        return moodString;
+    }
+
     public void setYear(int year) {
         this.year = year;
     }
@@ -96,28 +155,6 @@ public class Log {
 
     public void setDayType(int dayType) {
         this.dayType = dayType;
-    }
-
-    public String getActivities() {
-        StringBuilder activitiesString = new StringBuilder();
-        for (String s : activities)
-            activitiesString.append(s);
-        return activitiesString.toString();
-    }
-
-    public void setActivities(ArrayList<String> activities) {
-        this.activities = activities;
-    }
-
-    public String getActivities_moods() {
-        StringBuilder activitiesMoodsString = new StringBuilder();
-        for (Integer i : activities_moods)
-            activitiesMoodsString.append(i);
-        return activitiesMoodsString.toString();
-    }
-
-    public void setActivities_moods(ArrayList<Integer> activities_moods) {
-        this.activities_moods = activities_moods;
     }
 
     public int getOverallMood() {
