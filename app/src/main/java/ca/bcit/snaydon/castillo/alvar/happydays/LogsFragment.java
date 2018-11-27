@@ -18,6 +18,12 @@ public class LogsFragment extends Fragment {
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
-        return inflater.inflate(R.layout.fragment_logs, null);
+        View v = inflater.inflate(R.layout.fragment_logs, null);
+        initLogsFragment(v);
+        return v;
+    }
+
+    private void initLogsFragment(View v) {
+
     }
 }
