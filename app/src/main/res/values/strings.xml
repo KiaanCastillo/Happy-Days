@@ -6,6 +6,26 @@
     <string name="navigation_selected">▬</string>
     <string name="logo_description">Happy Days Logo (Gradient)</string>
 
-    <!-- TODO: Remove or change this placeholder text -->
-    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <!--Fragment Titles-->
+    <string name="menu_title">Menu</string>
+    <string name="logs_title">Logs</string>
+    <string name="profile_title">Profile</string>
+    <string name="activities_title">Activities</string>
+
+    <!--Menu Items-->
+    <string name="about_label">About</string>
+    <string name="developers_label">Developers</string>
+    <string name="restart_label">Restart</string>
+
+    <!--Home Fragment-->
+    <string name="hello_user">Hello</string>
+    <string name="prompt_type_day">What\'s your day going to be like?</string>
+    <string name="super_busy_label">Super Busy</string>
+    <string name="normal_label">Normal</string>
+    <string name="chill_label">Chill</string>
+
+    <!--Profile Fragment-->
+    <string name="favourites_label">Favourites</string>
+    <string name="fav_mental_label">Mental Activities</string>
+    <string name="fav_physical_label">Physical Activities</string>
 </resources>

@@ -23,6 +23,12 @@
             <intent-filter>
                 <action android:name="android.intent.action.BOOT_COMPLETED" />
                 <action android:name="android.intent.action.DATE_CHANGED" />
+                <action android:name="android.intent.action.SCREEN_ON"/>
+            </intent-filter>
+        </receiver>
+        <receiver android:name=".ActivityReceiver">
+            <intent-filter>
+                <action android:name="ca.bcit.snaydon.castillo.alvar.happydays" />
             </intent-filter>
         </receiver>
     </application>

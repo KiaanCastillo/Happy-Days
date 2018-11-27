@@ -1,5 +1,6 @@
 package ca.bcit.snaydon.castillo.alvar.happydays;
 
+import android.content.ContentValues;
 import android.content.Context;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
@@ -9,11 +10,27 @@ public class UserDatabaseHelper extends SQLiteOpenHelper {
     /**
      * Name of the database
      */
-    private static final String DB_NAME = "userdatabase.sqlite";
+    private static final String DB_NAME = "user.sqlite";
     /**
      * Version of the database
      */
     private static final int DB_VERSION = 1;
+    /**
+     * Name of the USER_INFO table
+     */
+    private final String USER_INFO = "USER_INFO";
+    /**
+     * Name of the MENTAL_ACTIVITIES_INFO table
+     */
+    private final String MENTAL_ACTIVITIES_INFO = "MENTAL_ACTIVITIES_INFO";
+    /**
+     * Name of the PHYSICAL_ACTIVITIES_INFO table
+     */
+    private final String PHYSICAL_ACTIVITIES_INFO = "PHYSICAL_ACTIVITIES_INFO";
+    /**
+     * Name of the LOGS table
+     */
+    private final String LOGS = "LOGS";
     /**
      * Context
      */
@@ -26,7 +43,10 @@ public class UserDatabaseHelper extends SQLiteOpenHelper {
 
     @Override
     public void onCreate(SQLiteDatabase db) {
-
+        db.execSQL(createUserInfoTable());
+        db.execSQL(createMentalActivitiesTable());
+        db.execSQL(createPhysicalActivitiesTable());
+        db.execSQL(createLogsTable());
     }
 
     @Override
@@ -37,44 +57,78 @@ public class UserDatabaseHelper extends SQLiteOpenHelper {
     private String createUserInfoTable() {
         String sql = "";
         sql += "CREATE TABLE USER_INFO (";
-        sql += "FIRST_NAME TEXT";
-        sql += "LAST_NAME TEXT, ";
+        sql += "FIRST_NAME TEXT, ";
+        sql += "LAST_NAME TEXT,";
+        sql += "LAST_NAME TEXT);";
 
-        //Don't know if there is a better way to do this...
-        sql += "MENTAL_ACTIVITY_ONE TEXT, ";
-        sql += "MENTAL_ACTIVITY_TWO TEXT, ";
-        sql += "MENTAL_ACTIVITY_THREE TEXT, ";
+        return sql;
+    }
 
-        sql += "PHYSICAL_ACTIVITY_ONE TEXT, ";
-        sql += "PHYSICAL_ACTIVITY_TWO TEXT, ";
-        sql += "PHYSICAL_ACTIVITY_THREE TEXT); ";
+    public void initializeUser(SQLiteDatabase db, User user) {
+        //Storing user info in USER_INFO table
+        ContentValues user_values = new ContentValues();
+        user_values.put("FIRST_NAME", user.getFirst_name());
+        user_values.put("LAST_NAME", user.getLast_name());
+        db.insert(USER_INFO, null, user_values);
+
+        insertMentalActivities(db, user);
+        insertPhysicalActivities(db, user);
+    }
+
+    public void insertMentalActivities(SQLiteDatabase db, User user) {
+        //Storing activity info in MENTAL_ACTIVITIES_INFO table
+        ContentValues activities_values = new ContentValues();
+        Activity m_activities_list[] = user.getM_activities_list();
+        for (int i = 0; i < m_activities_list.length; i++) {
+            activities_values.put("NAME", m_activities_list[i].getName());
+            activities_values.put("AVG", m_activities_list[i].getAvg_mood());
+            activities_values.put("FAV", m_activities_list[i].isIs_favourite());
+        }
+        db.insert(MENTAL_ACTIVITIES_INFO, null, activities_values);
+    }
+
+    public void insertPhysicalActivities(SQLiteDatabase db, User user) {
+        //Storing activity info in MENTAL_ACTIVITIES_INFO table
+        ContentValues activities_values = new ContentValues();
+        Activity p_activities_list[] = user.getP_activities_list();
+        for (int i = 0; i < p_activities_list.length; i++) {
+            activities_values.put("NAME", p_activities_list[i].getName());
+            activities_values.put("AVG", p_activities_list[i].getAvg_mood());
+            activities_values.put("FAV", p_activities_list[i].isIs_favourite());
+        }
+        db.insert(PHYSICAL_ACTIVITIES_INFO, null, activities_values);
+    }
+
+    private String createMentalActivitiesTable() {
+        String sql = "";
+        sql += "CREATE TABLE MENTAL_ACTIVITIES_INFO (";
+        sql += "NAME TEXT, ";
+        sql += "AVG INTEGER, ";
+        sql += "FAV NUMERIC);"; //boolean
+
+        return sql;
+    }
+
+    private String createPhysicalActivitiesTable() {
+        String sql = "";
+        sql += "CREATE TABLE PHYSICAL_ACTIVITIES_INFO (";
+        sql += "NAME TEXT, ";
+        sql += "AVG INTEGER, ";
+        sql += "FAV NUMERIC);"; //boolean
+
         return sql;
     }
 
     private String createLogsTable() {
         String sql = "";
         sql += "CREATE TABLE LOGS (";
-        sql += "DATE TEXT";
-        sql += "DAY_TYPE INTEGER";
-        sql += "FIRST_NAME TEXT";
-        sql += "PHYSICAL_ACTIVITY_THREE TEXT); ";
-        return sql;
-    }
-
-    private String createUserActivitiesInfoTable() {
-        String sql = "";
-        sql += "CREATE TABLE USER_ACTIVITIES_INFO (";
-        sql += "FIRST_NAME TEXT";
-        sql += "LAST_NAME TEXT, ";
-
-        //Don't know if there is a better way to do this...
-        sql += "MENTAL_ACTIVITY_ONE TEXT); ";
-        sql += "MENTAL_ACTIVITY_TWO TEXT); ";
-        sql += "MENTAL_ACTIVITY_THREE TEXT); ";
-
-        sql += "PHYSICAL_ACTIVITY_ONE TEXT); ";
-        sql += "PHYSICAL_ACTIVITY_TWO TEXT); ";
-        sql += "PHYSICAL_ACTIVITY_THREE TEXT); ";
+        sql += "DATE TEXT, ";
+        sql += "DAY_TYPE INTEGER, ";
+        sql += "ACTIVITIES TEXT, ";
+        sql += "ACTIVITIES_MOODS TEXT, ";
+        sql += "OVERALL_MOOD INTEGER, ";
+        sql += "WATER_CONSUMPTION INTEGER, ";
+        sql += "NOTES TEXT);";
         return sql;
     }
 }
