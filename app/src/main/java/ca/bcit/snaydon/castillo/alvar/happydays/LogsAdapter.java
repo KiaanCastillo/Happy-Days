@@ -54,6 +54,8 @@ public class LogsAdapter extends ArrayAdapter<Log> {
 
         String topActivities[] = currentLog.getTopActivities();
         populateBestDisplays(topActivities.length, topActivities, listItem);
+        TextView tv = (TextView) listItem.findViewById(R.id.log_date);
+        tv.setText(dateMaker(currentLog.getMonth(), currentLog.getDay()));
 
         return listItem;
     }
@@ -94,6 +96,51 @@ public class LogsAdapter extends ArrayAdapter<Log> {
             iv = (ImageView)listItem.findViewById(R.id.logs_best_3);
             iv.setImageResource(getActivityIcon(topActivities[2]));
         }
+    }
 
+    private String dateMaker(int month, int day) {
+        String date =  "";
+        switch (month) {
+            case 1:
+                date += "Jan";
+                break;
+            case 2:
+                date += "Feb";
+                break;
+            case 3:
+                date += "Mar";
+                break;
+            case 4:
+                date += "Apr";
+                break;
+            case 5:
+                date += "May";
+                break;
+            case 6:
+                date += "Jun";
+                break;
+            case 7:
+                date += "Jul";
+                break;
+            case 8:
+                date += "Aug";
+                break;
+            case 9:
+                date += "Sep";
+                break;
+            case 10:
+                date += "Oct";
+                break;
+            case 11:
+                date += "Nov";
+                break;
+            default:
+                date += "Dec";
+                break;
+        }
+
+        date += " " + day;
+
+        return date;
     }
 }
