@@ -30,10 +30,6 @@ public class Activity implements Serializable {
         "Walking is a great way to start a habit of exercising or a way to de-stress after a long day of work."
     };
 
-    public static String[] BIKING_LIST = { "Bikeways", "Greenways", "No Route" };
-
-    public static String[] RUNNING_WALKING_LIST = { "Green Spaces", "Park Trails", "Playgrounds", "Sports Fields", "No Route" };
-
     public Activity(int id, String name, String description, int logoId, boolean isPhysical) {
         this.id = id;
         this.name = name;

@@ -14,7 +14,7 @@
         android:layout_alignParentTop="true"
         android:layout_centerHorizontal="true"
         android:layout_marginTop="16dp"
-        android:text="@string/text_browse" />
+        android:text="@string/text_routes" />
 
     <ListView
         android:id="@android:id/list"

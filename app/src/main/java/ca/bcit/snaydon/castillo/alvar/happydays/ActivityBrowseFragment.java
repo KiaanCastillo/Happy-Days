@@ -12,8 +12,17 @@ import android.widget.ListView;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import org.json.JSONArray;
+import org.json.JSONException;
+import org.json.JSONObject;
+
+import java.io.IOException;
+import java.io.InputStream;
+import java.lang.reflect.Array;
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.HashMap;
+import java.util.List;
 
 
 /**
@@ -37,35 +46,79 @@ public class ActivityBrowseFragment extends ListFragment {
             myActivity = (Activity) getArguments().getSerializable("myActivity");
         }
 
-        MainActivity parentActivity = (MainActivity) getActivity();
-        ArrayList<String> browseList = getBrowseList(myActivity.getName());
-        BrowseItemAdapter browseItemAdapter = new BrowseItemAdapter(parentActivity, browseList);
-        setListAdapter(browseItemAdapter);
+        String stringJSON = loadJSONFromAsset(getJSONFileName());
+        HashMap<String, List<String>> routeMap = parseJSONString(stringJSON);
+        ArrayList<Route> routeList = initRouteList(routeMap);
         return v;
-    }
-
-    public ArrayList<String> getBrowseList(String activityName) {
-        ArrayList<String> browseList;
-        if (activityName.equals("Biking")) {
-            browseList = new ArrayList<>(Arrays.asList(Activity.BIKING_LIST));
-        } else {
-            browseList = new ArrayList<>(Arrays.asList(Activity.RUNNING_WALKING_LIST));
-        }
-        return browseList;
     }
 
     @Override
     public void onListItemClick(ListView l, View v, int position, long id) {
         super.onListItemClick(l, v, position, id);
-        Bundle activityBundle = new Bundle();
-        activityBundle.putSerializable("myActivity", myActivity);
-        String curItem = (String) l.getItemAtPosition(position);
-        if (curItem.equalsIgnoreCase("No Route")) {
-            ActivityFinishFragment finishFragment = new ActivityFinishFragment();
-            finishFragment.setArguments(activityBundle);
-            ((MainActivity) getActivity()).loadFragment(finishFragment);
-        } else {
 
-        }
     }
+
+    public ArrayList<Route> initRouteList(HashMap<String, List<String>> routeMap) {
+
+    }
+
+    public HashMap<String, List<String>> parseJSONString(String json) {
+        HashMap<String, List<String>> tempMap = new HashMap<>();
+
+        try {
+            JSONObject obj = new JSONObject(json);
+            JSONArray features = obj.getJSONArray("features");
+
+            for (int i = 0; i < features.length(); i++) {
+                JSONObject featureObj = features.getJSONObject(i);
+                JSONObject properties = featureObj.getJSONObject("properties");
+                String routeName = properties.getString("Name");
+                if (routeName.equals(""))
+                    routeName = "Other";
+
+                if (tempMap.containsKey(routeName)) {
+                    List<String> featureStringList = tempMap.get(routeName);
+                    featureStringList.add(featureObj.toString());
+                    tempMap.put(routeName, featureStringList);
+                }
+                else {
+                    List<String> featureStringList = new ArrayList<>();
+                    featureStringList.add(featureObj.toString());
+                    tempMap.put(routeName, featureStringList);
+                }
+            }
+
+        } catch (JSONException e) {
+            e.printStackTrace();
+        }
+
+        return tempMap;
+    }
+
+    public String loadJSONFromAsset(String fileName) {
+        String json = null;
+        try {
+            InputStream is = getActivity().getAssets().open(fileName);
+            int size = is.available();
+            byte[] buffer = new byte[size];
+            is.read(buffer);
+            is.close();
+            json = new String(buffer, "UTF-8");
+        } catch (IOException ex) {
+            ex.printStackTrace();
+            return null;
+        }
+        return json;
+    }
+
+    public String getJSONFileName() {
+        String fileName;
+        if (myActivity.getName().equals("Biking")) {
+            fileName = "PARKS_MAJOR_NAMED_GREENWAYS.json";
+        } else {
+            fileName = "PARKS_TRAILS.json";
+        }
+        return fileName;
+    }
+
 }

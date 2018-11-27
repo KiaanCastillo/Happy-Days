@@ -55,16 +55,16 @@ public class ActivityDetailFragment extends Fragment implements View.OnClickList
         activityLogo.setImageDrawable(ResourcesCompat.getDrawable(getResources(), myActivity.getLogo(), null));
         if (myActivity.isPhysical() && !myActivity.getName().equals("Workout")) {
             Button browseBtn = v.findViewById(R.id.btn_detail);
-            browseBtn.setText(R.string.btn_browse);
+            browseBtn.setText(R.string.btn_routes);
         }
     }
 
     @Override
     public void onClick(View v) {
-        Button browseBtn = v.findViewById(R.id.btn_detail);
+        Button routeBtn = v.findViewById(R.id.btn_detail);
         Bundle activityBundle = new Bundle();
         activityBundle.putSerializable("myActivity", myActivity);
-        if (browseBtn.getText().toString().equals("Finish")) {
+        if (routeBtn.getText().toString().equals("Finish")) {
             ActivityFinishFragment finishFragment = new ActivityFinishFragment();
             finishFragment.setArguments(activityBundle);
             ((MainActivity) getActivity()).loadFragment(finishFragment);

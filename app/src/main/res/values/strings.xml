@@ -53,7 +53,7 @@
 
     <!-- Activity Detail Fragment -->
     <string name="prompt_inprogress">ACTIVITY IN PROGRESS</string>
-    <string name="btn_browse">Browse</string>
+    <string name="btn_routes">Routes</string>
     <string name="btn_finish">Finish</string>
 
     <!-- Activity Finish Fragment -->
@@ -68,7 +68,7 @@
     <string name="mood_2_button">Mood 2 Button</string>
 
     <!-- Activity Browse Fragment -->
-    <string name="text_browse">Browse</string>
+    <string name="text_routes">Routes</string>
 
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
