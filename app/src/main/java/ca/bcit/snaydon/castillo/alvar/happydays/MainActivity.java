@@ -14,7 +14,6 @@ import android.support.design.widget.BottomNavigationView;
 import android.support.v4.app.Fragment;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.ArrayAdapter;
@@ -29,10 +28,18 @@ public class MainActivity extends AppCompatActivity implements BottomNavigationV
     private SQLiteDatabase db;
     private Cursor cursor;
     static final String CHANNEL_ID = "happy_days";
+    private UserDatabaseHelper dbHelper;
     BottomNavigationView bottomNavigationView;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
+        //CHECK IF LOG ALREADY EXISTS FOR THIS DAY
+        //IF NOT, PROMPT FOR BUSY-NESS THEN MAKE A NEW LOG
+        dbHelper = new UserDatabaseHelper(this);
+        User user = new User("Bob", "Parker");
+        dbHelper.initializeUser(dbHelper.getReadableDatabase(), user);
+        Log log = new Log(11, 2, 2018, 3, "Running Biking Mindmap Stretching", "5 5 4 2", 4, "Yeet");
+        dbHelper.insertLog(dbHelper.getReadableDatabase(), log);
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_home);
         bottomNavigationView = findViewById(R.id.navigation);
