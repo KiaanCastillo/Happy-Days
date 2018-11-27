@@ -29,7 +29,7 @@ public class ActivitiesFragment extends Fragment {
 
             ActivityDetailFragment detailFragment = new ActivityDetailFragment();
             Bundle activityBundle = new Bundle();
-            activityBundle.putSerializable("myActivity", new Activity(id);
+            activityBundle.putSerializable("myActivity", new Activity(id));
             detailFragment.setArguments(activityBundle);
             main.loadFragment(detailFragment);
 

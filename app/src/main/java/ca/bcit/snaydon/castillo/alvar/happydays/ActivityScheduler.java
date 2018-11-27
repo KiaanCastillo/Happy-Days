@@ -56,12 +56,13 @@ public class ActivityScheduler {
             activityId = R.id.btn_biking;
         else if (activityType.equals("Running"))
             activityId = R.id.btn_running;
-        else
+        else if (activityType.equals("Workout"))
             activityId = R.id.btn_workout;
 
+        Log.d("NOTIFICATION", "Type: " + activityId);
 
         Date now = new Date();
-        int notificationId = Integer.parseInt(new SimpleDateFormat("ddHHmmss",  Locale.US).format(now));
+        int notificationId = (int) System.currentTimeMillis() + ((int) Math.random() * 1000);
 
         Log.d("Notification", "Creating notification, id: " + notificationId);
 
@@ -113,10 +114,10 @@ public class ActivityScheduler {
 
         if ((hour >= 7) || (hour > 6 && min > 30)) {
 
-            createNotification(0, hour, min + 1, "Time for a check in", "Ready to start your day?");
+            createNotification("default", hour, min + 1, context.getString(R.string.note_title), context.getString(R.string.note_title));
         } else {
 
-            createNotification(0,6, 30, "Time for a check in", "Ready to start your day?");
+            createNotification("default",6, 30, context.getString(R.string.note_title), context.getString(R.string.note_title));
         }
 
 
@@ -128,15 +129,30 @@ public class ActivityScheduler {
 
         double roll;
 
+        String type;
         int i = 0;
-        while (i != 0) {
+        while (notifications[i] != 0) {
             roll = Math.random() + bias;
+            Log.d("NOTIFICATION", "Type Roll " + roll);
             if (roll > 0.5) {
                 //phyisical activity
+                type = generateRandomPhysical();
+
             } else {
                 //mental activity
+                type = generateRandomMental();
             }
 
+            //schedule in db
+            createNotification(type, notifications[i], 0, context.getString(R.string.note_title), context.getString(R.string.note_walking));
+
+            Calendar calendar = Calendar.getInstance();
+            calendar.setTimeInMillis(System.currentTimeMillis());
+            int hour = calendar.get(Calendar.HOUR_OF_DAY);
+            int min = calendar.get(Calendar.MINUTE);
+            //createNotification(type, hour, min, context.getString(R.string.note_title), getDescription(type));
+
+            i++;
         }
 
     }
@@ -145,14 +161,14 @@ public class ActivityScheduler {
         // generate activities for the day based on busyness
 
         // get busy level
-        int busyLevel = 0;
+        int busyLevel = 2;
 
         int[] notificationTimes = {0,0,0,0};
         double bias = 0;
 
         switch (busyLevel) {
             case BUSY:
-                bias = 0.3;
+                bias = -0.4;
                 notificationTimes[0] = 12;
                 notificationTimes[1] = 18;
                 generateActivties(notificationTimes, bias);
@@ -164,7 +180,7 @@ public class ActivityScheduler {
                 generateActivties(notificationTimes, bias);
                 break;
             case CHILL:
-                bias = -0.3;
+                bias = 0.3;
                 notificationTimes[0] = 9;
                 notificationTimes[1] = 14;
                 notificationTimes[2] = 18;
@@ -177,9 +193,133 @@ public class ActivityScheduler {
 
     }
 
+    private String generateRandomPhysical() {
+        int sum = 0;
+        int walking = (sum += 2); //avg mood + 2 if fav
+        int biking = (sum += 2);
+        int running = (sum += 2);
+        sum += 2; // for workout
+
+        double roll = Math.random() * sum;
+
+        Log.d("NOTIFICATION", "Activity Roll " + roll);
+
+        if (roll < walking) {
+            //schedule walking in db
+
+            return "Walking";
+
+        } else if (roll < biking) {
+            //schedule biking in db
+
+            return "Biking";
+        } else if (roll < running) {
+            //schedule running in db
+
+            return "Running";
+
+        } else  {
+            //schedule workout in db
+
+            return "Workout";
+        }
+    }
+
+    private String generateRandomMental() {
+
+        int sum = 0;
+        int reading = (sum += 2);
+        int journaling = (sum += 2);
+        int mindmap = (sum += 2);
+        int stretching = (sum += 2);
+        sum += 2; // for meditating
+
+        double roll = Math.random() * sum;
+
+        Log.d("NOTIFICATION", "Activity Roll " + roll);
+
+        if (roll < reading) {
+            //schedule reading
+            return "Reading";
+
+        } else if (roll < journaling) {
+            //schedule journalling
+
+            return "Journaling";
+
+        } else if (roll < mindmap) {
+            //schedule mindmap
+
+            return "Mindmaps";
+
+        } else if (roll < stretching) {
+            //schedule stretching
+
+            return "Stretching";
+
+        } else {
+            //schedule meditating
+
+            return "Meditating";
+
+        }
+    }
+
     public void rebuildSchedule() {
         // create notifications based on activities scheduled in the database
 
+        // for entries in table
+        // call createNotification of type and time
+    }
+
+    public void debugNotification() {
+        double roll;
+
+        String type;
+            roll = Math.random();
+            if (roll > 0.5) {
+                //phyisical activity
+                type = generateRandomPhysical();
+
+            } else {
+                //mental activity
+                type = generateRandomMental();
+            }
+
+        Calendar calendar = Calendar.getInstance();
+        calendar.setTimeInMillis(System.currentTimeMillis());
+        int hour = calendar.get(Calendar.HOUR_OF_DAY);
+        int min = calendar.get(Calendar.MINUTE);
+
+            //schedule in db
+            createNotification(type, hour, min, context.getString(R.string.note_title), context.getString(R.string.note_walking));
+    }
+
+    private String getDescription(String name) {
+        String desc;
+
+        if (name.equals("Reading"))
+            desc = "Read anything interesting lately?";
+        else if (name.equals("Journaling"))
+            desc = "Why don't jot down some of those thoughts?";
+        else if (name.equals("Mindmaps"))
+            desc = "Take a minute and map out your mind.";
+        else if (name.equals("Stretching"))
+            desc = "Sore muscles? Try loosing up your body.";
+        else if (name.equals("Meditating"))
+            desc = "Why not take a minute and relax your mind.";
+        else if (name.equals("Walking"))
+            desc = context.getString(R.string.note_walking);
+        else if (name.equals("Biking"))
+            desc = context.getString(R.string.note_biking);
+        else if (name.equals("Running"))
+            desc = "Now would be a good time for a run.";
+        else if (name.equals("Workout"))
+            desc = "Stressed? A short workout could help with that.";
+        else
+            desc = "Time for a check in.";
+
+        return desc;
     }
 
 }

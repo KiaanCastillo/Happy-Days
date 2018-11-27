@@ -17,8 +17,6 @@ public class SchedulerBroadcastReceiver extends BroadcastReceiver {
         //should be asynchronous but idk how
         //createNotificationChannel(context);
 
-        System.out.println("RECEIVER PROCCED");
-
         Log.d("RECEIVER", "Signal to create schedule");
 
         // businessLevel should be pulled from db
@@ -29,6 +27,10 @@ public class SchedulerBroadcastReceiver extends BroadcastReceiver {
         if (busyLevel == 0) {
 
             Log.d("RECEIVER", "Busy level not set, creating schedule");
+            Calendar calendar = Calendar.getInstance();
+            calendar.setTimeInMillis(System.currentTimeMillis());
+
+            long curTime = calendar.getTimeInMillis();
 
             calendar.set(Calendar.HOUR_OF_DAY, 6);
 
@@ -38,10 +40,6 @@ public class SchedulerBroadcastReceiver extends BroadcastReceiver {
             String description = "Ready for a happy day?";
 
             // change type to check-in fragment type
-            if (curTime < wakeTime)
-                scheduler.createNotification(" ", 6, 0, title, description);
-            else
-                scheduler.createNotification(" ", calendar.get(Calendar.HOUR_OF_DAY), calendar.get(Calendar.MINUTE), title, description);
             scheduler.scheduleDailyCheck();
 
         } else {

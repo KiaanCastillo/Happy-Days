@@ -1,5 +1,6 @@
 package ca.bcit.snaydon.castillo.alvar.happydays;
 
+import android.content.Context;
 import android.content.Intent;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
@@ -36,6 +37,7 @@ public class MainActivity extends AppCompatActivity implements BottomNavigationV
         setContentView(R.layout.activity_home);
         bottomNavigationView = findViewById(R.id.navigation);
         bottomNavigationView.setOnNavigationItemSelectedListener(this);
+        createNotificationChannel(this);
 
         Intent intent = getIntent();
         boolean fromNotification = intent.getBooleanExtra("NOTIFICATION", false);
@@ -58,23 +60,6 @@ public class MainActivity extends AppCompatActivity implements BottomNavigationV
     }
 
     public boolean loadFragment(Fragment fragment) {
-    private void createNotificationChannel(final Context context) {
-        // Create the NotificationChannel, but only on API 26+ because
-        // the NotificationChannel class is new and not in the support library
-        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
-
-            CharSequence name = "HappyDaysChannel";
-            String description = "Channel description";
-            int importance = NotificationManager.IMPORTANCE_DEFAULT;
-            NotificationChannel channel = new NotificationChannel(CHANNEL_ID, name, importance);
-            channel.setDescription(description);
-            NotificationManager notificationManager = context.getSystemService(NotificationManager.class);
-            notificationManager.createNotificationChannel(channel);
-        }
-    }
-
-
-    private boolean loadFragment(Fragment fragment) {
         if (fragment != null) {
             getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container, fragment).commit();
             return true;
@@ -107,19 +92,21 @@ public class MainActivity extends AppCompatActivity implements BottomNavigationV
         return newFragment;
     }
 
-    private void createNotificationChannel() {
+    private void createNotificationChannel(final Context context) {
         // Create the NotificationChannel, but only on API 26+ because
         // the NotificationChannel class is new and not in the support library
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
-            CharSequence name = getString(R.string.channel_name);
+
+            CharSequence name = "HappyDaysChannel";
+            String description = "Channel description";
             int importance = NotificationManager.IMPORTANCE_DEFAULT;
             NotificationChannel channel = new NotificationChannel(CHANNEL_ID, name, importance);
-            // Register the channel with the system; you can't change the importance
-            // or other notification behaviors after this
-            NotificationManager notificationManager = getSystemService(NotificationManager.class);
+            channel.setDescription(description);
+            NotificationManager notificationManager = context.getSystemService(NotificationManager.class);
             notificationManager.createNotificationChannel(channel);
         }
     }
+
 
     @Override
     public boolean onNavigationItemSelected(@NonNull MenuItem menuItem) {
@@ -163,5 +150,11 @@ public class MainActivity extends AppCompatActivity implements BottomNavigationV
         activityBundle.putSerializable("myActivity", new Activity(view.getId()));
         detailFragment.setArguments(activityBundle);
         loadFragment(detailFragment);
+    }
+
+    public void onDebugClick(View view) {
+        ActivityScheduler scheduler = new ActivityScheduler(this);
+        scheduler.debugNotification();
+        scheduler.runScheduleAlgorithm();
     }
 }
