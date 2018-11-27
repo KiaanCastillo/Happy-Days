@@ -1,10 +1,12 @@
 <?xml version="1.0" encoding="utf-8"?>
 <android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    xmlns:app="http://schemas.android.com/apk/res-auto">
+    android:layout_height="match_parent">
 
     <TextView
+        android:id="@+id/textView10"
         style="@style/FragmentTitle"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -13,5 +15,193 @@
         android:text="@string/activities_title"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
+
+    <!-- Mental Activities -->
+    <TextView
+        android:id="@+id/textView11"
+        style="@style/FragmentSubTitle"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="25dp"
+        android:layout_marginEnd="8dp"
+        android:text="@string/mental_label"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/textView10" />
+
+    <ImageButton
+        android:id="@+id/btn_reading"
+        android:layout_width="75dp"
+        android:layout_height="75dp"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="15dp"
+        android:layout_marginEnd="8dp"
+        android:background="@drawable/square_btn"
+        android:backgroundTint="@color/colorPrimaryDark"
+        android:src="@drawable/ic_reading"
+        android:textAlignment="center"
+        app:layout_constraintEnd_toStartOf="@+id/btn_meditating"
+        app:layout_constraintHorizontal_bias="0.873"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/textView11"
+        android:contentDescription="@string/desc_reading"
+        android:onClick="onActivityClick"/>
+
+    <ImageButton
+        android:id="@+id/btn_meditating"
+        android:layout_width="75dp"
+        android:layout_height="75dp"
+        android:layout_marginTop="15dp"
+        android:background="@drawable/square_btn"
+        android:backgroundTint="@color/colorPrimaryDark"
+        android:src="@drawable/ic_meditating"
+        android:textAlignment="center"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.501"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/textView11"
+        android:contentDescription="@string/desc_meditating"
+        android:onClick="onActivityClick"/>
+
+    <ImageButton
+        android:id="@+id/btn_mindmap"
+        android:layout_width="75dp"
+        android:layout_height="75dp"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="15dp"
+        android:layout_marginEnd="8dp"
+        android:background="@drawable/square_btn"
+        android:backgroundTint="@color/colorPrimaryDark"
+        android:src="@drawable/ic_mindmap"
+        android:textAlignment="center"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.126"
+        app:layout_constraintStart_toEndOf="@+id/btn_meditating"
+        app:layout_constraintTop_toBottomOf="@+id/textView11"
+        android:contentDescription="@string/desc_mindmap" />
+
+    <ImageButton
+        android:id="@+id/btn_stretching"
+        android:layout_width="75dp"
+        android:layout_height="75dp"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="8dp"
+        android:layout_marginEnd="8dp"
+        android:layout_marginBottom="8dp"
+        android:background="@drawable/square_btn"
+        android:backgroundTint="@color/colorPrimaryDark"
+        android:src="@drawable/ic_stretching"
+        android:textAlignment="center"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.64"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/btn_mindmap"
+        app:layout_constraintVertical_bias="0.011"
+        android:contentDescription="@string/desc_stretching" />
+
+    <ImageButton
+        android:id="@+id/btn_journaling"
+        android:layout_width="75dp"
+        android:layout_height="75dp"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="8dp"
+        android:layout_marginEnd="8dp"
+        android:layout_marginBottom="8dp"
+        android:background="@drawable/square_btn"
+        android:backgroundTint="@color/colorPrimaryDark"
+        android:src="@drawable/ic_journaling"
+        android:textAlignment="center"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.36"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/btn_reading"
+        app:layout_constraintVertical_bias="0.011"
+        android:contentDescription="@string/desc_journaling" />
+
+    <!-- Physical Activities -->
+    <TextView
+        android:id="@+id/textView12"
+        style="@style/FragmentSubTitle"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="290dp"
+        android:layout_marginEnd="8dp"
+        android:text="@string/physical_label"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/textView10" />
+
+    <ImageButton
+        android:id="@+id/btn_biking"
+        android:layout_width="75dp"
+        android:layout_height="75dp"
+        android:layout_marginStart="22dp"
+        android:layout_marginTop="15dp"
+        android:background="@drawable/square_btn"
+        android:backgroundTint="@color/colorPrimaryDark"
+        android:src="@drawable/ic_biking"
+        android:textAlignment="center"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.05"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/textView12"
+        android:contentDescription="@string/desc_biking" />
+
+    <ImageButton
+        android:id="@+id/btn_running"
+        android:layout_width="75dp"
+        android:layout_height="75dp"
+        android:layout_marginTop="15dp"
+        android:background="@drawable/square_btn"
+        android:backgroundTint="@color/colorPrimaryDark"
+        android:src="@drawable/ic_running"
+        android:textAlignment="center"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.37"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/textView12"
+        android:contentDescription="@string/desc_running" />
+
+    <ImageButton
+        android:id="@+id/btn_workout"
+        android:layout_width="75dp"
+        android:layout_height="75dp"
+        android:layout_marginTop="15dp"
+        android:background="@drawable/square_btn"
+        android:backgroundTint="@color/colorPrimaryDark"
+        android:src="@drawable/ic_workout"
+        android:textAlignment="center"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.63"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/textView12"
+        android:contentDescription="@string/desc_workout" />
+
+    <ImageButton
+        android:id="@+id/btn_walking"
+        android:layout_width="75dp"
+        android:layout_height="75dp"
+        android:layout_marginTop="15dp"
+        android:layout_marginEnd="22dp"
+        android:background="@drawable/square_btn"
+        android:backgroundTint="@color/colorPrimaryDark"
+        android:src="@drawable/ic_walking"
+        android:textAlignment="center"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.95"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/textView12"
+        android:contentDescription="@string/desc_walking" />
+
+    <android.support.constraint.Guideline
+        android:id="@+id/guideline"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        app:layout_constraintGuide_begin="205dp" />
 
 </android.support.constraint.ConstraintLayout>

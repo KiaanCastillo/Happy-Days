@@ -28,4 +28,21 @@
     <string name="favourites_label">Favourites</string>
     <string name="fav_mental_label">Mental Activities</string>
     <string name="fav_physical_label">Physical Activities</string>
+
+    <!--Activities Fragment-->
+    <string name="mental_label">Mental</string>
+    <string name="physical_label">Physical</string>
+    <string name="desc_reading">Reading</string>
+    <string name="desc_meditating">Meditating</string>
+    <string name="desc_mindmap">Mind Map</string>
+    <string name="desc_stretching">Stretching</string>
+    <string name="desc_journaling">Journaling</string>
+    <string name="desc_biking">Biking</string>
+    <string name="desc_running">Running</string>
+    <string name="desc_workout">Work Out</string>
+    <string name="desc_walking">Walking</string>
+
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+
 </resources>

@@ -1,13 +1,13 @@
 package ca.bcit.snaydon.castillo.alvar.happydays;
 
-import android.app.NotificationChannel;
-import android.app.NotificationManager;
-import android.content.Context;
-import android.os.Build;
+import android.content.Intent;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteException;
 import android.database.sqlite.SQLiteOpenHelper;
+import android.app.NotificationChannel;
+import android.app.NotificationManager;
+import android.os.Build;
 import android.support.annotation.NonNull;
 import android.support.design.widget.BottomNavigationView;
 import android.support.v4.app.Fragment;
@@ -20,7 +20,6 @@ import android.widget.ArrayAdapter;
 import android.widget.ListView;
 import android.widget.Toast;
 
-import java.util.Calendar;
 import java.util.List;
 
 public class MainActivity extends AppCompatActivity implements BottomNavigationView.OnNavigationItemSelectedListener {
@@ -38,20 +37,27 @@ public class MainActivity extends AppCompatActivity implements BottomNavigationV
         bottomNavigationView = findViewById(R.id.navigation);
         bottomNavigationView.setOnNavigationItemSelectedListener(this);
 
-        Log.d("Notification", "Before notification");
-        createNotificationChannel(this);
+        Intent intent = getIntent();
+        boolean fromNotification = intent.getBooleanExtra("NOTIFICATION", false);
+        int activityId = intent.getIntExtra("ACTIVITY_ID", 0);
 
-        ActivityScheduler scheduler = new ActivityScheduler(this);
+        if (fromNotification) {
 
-        Calendar calendar = Calendar.getInstance();
-        calendar.setTimeInMillis(System.currentTimeMillis());
+            ActivitiesFragment actFrag = new ActivitiesFragment();
+            Bundle bundle = new Bundle();
+            bundle.putBoolean("NOTIFICATION", true);
+            bundle.putInt("ID", activityId);
+            actFrag.setArguments(bundle);
 
-        scheduler.createNotification(0,calendar.get(Calendar.HOUR_OF_DAY), calendar.get(Calendar.MINUTE)+ 1, "Happy Days", "Time for check in");
+            loadFragment(actFrag);
+        } else {
 
+            loadFragment(new HomeFragment());
+        }
 
-        loadFragment(new HomeFragment());
     }
 
+    public boolean loadFragment(Fragment fragment) {
     private void createNotificationChannel(final Context context) {
         // Create the NotificationChannel, but only on API 26+ because
         // the NotificationChannel class is new and not in the support library
@@ -149,5 +155,13 @@ public class MainActivity extends AppCompatActivity implements BottomNavigationV
 
         if (db != null)
             db.close();
+    }
+
+    public void onActivityClick(View view) {
+        ActivityDetailFragment detailFragment = new ActivityDetailFragment();
+        Bundle activityBundle = new Bundle();
+        activityBundle.putSerializable("myActivity", new Activity(view.getId()));
+        detailFragment.setArguments(activityBundle);
+        loadFragment(detailFragment);
     }
 }

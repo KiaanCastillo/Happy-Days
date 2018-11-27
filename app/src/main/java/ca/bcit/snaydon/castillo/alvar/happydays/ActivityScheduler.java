@@ -22,9 +22,11 @@ import java.util.Locale;
 import java.util.Random;
 import java.util.concurrent.atomic.AtomicInteger;
 
+
 import static ca.bcit.snaydon.castillo.alvar.happydays.MainActivity.CHANNEL_ID;
 
 public class ActivityScheduler {
+
     static final int CHILL = 0;
     static final int NORMAL = 1;
     static final int BUSY = 2;
@@ -34,7 +36,29 @@ public class ActivityScheduler {
         context = c;
     }
 
-    public void createNotification(int typeId, int hour, int minute, String name, String description) {
+    public void createNotification(String activityType, int hour, int minute, String name, String description) {
+
+        int activityId = 0;
+
+        if (activityType.equals("Reading"))
+            activityId = R.id.btn_reading;
+        else if (activityType.equals("Journaling"))
+            activityId = R.id.btn_journaling;
+        else if (activityType.equals("Mindmaps"))
+            activityId = R.id.btn_mindmap;
+        else if (activityType.equals("Stretching"))
+            activityId = R.id.btn_stretching;
+        else if (activityType.equals("Meditating"))
+            activityId = R.id.btn_meditating;
+        else if (activityType.equals("Walking"))
+            activityId = R.id.btn_walking;
+        else if (activityType.equals("Biking"))
+            activityId = R.id.btn_biking;
+        else if (activityType.equals("Running"))
+            activityId = R.id.btn_running;
+        else
+            activityId = R.id.btn_workout;
+
 
         Date now = new Date();
         int notificationId = Integer.parseInt(new SimpleDateFormat("ddHHmmss",  Locale.US).format(now));
@@ -43,9 +67,11 @@ public class ActivityScheduler {
 
         // change to be addaptive to typeId
         Intent startActivity = new Intent(context, MainActivity.class);
+        startActivity.putExtra("ACTIVITY_ID", activityId);
+        startActivity.putExtra("NOTIFICATION", true);
 
         // temp id should be fragment id if checkin, or random if another activity
-        PendingIntent activity = PendingIntent.getActivity(context, typeId, startActivity, PendingIntent.FLAG_UPDATE_CURRENT);
+        PendingIntent activity = PendingIntent.getActivity(context, activityId, startActivity, PendingIntent.FLAG_UPDATE_CURRENT);
 
         NotificationCompat.Builder mBuilder = new NotificationCompat.Builder(context, CHANNEL_ID)
                 .setSmallIcon(R.drawable.ic_activities_icon)
@@ -62,6 +88,7 @@ public class ActivityScheduler {
         notificationIntent.putExtra(ActivityReceiver.NOTIFICATION_ID, notificationId);
         notificationIntent.putExtra(ActivityReceiver.NOTIFICATION, notification);
         PendingIntent pendingIntent = PendingIntent.getBroadcast(context, notificationId, notificationIntent, PendingIntent.FLAG_CANCEL_CURRENT);
+
 
         Calendar calendar = Calendar.getInstance();
         calendar.setTimeInMillis(System.currentTimeMillis());
@@ -154,6 +181,5 @@ public class ActivityScheduler {
         // create notifications based on activities scheduled in the database
 
     }
-
 
 }
