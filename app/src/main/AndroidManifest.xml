@@ -24,6 +24,9 @@
         <activity android:name=".OnboardingActivity">
 
         </activity>
+        <activity android:name=".UserInitializationActivity">
+
+        </activity>
         <receiver
             android:name=".SchedulerBroadcastReceiver"
             android:enabled="true">

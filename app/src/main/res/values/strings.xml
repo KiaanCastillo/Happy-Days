@@ -11,6 +11,12 @@
     <string name="next_btn">Next</string>
     <string name="get_started_btn">Get Started</string>
 
+    <!--Initialization-->
+    <string name="first_name_label">First Name</string>
+    <string name="last_name_label">Last Name</string>
+    <string name="prompt1">What should we call you?</string>
+    <string name="prompt2">Pick 3 Favourites from Each Category</string>
+
     <!--Fragment Titles-->
     <string name="menu_title">Menu</string>
     <string name="logs_title">Logs</string>

@@ -1,5 +1,6 @@
 package ca.bcit.snaydon.castillo.alvar.happydays;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.v4.view.ViewPager;
 import android.support.v7.app.AppCompatActivity;
@@ -45,7 +46,12 @@ public class OnboardingActivity extends AppCompatActivity {
         nextBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                onboardingViewPager.setCurrentItem(currentPage + 1);
+                if (nextBtn.getText().toString().equals("Get Started")) {
+                    Intent i = new Intent(OnboardingActivity.this, UserInitializationActivity.class);
+                    startActivity(i);
+                } else {
+                    onboardingViewPager.setCurrentItem(currentPage + 1);
+                }
             }
         });
 
