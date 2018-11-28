@@ -66,7 +66,7 @@ public class LogsAdapter extends ArrayAdapter<Log> {
                 return R.drawable.ic_reading;
             case "Journaling":
                 return R.drawable.ic_journaling;
-            case "Mindmaps":
+            case "Mindmap":
                 return R.drawable.ic_mindmap;
             case "Stretching":
                 return R.drawable.ic_stretching;
@@ -85,20 +85,18 @@ public class LogsAdapter extends ArrayAdapter<Log> {
 
     private void populateBestDisplays(int num, String topActivities[], View listItem) {
         ImageView iv;
-        if (topActivities[0] == null)
-            return;
 
-        if (num > 0) {
+        if (topActivities[0] != null) {
             iv = (ImageView) listItem.findViewById(R.id.logs_best_1);
             iv.setImageResource(getActivityIcon(topActivities[0]));
         }
 
-        if (num > 1) {
+        if (topActivities[1] != null) {
             iv = (ImageView)listItem.findViewById(R.id.logs_best_2);
             iv.setImageResource(getActivityIcon(topActivities[1]));
         }
 
-        if (num > 2) {
+        if (topActivities[2] != null) {
             iv = (ImageView)listItem.findViewById(R.id.logs_best_3);
             iv.setImageResource(getActivityIcon(topActivities[2]));
         }

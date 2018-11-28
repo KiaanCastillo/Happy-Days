@@ -29,6 +29,7 @@ public class MainActivity extends AppCompatActivity implements BottomNavigationV
     private Cursor cursor;
     static final String CHANNEL_ID = "happy_days";
     private UserDatabaseHelper dbHelper;
+    String FRAGMENT_TAG = "Fragment";
     BottomNavigationView bottomNavigationView;
 
     @Override
@@ -70,7 +71,7 @@ public class MainActivity extends AppCompatActivity implements BottomNavigationV
     public boolean loadFragment(Fragment fragment) {
         if (fragment != null) {
             FragmentTransaction ft = getSupportFragmentManager().beginTransaction();
-            ft.replace(R.id.fragment_container, fragment);
+            ft.replace(R.id.fragment_container, fragment, FRAGMENT_TAG);
             ft.setTransition(FragmentTransaction.TRANSIT_FRAGMENT_FADE).commit();
             return true;
         }
@@ -163,10 +164,6 @@ public class MainActivity extends AppCompatActivity implements BottomNavigationV
         loadFragment(promptFragment);
     }
 
-    public void finishActivityClick(View view) {
-        // Save Activity in Database
-        loadFragment(new HomeFragment());
-    }
 
     public void onDebugClick(View view) {
         ActivityScheduler scheduler = new ActivityScheduler(this);

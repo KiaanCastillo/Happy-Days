@@ -143,6 +143,7 @@ public class Log {
     }
 
     public int getOverallMood() {
+        overallMood = calculateAvg();
         return overallMood;
     }
 
@@ -156,5 +157,13 @@ public class Log {
 
     public void setNotes(String notes) {
         this.notes = notes;
+    }
+
+    public void addToActivities(String newActivity, int newMood) {
+        activities.put(newActivity, newMood);
+    }
+
+    public void addToNotes(String notes) {
+        this.notes += " " + notes;
     }
 }

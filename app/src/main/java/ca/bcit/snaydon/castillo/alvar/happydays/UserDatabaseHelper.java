@@ -127,28 +127,17 @@ public class UserDatabaseHelper extends SQLiteOpenHelper {
     public void updateLog(SQLiteDatabase db, Log log, int log_id) {
         ContentValues logValues = new ContentValues();
         logValues.put("ACTIVITIES", log.getActivities());
-        logValues.put("ACTIVITIES_MOOD", log.getActivitiesMoods());
+        logValues.put("ACTIVITIES_MOODS", log.getActivitiesMoods());
         logValues.put("OVERALL_MOOD", log.getOverallMood());
         logValues.put("NOTES", log.getNotes());
         db.update(LOGS, logValues, "_id = " + log_id, null);
     }
 
     public void addFinishedActivity(SQLiteDatabase db, String activityName, int activityMood, String notes) {
-
-        try {
-            db = getReadableDatabase();
-            Cursor cursor = db.rawQuery("SELECT ACTIVITIES, ACTIVITIES_MOOD, NOTES FROM LOGS",null);
-
-            // move to the first record
-            if (cursor.moveToFirst()) {
-//                user = new User(
-//                        cursor.getString(0),
-//                        cursor.getString(1));
-            }
-            cursor.close();
-        } catch (SQLiteException sqlex) {
-            sqlex.printStackTrace();
-        }
+        Log currentLog = getTodayLog();
+        currentLog.addToActivities(activityName, activityMood);
+        currentLog.addToNotes(notes);
+        updateLog(db, currentLog, currentLog.getID());
     }
 
     private String createUserInfoTable() {
