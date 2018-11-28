@@ -37,13 +37,19 @@ public class Log {
     }
 
     private void populateActivitiesList(String activitiesString, String moodsString) {
-        Scanner aScanner = new Scanner(activitiesString);
-        Scanner mScanner = new Scanner(moodsString);
-        while (aScanner.hasNext() && mScanner.hasNext())
-            activities.put(aScanner.next(), mScanner.nextInt());
+        if (activitiesString.isEmpty())
+            ;
+        else {
+            Scanner aScanner = new Scanner(activitiesString);
+            Scanner mScanner = new Scanner(moodsString);
+            while (aScanner.hasNext() && mScanner.hasNext())
+                activities.put(aScanner.next(), mScanner.nextInt());
+        }
     }
 
     public int calculateAvg() {
+        if (activities.size() == 0)
+            return 0;
         int average = 0;
         for (Integer i : activities.values())
             average += i;

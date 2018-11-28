@@ -51,7 +51,7 @@
         app:layout_constraintTop_toBottomOf="@+id/textView2" />
 
     <Button
-        android:id="@+id/button5"
+        android:id="@+id/checkin_superbusy"
         android:layout_width="80dp"
         android:layout_height="80dp"
         android:layout_marginStart="50dp"
@@ -59,10 +59,10 @@
         android:backgroundTint="@color/colorPrimary"
         android:textAlignment="center"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="@+id/button6" />
+        app:layout_constraintTop_toTopOf="@+id/checkin_normal" />
 
     <Button
-        android:id="@+id/button6"
+        android:id="@+id/checkin_normal"
         android:layout_width="80dp"
         android:layout_height="80dp"
         android:layout_marginStart="16dp"
@@ -71,12 +71,12 @@
         android:background="@drawable/square_btn"
         android:backgroundTint="@color/colorPrimary"
         android:textAlignment="center"
-        app:layout_constraintEnd_toStartOf="@+id/button7"
-        app:layout_constraintStart_toEndOf="@+id/button5"
+        app:layout_constraintEnd_toStartOf="@+id/checkin_chill"
+        app:layout_constraintStart_toEndOf="@+id/checkin_superbusy"
         app:layout_constraintTop_toBottomOf="@+id/textView4" />
 
     <Button
-        android:id="@+id/button7"
+        android:id="@+id/checkin_chill"
         android:layout_width="80dp"
         android:layout_height="80dp"
         android:layout_marginEnd="50dp"
@@ -84,7 +84,7 @@
         android:backgroundTint="@color/colorPrimary"
         android:textAlignment="center"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toTopOf="@+id/button6" />
+        app:layout_constraintTop_toTopOf="@+id/checkin_normal" />
 
     <TextView
         android:id="@+id/textView5"
@@ -92,9 +92,9 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="8dp"
         android:text="@string/super_busy_label"
-        app:layout_constraintEnd_toEndOf="@+id/button5"
-        app:layout_constraintStart_toStartOf="@+id/button5"
-        app:layout_constraintTop_toBottomOf="@+id/button5" />
+        app:layout_constraintEnd_toEndOf="@+id/checkin_superbusy"
+        app:layout_constraintStart_toStartOf="@+id/checkin_superbusy"
+        app:layout_constraintTop_toBottomOf="@+id/checkin_superbusy" />
 
     <TextView
         android:id="@+id/textView6"
@@ -102,9 +102,9 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="8dp"
         android:text="@string/normal_label"
-        app:layout_constraintEnd_toEndOf="@+id/button6"
-        app:layout_constraintStart_toStartOf="@+id/button6"
-        app:layout_constraintTop_toBottomOf="@+id/button6" />
+        app:layout_constraintEnd_toEndOf="@+id/checkin_normal"
+        app:layout_constraintStart_toStartOf="@+id/checkin_normal"
+        app:layout_constraintTop_toBottomOf="@+id/checkin_normal" />
 
     <TextView
         android:id="@+id/textView7"
@@ -112,8 +112,8 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="8dp"
         android:text="@string/chill_label"
-        app:layout_constraintEnd_toEndOf="@+id/button7"
-        app:layout_constraintStart_toStartOf="@+id/button7"
-        app:layout_constraintTop_toBottomOf="@+id/button7" />
+        app:layout_constraintEnd_toEndOf="@+id/checkin_chill"
+        app:layout_constraintStart_toStartOf="@+id/checkin_chill"
+        app:layout_constraintTop_toBottomOf="@+id/checkin_chill" />
 
 </android.support.constraint.ConstraintLayout>
