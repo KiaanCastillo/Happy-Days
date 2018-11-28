@@ -65,6 +65,10 @@ public class ActivityFinishFragment extends Fragment implements View.OnClickList
         activityLogo.setImageDrawable(ResourcesCompat.getDrawable(getResources(), myActivity.getLogo(), null));
     }
 
+//    public void finishActivity(View v) {
+//        System.out.println("yeet");
+//    }
+
     @Override
     public void onClick(View v) {
         for (ImageButton imgBtn : moodBtns) {
@@ -73,4 +77,6 @@ public class ActivityFinishFragment extends Fragment implements View.OnClickList
         ImageButton selected = v.findViewById(v.getId());
         selected.setBackgroundTintList(ColorStateList.valueOf(getResources().getColor(R.color.colorAccent)));
     }
+
+
 }

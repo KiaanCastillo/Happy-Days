@@ -31,18 +31,21 @@ public class MainActivity extends AppCompatActivity implements BottomNavigationV
     static final String CHANNEL_ID = "happy_days";
     private UserDatabaseHelper dbHelper;
     BottomNavigationView bottomNavigationView;
+    boolean firstTime;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        setContentView(R.layout.activity_home);
         //CHECK IF LOG ALREADY EXISTS FOR THIS DAY
         //IF NOT, PROMPT FOR BUSY-NESS THEN MAKE A NEW LOG
+        firstTime = true;
+        if (!firstTime) {
         dbHelper = new UserDatabaseHelper(this);
         User user = new User("Bob", "Parker");
         dbHelper.initializeUser(dbHelper.getReadableDatabase(), user);
         Log log = new Log(11, 2, 2018, 3, "Running Biking Mindmap Stretching", "5 5 4 2", 4, "Yeet");
         dbHelper.insertLog(dbHelper.getReadableDatabase(), log);
-        super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_home);
         bottomNavigationView = findViewById(R.id.navigation);
         bottomNavigationView.setOnNavigationItemSelectedListener(this);
         createNotificationChannel(this);
@@ -63,6 +66,10 @@ public class MainActivity extends AppCompatActivity implements BottomNavigationV
         } else {
 
             loadFragment(new HomeFragment());
+        }
+        } else {
+            Intent i = new Intent(MainActivity.this, OnboardingActivity.class);
+            startActivity(i);
         }
 
     }
