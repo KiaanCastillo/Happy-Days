@@ -9,7 +9,7 @@
         android:layout_height="wrap_content"
         android:layout_alignParentTop="true"
         android:layout_centerHorizontal="true"
-        android:layout_marginTop="25dp"
+        android:layout_marginTop="99dp"
         android:text="@string/prompt1"
         android:textAppearance="@style/FragmentSubTitle" />
 
@@ -41,106 +41,121 @@
         android:layout_below="@+id/last_name_init"
         android:layout_alignParentStart="true"
         android:layout_marginStart="0dp"
-        android:layout_marginTop="6dp"
+        android:layout_marginTop="26dp"
         android:text="@string/prompt2"
         android:textAlignment="center"
         android:textAppearance="@style/FragmentSubTitle" />
 
-    <TextView
-        android:id="@+id/textView15"
+    <LinearLayout
+        android:id="@+id/category_container"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_below="@+id/textView14"
-        android:layout_centerHorizontal="true"
-        android:layout_marginTop="8dp"
-        android:text="@string/mental_label"
-        android:textAppearance="@style/heading1"
-        android:textSize="18sp" />
+        android:layout_alignStart="@+id/first_name_init"
+        android:layout_marginStart="-4dp"
+        android:layout_marginTop="15dp"
+        android:orientation="horizontal">
 
-    <LinearLayout
-        android:id="@+id/mental_checkboxes"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_below="@+id/textView15"
-        android:layout_centerHorizontal="true"
-        android:layout_marginTop="3dp"
-        android:orientation="vertical">
-
-        <CheckBox
-            android:id="@+id/pick_reading"
+        <LinearLayout
+            android:id="@+id/mental_checkboxes"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="@string/desc_reading" />
+            android:layout_marginTop="3dp"
+            android:orientation="vertical"
+            android:padding="10dp">
 
-        <CheckBox
-            android:id="@+id/pick_meditating"
+            <TextView
+                android:id="@+id/textView15"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="8dp"
+                android:text="@string/mental_label"
+                android:textAppearance="@style/heading1"
+                android:textSize="18sp" />
+
+            <CheckBox
+                android:id="@+id/pick_reading"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:onClick="onCheckboxClickedMental"
+                android:text="@string/desc_reading" />
+
+            <CheckBox
+                android:id="@+id/pick_meditating"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:onClick="onCheckboxClickedMental"
+                android:text="@string/desc_meditating" />
+
+            <CheckBox
+                android:id="@+id/pick_mindmap"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:onClick="onCheckboxClickedMental"
+                android:text="@string/desc_mindmap" />
+
+            <CheckBox
+                android:id="@+id/pick_stretching"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:onClick="onCheckboxClickedMental"
+                android:text="@string/desc_stretching" />
+
+            <CheckBox
+                android:id="@+id/pick_journaling"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:onClick="onCheckboxClickedMental"
+                android:text="@string/desc_journaling" />
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/physical_checkboxes"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="@string/desc_meditating" />
+            android:layout_marginTop="7dp"
+            android:orientation="vertical"
+            android:padding="10dp">
 
-        <CheckBox
-            android:id="@+id/pick_mindmap"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="@string/desc_mindmap" />
+            <TextView
+                android:id="@+id/textView19"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="9dp"
+                android:text="@string/physical_label"
+                android:textAppearance="@style/heading1"
+                android:textSize="18sp" />
 
-        <CheckBox
-            android:id="@+id/pick_stretching"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="@string/desc_stretching" />
+            <CheckBox
+                android:id="@+id/pick_biking"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:onClick="onCheckboxClickedPhysical"
+                android:text="@string/desc_biking" />
 
-        <CheckBox
-            android:id="@+id/pick_journaling"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="@string/desc_journaling" />
+            <CheckBox
+                android:id="@+id/pick_running"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:onClick="onCheckboxClickedPhysical"
+                android:text="@string/desc_running" />
 
-    </LinearLayout>
+            <CheckBox
+                android:id="@+id/pick_workout"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:onClick="onCheckboxClickedPhysical"
+                android:text="@string/desc_workout" />
 
-    <TextView
-        android:id="@+id/textView19"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_below="@+id/mental_checkboxes"
-        android:layout_centerHorizontal="true"
-        android:layout_marginTop="9dp"
-        android:text="@string/physical_label"
-        android:textAppearance="@style/heading1"
-        android:textSize="18sp" />
+            <CheckBox
+                android:id="@+id/pick_walking"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:onClick="onCheckboxClickedPhysical"
+                android:text="@string/desc_walking" />
 
-    <LinearLayout
-        android:id="@+id/physical_checkboxes"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_below="@+id/textView19"
-        android:layout_centerHorizontal="true"
-        android:layout_marginTop="7dp"
-        android:orientation="vertical">
-
-        <CheckBox
-            android:id="@+id/pick_biking"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="@string/desc_biking" />
-
-        <CheckBox
-            android:id="@+id/pick_running"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="@string/desc_running" />
-
-        <CheckBox
-            android:id="@+id/pick_workout"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="@string/desc_workout" />
-
-        <CheckBox
-            android:id="@+id/pick_walking"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="@string/desc_walking" />
+        </LinearLayout>
 
 
     </LinearLayout>
@@ -149,7 +164,7 @@
         android:id="@+id/button4"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_below="@+id/physical_checkboxes"
+        android:layout_below="@+id/category_container"
         android:layout_centerHorizontal="true"
         android:layout_marginTop="9dp"
         android:backgroundTint="@color/colorPrimaryDark"
