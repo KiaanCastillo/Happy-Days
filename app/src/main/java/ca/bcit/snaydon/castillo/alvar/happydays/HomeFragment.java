@@ -29,5 +29,8 @@ public class HomeFragment extends Fragment {
         User user = dbHelper.getUser();
         TextView tv = v.findViewById(R.id.home_first_name);
         tv.setText(user.getFirst_name());
+
+//        tv = v.findViewById(R.id.home_last_name);
+//        tv.setText(user.getFirst_name());
     }
 }
