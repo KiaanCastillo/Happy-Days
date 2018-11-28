@@ -70,6 +70,7 @@
 
     <!-- Activity Browse Fragment -->
     <string name="text_routes">Routes</string>
+    <string name="text_no_route">No Route</string>
   
     <!--Notifications-->
     <string name="note_title">Happy Days</string>

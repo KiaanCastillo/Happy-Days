@@ -31,6 +31,7 @@ import java.util.List;
 public class ActivityBrowseFragment extends ListFragment {
 
     private Activity myActivity;
+    private ArrayList<Route> routeList;
 
     public ActivityBrowseFragment() {
         // Required empty public constructor
@@ -48,19 +49,30 @@ public class ActivityBrowseFragment extends ListFragment {
 
         String stringJSON = loadJSONFromAsset(getJSONFileName());
         HashMap<String, List<String>> routeMap = parseJSONString(stringJSON);
-//        ArrayList<Route> routeList = initRouteList(routeMap);
+        routeList = initRouteList(routeMap);
+        BrowseItemAdapter itemAdapter = new BrowseItemAdapter(getActivity(), routeList);
+        setListAdapter(itemAdapter);
         return v;
     }
 
     @Override
     public void onListItemClick(ListView l, View v, int position, long id) {
         super.onListItemClick(l, v, position, id);
-
+        Bundle routeBundle = new Bundle();
+        routeBundle.putSerializable("myRoute", routeList.get(position));
+        ActivityMapFragment mapFragment = new ActivityMapFragment();
+        mapFragment.setArguments(routeBundle);
+        ((MainActivity) getActivity()).loadFragment(mapFragment);
     }
 
-//    public ArrayList<Route> initRouteList(HashMap<String, List<String>> routeMap) {
-//
-//    }
+    public ArrayList<Route> initRouteList(HashMap<String, List<String>> routeMap) {
+        ArrayList<Route> tempList = new ArrayList<>();
+        for (String key : routeMap.keySet()) {
+            Route newRoute = new Route(key, routeMap.get(key));
+            tempList.add(newRoute);
+        }
+        return tempList;
+    }
 
     public HashMap<String, List<String>> parseJSONString(String json) {
         HashMap<String, List<String>> tempMap = new HashMap<>();
@@ -72,7 +84,13 @@ public class ActivityBrowseFragment extends ListFragment {
             for (int i = 0; i < features.length(); i++) {
                 JSONObject featureObj = features.getJSONObject(i);
                 JSONObject properties = featureObj.getJSONObject("properties");
-                String routeName = properties.getString("Name");
+
+                String routeName;
+                if (properties.has("FullName"))
+                    routeName = properties.getString("FullName");
+                else
+                    routeName = properties.getString("Name");
+
                 if (routeName.equals(""))
                     routeName = "Other";
 

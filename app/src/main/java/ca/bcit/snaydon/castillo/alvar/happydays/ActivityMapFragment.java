@@ -6,6 +6,7 @@ import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.TextView;
 
 
 /**
@@ -13,7 +14,7 @@ import android.view.ViewGroup;
  */
 public class ActivityMapFragment extends Fragment {
 
-    private String routeName;
+    private Route myRoute;
 
     public ActivityMapFragment() {
         // Required empty public constructor
@@ -26,8 +27,11 @@ public class ActivityMapFragment extends Fragment {
         View v = inflater.inflate(R.layout.fragment_activity_map, container, false);
 
         if (getArguments() != null) {
-            routeName = getArguments().getString("routeName");
+            myRoute = (Route) getArguments().getSerializable("myRoute");
         }
+
+        TextView test = v.findViewById(R.id.route_name);
+        test.setText(myRoute.getName());
 
         return v;
     }
