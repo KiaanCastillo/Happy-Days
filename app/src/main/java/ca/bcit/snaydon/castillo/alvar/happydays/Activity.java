@@ -27,7 +27,7 @@ public class Activity implements Serializable {
         "Biking is a great way to exercise without the heavy stress that running has on your knees.",
         "Running can be a great way to increase your endurance and help you keep a sharp mind!",
         "Working out can be as simple as doing pushups at home or going to a nearby gym and hitting the weights!",
-        "Walking is a great way to start a habit of exercising or a way to de-stress after a long day of work."
+        "Walking is a great way to start a habit of exercising or a way to destress after a long day of work."
     };
 
     public Activity(int id, String name, String description, int logoId, boolean isPhysical) {
