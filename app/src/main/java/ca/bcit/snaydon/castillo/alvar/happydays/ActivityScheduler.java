@@ -144,12 +144,12 @@ public class ActivityScheduler {
             }
 
             //schedule in db
-            createNotification(type, notifications[i], 0, context.getString(R.string.note_title), context.getString(R.string.note_walking));
+            createNotification(type, notifications[i], 0, context.getString(R.string.note_title), getDescription(type));
 
-            Calendar calendar = Calendar.getInstance();
-            calendar.setTimeInMillis(System.currentTimeMillis());
-            int hour = calendar.get(Calendar.HOUR_OF_DAY);
-            int min = calendar.get(Calendar.MINUTE);
+//            Calendar calendar = Calendar.getInstance();
+//            calendar.setTimeInMillis(System.currentTimeMillis());
+//            int hour = calendar.get(Calendar.HOUR_OF_DAY);
+//            int min = calendar.get(Calendar.MINUTE);
             //createNotification(type, hour, min, context.getString(R.string.note_title), getDescription(type));
 
             i++;
@@ -292,7 +292,7 @@ public class ActivityScheduler {
         int min = calendar.get(Calendar.MINUTE);
 
             //schedule in db
-            createNotification(type, hour, min, context.getString(R.string.note_title), context.getString(R.string.note_walking));
+            createNotification(type, hour, min, context.getString(R.string.note_title), getDescription(type));
     }
 
     private String getDescription(String name) {

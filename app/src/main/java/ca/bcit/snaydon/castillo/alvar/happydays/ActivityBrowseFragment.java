@@ -48,7 +48,7 @@ public class ActivityBrowseFragment extends ListFragment {
 
         String stringJSON = loadJSONFromAsset(getJSONFileName());
         HashMap<String, List<String>> routeMap = parseJSONString(stringJSON);
-        ArrayList<Route> routeList = initRouteList(routeMap);
+//        ArrayList<Route> routeList = initRouteList(routeMap);
         return v;
     }
 
@@ -58,9 +58,9 @@ public class ActivityBrowseFragment extends ListFragment {
 
     }
 
-    public ArrayList<Route> initRouteList(HashMap<String, List<String>> routeMap) {
-
-    }
+//    public ArrayList<Route> initRouteList(HashMap<String, List<String>> routeMap) {
+//
+//    }
 
     public HashMap<String, List<String>> parseJSONString(String json) {
         HashMap<String, List<String>> tempMap = new HashMap<>();

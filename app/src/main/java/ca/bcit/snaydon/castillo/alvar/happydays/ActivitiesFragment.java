@@ -27,9 +27,10 @@ public class ActivitiesFragment extends Fragment {
         if (fromNotification) {
             MainActivity main = (MainActivity) getActivity();
 
-            ActivityDetailFragment detailFragment = new ActivityDetailFragment();
+            ActivityPromptFragment detailFragment = new ActivityPromptFragment();
             Bundle activityBundle = new Bundle();
             activityBundle.putSerializable("myActivity", new Activity(id));
+            activityBundle.putSerializable("isNotification", true);
             detailFragment.setArguments(activityBundle);
             main.loadFragment(detailFragment);
 
