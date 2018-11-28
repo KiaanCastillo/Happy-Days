@@ -171,6 +171,6 @@ public class MainActivity extends AppCompatActivity implements BottomNavigationV
     public void onDebugClick(View view) {
         ActivityScheduler scheduler = new ActivityScheduler(this);
         scheduler.debugNotification();
-        scheduler.runScheduleAlgorithm();
+        //scheduler.runScheduleAlgorithm();
     }
 }

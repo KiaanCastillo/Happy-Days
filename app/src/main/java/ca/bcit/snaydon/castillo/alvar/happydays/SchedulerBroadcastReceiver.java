@@ -19,25 +19,20 @@ public class SchedulerBroadcastReceiver extends BroadcastReceiver {
 
         Log.d("RECEIVER", "Signal to create schedule");
 
-        // businessLevel should be pulled from db
-        int busyLevel = 0;
+        Calendar calendar = Calendar.getInstance();
+        calendar.setTimeInMillis(System.currentTimeMillis());
+        int mon = calendar.get(Calendar.MONTH);
+        int day = calendar.get(Calendar.DAY_OF_MONTH);
+
+        //check log in day and month of db
+        // if no log set dayChecked to false, else true
+        boolean dayChecked = false;
 
         ActivityScheduler scheduler = new ActivityScheduler(context);
 
-        if (busyLevel == 0) {
+        if (!dayChecked) {
 
             Log.d("RECEIVER", "Busy level not set, creating schedule");
-            Calendar calendar = Calendar.getInstance();
-            calendar.setTimeInMillis(System.currentTimeMillis());
-
-            long curTime = calendar.getTimeInMillis();
-
-            calendar.set(Calendar.HOUR_OF_DAY, 6);
-
-            long wakeTime = calendar.getTimeInMillis();
-
-            String title = "Time for a check in";
-            String description = "Ready for a happy day?";
 
             // change type to check-in fragment type
             scheduler.scheduleDailyCheck();
