@@ -1,6 +1,8 @@
 <resources>
     <string name="app_name">Happy Days</string>
 
+    <string name="channel_name">Happy Days Channel</string>
+
     <string name="navigation_selected">▬</string>
     <string name="logo_description">Happy Days Logo (Gradient)</string>
 
@@ -26,4 +28,27 @@
     <string name="favourites_label">Favourites</string>
     <string name="fav_mental_label">Mental Activities</string>
     <string name="fav_physical_label">Physical Activities</string>
+
+    <!--Activities Fragment-->
+    <string name="mental_label">Mental</string>
+    <string name="physical_label">Physical</string>
+    <string name="desc_reading">Reading</string>
+    <string name="desc_meditating">Meditating</string>
+    <string name="desc_mindmap">Mind Map</string>
+    <string name="desc_stretching">Stretching</string>
+    <string name="desc_journaling">Journaling</string>
+    <string name="desc_biking">Biking</string>
+    <string name="desc_running">Running</string>
+    <string name="desc_workout">Work Out</string>
+    <string name="desc_walking">Walking</string>
+
+    <!--Notifications-->
+    <string name="note_title">Happy Days</string>
+    <string name="note_checkin">Ready to start your day?</string>
+    <string name="note_walking">Maybe its time to stretch your legs?</string>
+    <string name="note_biking">A bike ride might be pretty nice right about now.</string>
+
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+
 </resources>
