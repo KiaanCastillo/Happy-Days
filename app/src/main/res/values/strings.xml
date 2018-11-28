@@ -1,8 +1,8 @@
 <resources>
     <string name="app_name">Happy Days</string>
 
+    <string name="text_placeholder">Placeholder</string>
     <string name="channel_name">Happy Days Channel</string>
-
     <string name="navigation_selected">▬</string>
     <string name="logo_description">Happy Days Logo (Gradient)</string>
 
@@ -42,6 +42,35 @@
     <string name="desc_workout">Work Out</string>
     <string name="desc_walking">Walking</string>
 
+    <!-- Activity Prompt Fragment -->
+    <string name="text_prompt1">Welcome back!</string>
+    <string name="text_prompt2">Why not try…</string>
+    <string name="label_start">Start</string>
+    <string name="label_stop">No Thanks</string>
+    <string name="label_another">Pick Another</string>
+    <string name="activity_logo_base">Activity Logo Base</string>
+    <string name="activity_logo_image">Activity Logo Image</string>
+    <string name="prompt_start">STARTING NEW ACTIVITY</string>
+
+    <!-- Activity Detail Fragment -->
+    <string name="prompt_inprogress">ACTIVITY IN PROGRESS</string>
+    <string name="btn_routes">Routes</string>
+    <string name="btn_finish">Finish</string>
+
+    <!-- Activity Finish Fragment -->
+    <string name="text_notes">Notes:</string>
+    <string name="text_finished">FINISHED!</string>
+    <string name="label_response">How did it go?</string>
+    <string name="text_save">Save</string>
+    <string name="mood_5_button">Mood 5 Button</string>
+    <string name="mood_4_button">Mood 4 Button</string>
+    <string name="mood_3_button">Mood 3 Button</string>
+    <string name="mood_1_button">Mood 1 Button</string>
+    <string name="mood_2_button">Mood 2 Button</string>
+
+    <!-- Activity Browse Fragment -->
+    <string name="text_routes">Routes</string>
+  
     <!--Notifications-->
     <string name="note_title">Happy Days</string>
     <string name="note_checkin">Ready to start your day?</string>

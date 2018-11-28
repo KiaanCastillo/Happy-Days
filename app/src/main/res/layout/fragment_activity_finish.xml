@@ -1,0 +1,195 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".ActivityFinishFragment"
+    tools:layout_editor_absoluteY="25dp">
+
+
+    <TextView
+        android:id="@+id/text_finished"
+        style="@style/FragmentSubTitle"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="32dp"
+        android:text="@string/text_finished"
+        android:textSize="18sp"
+        android:textStyle="normal"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.498"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/activity_name"
+        style="@style/FragmentTitle"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="60dp"
+        android:text="@string/text_placeholder"
+        android:textSize="36sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/activity_type"
+        style="@style/FragmentSubTitle"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/text_placeholder"
+        android:textSize="20sp"
+        android:textStyle="normal"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/activity_name" />
+
+    <ImageView
+        android:id="@+id/activity_logo"
+        android:layout_width="125dp"
+        android:layout_height="125dp"
+        android:layout_marginTop="8dp"
+        android:background="@drawable/square_btn"
+        android:backgroundTint="@color/colorPrimaryDark"
+        android:contentDescription="@string/activity_logo_base"
+        android:textAlignment="center"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/activity_type" />
+
+    <ImageView
+        android:id="@+id/logo_image"
+        android:layout_width="85dp"
+        android:layout_height="85dp"
+        android:contentDescription="@string/activity_logo_image"
+        android:textAlignment="center"
+        app:layout_constraintBottom_toBottomOf="@+id/activity_logo"
+        app:layout_constraintEnd_toEndOf="@+id/activity_logo"
+        app:layout_constraintStart_toStartOf="@+id/activity_logo"
+        app:layout_constraintTop_toTopOf="@+id/activity_logo" />
+
+    <TextView
+        android:id="@+id/label_response"
+        style="@style/FragmentTitle"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="14dp"
+        android:text="@string/label_response"
+        android:textSize="18sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/activity_logo" />
+
+    <ImageButton
+        android:id="@+id/btn_mood5"
+        android:layout_width="65dp"
+        android:layout_height="65dp"
+        android:layout_marginTop="16dp"
+        android:background="@drawable/square_btn"
+        android:backgroundTint="@color/colorPrimary"
+        android:src="@drawable/ic_mood_5"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toEndOf="@+id/btn_mood4"
+        app:layout_constraintTop_toBottomOf="@+id/label_response"
+        android:contentDescription="@string/mood_5_button" />
+
+    <ImageButton
+        android:id="@+id/btn_mood4"
+        android:layout_width="65dp"
+        android:layout_height="65dp"
+        android:layout_marginTop="16dp"
+        android:background="@drawable/square_btn"
+        android:backgroundTint="@color/colorPrimary"
+        android:src="@drawable/ic_mood_4"
+        app:layout_constraintEnd_toStartOf="@+id/btn_mood5"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toEndOf="@+id/btn_mood3"
+        app:layout_constraintTop_toBottomOf="@+id/label_response"
+        android:contentDescription="@string/mood_4_button" />
+
+    <ImageButton
+        android:id="@+id/btn_mood3"
+        android:layout_width="65dp"
+        android:layout_height="65dp"
+        android:layout_marginTop="16dp"
+        android:background="@drawable/square_btn"
+        android:backgroundTint="@color/colorPrimary"
+        android:src="@drawable/ic_mood_3"
+        app:layout_constraintEnd_toStartOf="@+id/btn_mood4"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toEndOf="@+id/btn_mood2"
+        app:layout_constraintTop_toBottomOf="@+id/label_response"
+        android:contentDescription="@string/mood_3_button" />
+
+    <ImageButton
+        android:id="@+id/btn_mood1"
+        android:layout_width="65dp"
+        android:layout_height="65dp"
+        android:layout_marginTop="16dp"
+        android:background="@drawable/square_btn"
+        android:backgroundTint="@color/colorPrimary"
+        android:src="@drawable/ic_mood_1"
+        app:layout_constraintEnd_toStartOf="@+id/btn_mood2"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/label_response"
+        android:contentDescription="@string/mood_1_button" />
+
+    <ImageButton
+        android:id="@+id/btn_mood2"
+        android:layout_width="65dp"
+        android:layout_height="65dp"
+        android:layout_marginTop="16dp"
+        android:background="@drawable/square_btn"
+        android:backgroundTint="@color/colorPrimary"
+        android:src="@drawable/ic_mood_2"
+        app:layout_constraintEnd_toStartOf="@+id/btn_mood3"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toEndOf="@+id/btn_mood1"
+        app:layout_constraintTop_toBottomOf="@+id/label_response"
+        android:contentDescription="@string/mood_2_button" />
+
+    <TextView
+        android:id="@+id/text_notes"
+        style="@style/FragmentTitle"
+        android:layout_width="wrap_content"
+        android:layout_height="20dp"
+        android:layout_marginTop="10dp"
+        android:text="@string/text_notes"
+        android:textSize="18sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/btn_mood3" />
+
+    <EditText
+        android:id="@+id/edit_notes"
+        android:layout_width="370dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="12dp"
+        android:ems="10"
+        android:imeOptions="actionDone"
+        android:inputType="textPersonName"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/text_notes" />
+
+    <Button
+        android:id="@+id/btn_save"
+        android:layout_width="135dp"
+        android:layout_height="45dp"
+        android:layout_marginTop="12dp"
+        android:backgroundTint="@color/colorAccent"
+        android:onClick="finishActivityClick"
+        android:text="@string/text_save"
+        android:textAllCaps="false"
+        android:textColor="@color/colorWhite"
+        android:textSize="20sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/edit_notes" />
+
+
+</android.support.constraint.ConstraintLayout>

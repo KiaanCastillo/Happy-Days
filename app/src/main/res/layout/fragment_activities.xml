@@ -80,7 +80,8 @@
         app:layout_constraintHorizontal_bias="0.126"
         app:layout_constraintStart_toEndOf="@+id/btn_meditating"
         app:layout_constraintTop_toBottomOf="@+id/textView11"
-        android:contentDescription="@string/desc_mindmap" />
+        android:contentDescription="@string/desc_mindmap"
+        android:onClick="onActivityClick"/>
 
     <ImageButton
         android:id="@+id/btn_stretching"
@@ -100,7 +101,8 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/btn_mindmap"
         app:layout_constraintVertical_bias="0.011"
-        android:contentDescription="@string/desc_stretching" />
+        android:contentDescription="@string/desc_stretching"
+        android:onClick="onActivityClick"/>
 
     <ImageButton
         android:id="@+id/btn_journaling"
@@ -120,7 +122,8 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/btn_reading"
         app:layout_constraintVertical_bias="0.011"
-        android:contentDescription="@string/desc_journaling" />
+        android:contentDescription="@string/desc_journaling"
+        android:onClick="onActivityClick"/>
 
     <!-- Physical Activities -->
     <TextView
@@ -150,7 +153,8 @@
         app:layout_constraintHorizontal_bias="0.05"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/textView12"
-        android:contentDescription="@string/desc_biking" />
+        android:contentDescription="@string/desc_biking"
+        android:onClick="onActivityClick"/>
 
     <ImageButton
         android:id="@+id/btn_running"
@@ -165,7 +169,8 @@
         app:layout_constraintHorizontal_bias="0.37"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/textView12"
-        android:contentDescription="@string/desc_running" />
+        android:contentDescription="@string/desc_running"
+        android:onClick="onActivityClick"/>
 
     <ImageButton
         android:id="@+id/btn_workout"
@@ -180,7 +185,8 @@
         app:layout_constraintHorizontal_bias="0.63"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/textView12"
-        android:contentDescription="@string/desc_workout" />
+        android:contentDescription="@string/desc_workout"
+        android:onClick="onActivityClick"/>
 
     <ImageButton
         android:id="@+id/btn_walking"
@@ -196,7 +202,8 @@
         app:layout_constraintHorizontal_bias="0.95"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/textView12"
-        android:contentDescription="@string/desc_walking" />
+        android:contentDescription="@string/desc_walking"
+        android:onClick="onActivityClick"/>
 
     <android.support.constraint.Guideline
         android:id="@+id/guideline"

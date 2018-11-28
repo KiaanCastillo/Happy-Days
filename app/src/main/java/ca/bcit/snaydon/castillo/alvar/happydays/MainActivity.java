@@ -12,6 +12,7 @@ import android.os.Build;
 import android.support.annotation.NonNull;
 import android.support.design.widget.BottomNavigationView;
 import android.support.v4.app.Fragment;
+import android.support.v4.app.FragmentTransaction;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.MenuItem;
@@ -68,7 +69,9 @@ public class MainActivity extends AppCompatActivity implements BottomNavigationV
 
     public boolean loadFragment(Fragment fragment) {
         if (fragment != null) {
-            getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container, fragment).commit();
+            FragmentTransaction ft = getSupportFragmentManager().beginTransaction();
+            ft.replace(R.id.fragment_container, fragment);
+            ft.setTransition(FragmentTransaction.TRANSIT_FRAGMENT_FADE).commit();
             return true;
         }
         return false;
@@ -152,11 +155,17 @@ public class MainActivity extends AppCompatActivity implements BottomNavigationV
     }
 
     public void onActivityClick(View view) {
-        ActivityDetailFragment detailFragment = new ActivityDetailFragment();
+        ActivityPromptFragment promptFragment = new ActivityPromptFragment();
         Bundle activityBundle = new Bundle();
         activityBundle.putSerializable("myActivity", new Activity(view.getId()));
-        detailFragment.setArguments(activityBundle);
-        loadFragment(detailFragment);
+        activityBundle.putSerializable("isNotification", false);
+        promptFragment.setArguments(activityBundle);
+        loadFragment(promptFragment);
+    }
+
+    public void finishActivityClick(View view) {
+        // Save Activity in Database
+        loadFragment(new HomeFragment());
     }
 
     public void onDebugClick(View view) {
