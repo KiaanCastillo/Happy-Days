@@ -14,6 +14,28 @@ public class ActivitiesFragment extends Fragment {
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
+
+        boolean fromNotification = false;
+        int id = 0;
+
+        Bundle bundle = this.getArguments();
+        if (bundle != null){
+            fromNotification = bundle.getBoolean("NOTIFICATION");
+            id = bundle.getInt("ID");
+        }
+
+        if (fromNotification) {
+            MainActivity main = (MainActivity) getActivity();
+
+            ActivityDetailFragment detailFragment = new ActivityDetailFragment();
+            Bundle activityBundle = new Bundle();
+            activityBundle.putSerializable("myActivity", new Activity(id));
+            detailFragment.setArguments(activityBundle);
+            main.loadFragment(detailFragment);
+
+        }
+
+
         return inflater.inflate(R.layout.fragment_activities, null);
     }
 
