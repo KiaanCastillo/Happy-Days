@@ -8,9 +8,12 @@ import android.support.v4.content.res.ResourcesCompat;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
 import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.TextView;
+
+import org.w3c.dom.Text;
 
 import java.util.ArrayList;
 
@@ -22,6 +25,7 @@ public class ActivityFinishFragment extends Fragment implements View.OnClickList
 
     private Activity myActivity;
     private ArrayList<ImageButton> moodBtns = new ArrayList<>();
+    private int mood;
 
     public ActivityFinishFragment() {
         // Required empty public constructor
@@ -51,6 +55,9 @@ public class ActivityFinishFragment extends Fragment implements View.OnClickList
             imgBtn.setOnClickListener(this);
         }
 
+        Button submitBtn = v.findViewById(R.id.btn_save);
+        submitBtn.setOnClickListener(this);
+
         fillInFields(v);
 
         return v;
@@ -70,7 +77,40 @@ public class ActivityFinishFragment extends Fragment implements View.OnClickList
         for (ImageButton imgBtn : moodBtns) {
             imgBtn.setBackgroundTintList(ColorStateList.valueOf(getResources().getColor(R.color.colorPrimary)));
         }
-        ImageButton selected = v.findViewById(v.getId());
-        selected.setBackgroundTintList(ColorStateList.valueOf(getResources().getColor(R.color.colorAccent)));
+        if (v.getId() == R.id.btn_save)
+            finishActivityClick();
+        else {
+            ImageButton selected = v.findViewById(v.getId());
+            selected.setBackgroundTintList(ColorStateList.valueOf(getResources().getColor(R.color.colorAccent)));
+
+            switch (v.getId()) {
+                case R.id.btn_mood1:
+                    mood = 1;
+                    break;
+                case R.id.btn_mood2:
+                    mood = 2;
+                    break;
+                case R.id.btn_mood3:
+                    mood = 3;
+                    break;
+                case R.id.btn_mood4:
+                    mood = 4;
+                    break;
+                default:
+                    mood = 5;
+                    break;
+            }
+        }
     }
+
+    public void finishActivityClick() {
+        // Save Activity in Database
+        UserDatabaseHelper dbHelper = new UserDatabaseHelper(getContext());
+        TextView tv = ((MainActivity) getActivity()).findViewById(R.id.activity_name);
+        String notes = ((MainActivity) getActivity()).findViewById(R.id.edit_notes).toString();
+        dbHelper.addFinishedActivity(dbHelper.getReadableDatabase(), tv.getText().toString(), mood, notes);
+        ((MainActivity) getActivity()).loadFragment(new HomeFragment());
+    }
+
+
 }

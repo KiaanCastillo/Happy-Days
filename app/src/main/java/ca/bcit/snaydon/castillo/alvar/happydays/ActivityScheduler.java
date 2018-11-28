@@ -66,16 +66,22 @@ public class ActivityScheduler {
 
         Log.d("Notification", "Creating notification, id: " + notificationId);
 
-        // change to be addaptive to typeId
-        Intent startActivity = new Intent(context, MainActivity.class);
-        startActivity.putExtra("ACTIVITY_ID", activityId);
-        startActivity.putExtra("NOTIFICATION", true);
 
-        // temp id should be fragment id if checkin, or random if another activity
+        Intent startActivity;
+
+        if (activityId == 0) {
+            startActivity = new Intent(context, MainActivity.class);
+        } else {
+            startActivity = new Intent(context, MainActivity.class);
+            startActivity.putExtra("ACTIVITY_ID", activityId);
+            startActivity.putExtra("NOTIFICATION", true);
+        }
+
+
         PendingIntent activity = PendingIntent.getActivity(context, activityId, startActivity, PendingIntent.FLAG_UPDATE_CURRENT);
 
         NotificationCompat.Builder mBuilder = new NotificationCompat.Builder(context, CHANNEL_ID)
-                .setSmallIcon(R.drawable.ic_activities_icon)
+                .setSmallIcon(R.drawable.ic_happydays_logo)
                 .setContentTitle(name)
                 .setContentText(description)
                 .setPriority(NotificationCompat.PRIORITY_DEFAULT)
@@ -103,6 +109,7 @@ public class ActivityScheduler {
         alarmMgr.set(AlarmManager.RTC_WAKEUP, calendar.getTimeInMillis(), pendingIntent);
     }
 
+
     public void scheduleDailyCheck() {
 
         // if time is later then morning check in time, set for next few minutes
@@ -114,15 +121,13 @@ public class ActivityScheduler {
 
         if ((hour >= 7) || (hour > 6 && min > 30)) {
 
-            createNotification("default", hour, min + 1, context.getString(R.string.note_title), context.getString(R.string.note_title));
+            createNotification("default", hour, min, context.getString(R.string.note_title), getDescription("default"));
         } else {
 
-            createNotification("default",6, 30, context.getString(R.string.note_title), context.getString(R.string.note_title));
+            createNotification("default",6, 30, context.getString(R.string.note_title), getDescription("default"));
         }
-
-
-
     }
+
 
     public void generateActivties(int[] notifications, double bias) {
         // set activity notification by type and time
@@ -135,7 +140,7 @@ public class ActivityScheduler {
             roll = Math.random() + bias;
             Log.d("NOTIFICATION", "Type Roll " + roll);
             if (roll > 0.5) {
-                //phyisical activity
+                //physical activity
                 type = generateRandomPhysical();
 
             } else {
@@ -145,13 +150,6 @@ public class ActivityScheduler {
 
             //schedule in db
             createNotification(type, notifications[i], 0, context.getString(R.string.note_title), getDescription(type));
-
-//            Calendar calendar = Calendar.getInstance();
-//            calendar.setTimeInMillis(System.currentTimeMillis());
-//            int hour = calendar.get(Calendar.HOUR_OF_DAY);
-//            int min = calendar.get(Calendar.MINUTE);
-            //createNotification(type, hour, min, context.getString(R.string.note_title), getDescription(type));
-
             i++;
         }
 
@@ -206,21 +204,15 @@ public class ActivityScheduler {
 
         if (roll < walking) {
             //schedule walking in db
-
             return "Walking";
-
         } else if (roll < biking) {
             //schedule biking in db
-
             return "Biking";
         } else if (roll < running) {
             //schedule running in db
-
             return "Running";
-
         } else  {
             //schedule workout in db
-
             return "Workout";
         }
     }
@@ -241,37 +233,28 @@ public class ActivityScheduler {
         if (roll < reading) {
             //schedule reading
             return "Reading";
-
         } else if (roll < journaling) {
             //schedule journalling
-
             return "Journaling";
-
         } else if (roll < mindmap) {
             //schedule mindmap
-
             return "Mindmaps";
-
         } else if (roll < stretching) {
             //schedule stretching
-
             return "Stretching";
-
         } else {
             //schedule meditating
-
             return "Meditating";
-
         }
     }
 
     public void rebuildSchedule() {
         // create notifications based on activities scheduled in the database
-
         // for entries in table
         // call createNotification of type and time
     }
 
+    //temp notification creator for demo
     public void debugNotification() {
         double roll;
 

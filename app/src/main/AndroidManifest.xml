@@ -4,6 +4,7 @@
     package="ca.bcit.snaydon.castillo.alvar.happydays">
 
     <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
+    <uses-permission android:name="android.permission.RECEIVE_BOOT_COMPLETED" />
 
     <application
         android:allowBackup="true"
@@ -22,13 +23,21 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+        <activity android:name=".OnboardingActivity">
 
+        </activity>
+        <activity android:name=".UserInitializationActivity">
+
+        </activity>
+        <activity android:name=".CheckinActivity">
+
+        </activity>
         <receiver
             android:name=".SchedulerBroadcastReceiver"
             android:enabled="true">
             <intent-filter>
                 <action android:name="android.intent.action.BOOT_COMPLETED" />
-                <action android:name="android.intent.action.DATE_CHANGED" />
+                <action android:name="android.intent.action.TIME_SET" />
             </intent-filter>
         </receiver>
         <receiver android:name=".ActivityReceiver">

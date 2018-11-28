@@ -65,7 +65,7 @@ public class ActivityDetailFragment extends Fragment implements View.OnClickList
         Bundle activityBundle = new Bundle();
         activityBundle.putSerializable("myActivity", myActivity);
         if (routeBtn.getText().toString().equals("Finish")) {
-            ActivityFinishFragment finishFragment = new ActivityFinishFragment();
+             ActivityFinishFragment finishFragment = new ActivityFinishFragment();
             finishFragment.setArguments(activityBundle);
             ((MainActivity) getActivity()).loadFragment(finishFragment);
         } else {
