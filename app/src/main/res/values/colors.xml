@@ -9,4 +9,5 @@
 
     <color name="colorLogoBlue">#00ADEE</color>
     <color name="colorWhite">#ffffff</color>
+    <color name="ic_launcher_background">#FFFFFF</color>
 </resources>
