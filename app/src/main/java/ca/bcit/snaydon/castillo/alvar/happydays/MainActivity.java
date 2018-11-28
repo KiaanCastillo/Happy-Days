@@ -39,6 +39,9 @@ public class MainActivity extends AppCompatActivity implements BottomNavigationV
         if (dbHelper.getUser() == null) {
             Intent i = new Intent(MainActivity.this, OnboardingActivity.class);
             startActivity(i);
+        } else if (dbHelper.getTodayLog() == null) {
+            Intent i = new Intent(MainActivity.this, CheckinActivity.class);
+            startActivity(i);
         } else {
             bottomNavigationView = findViewById(R.id.navigation);
             bottomNavigationView.setOnNavigationItemSelectedListener(this);

@@ -1,17 +1,8 @@
 package ca.bcit.snaydon.castillo.alvar.happydays;
 
-import android.content.Intent;
-
-import java.util.ArrayList;
-import java.util.Collections;
 import java.util.HashMap;
-import java.util.Iterator;
-import java.util.LinkedHashMap;
-import java.util.List;
 import java.util.Map;
 import java.util.Scanner;
-import java.util.TreeMap;
-import java.util.Vector;
 
 public class Log {
 
@@ -31,17 +22,14 @@ public class Log {
 
     private int overallMood;
 
-    private int waterConsumption;
-
     private String notes;
 
-    public Log(int month, int day, int year, int dayType, String activitiesString, String moodsString, int waterConsumption, String notes) {
+    public Log(int month, int day, int year, int dayType, String activitiesString, String moodsString, String notes) {
         activities = new HashMap<>();
         this.month = month;
         this.day = day;
         this.year = year;
         this.dayType = dayType;
-        this.waterConsumption = waterConsumption;
         this.notes = notes;
         populateActivitiesList(activitiesString, moodsString);
         overallMood = calculateAvg();
@@ -154,14 +142,6 @@ public class Log {
 
     public void setOverallMood(int overallMood) {
         this.overallMood = overallMood;
-    }
-
-    public int getWaterConsumption() {
-        return waterConsumption;
-    }
-
-    public void setWaterConsumption(int waterConsumption) {
-        this.waterConsumption = waterConsumption;
     }
 
     public String getNotes() {

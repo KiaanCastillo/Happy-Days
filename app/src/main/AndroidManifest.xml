@@ -27,6 +27,9 @@
         <activity android:name=".UserInitializationActivity">
 
         </activity>
+        <activity android:name=".CheckinActivity">
+
+        </activity>
         <receiver
             android:name=".SchedulerBroadcastReceiver"
             android:enabled="true">

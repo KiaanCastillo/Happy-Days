@@ -10,7 +10,10 @@ import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageView;
 import android.widget.TextView;
+
+import java.util.ArrayList;
 
 public class ProfileFragment extends Fragment {
     private SQLiteDatabase db;
@@ -33,6 +36,48 @@ public class ProfileFragment extends Fragment {
 
         tv = v.findViewById(R.id.profile_last_name);
         tv.setText(user.getLast_name());
+
+        ArrayList<String> favActivities = dbHelper.getFavouriteActivities();
+        ImageView iv = (ImageView) v.findViewById(R.id.m_fave_1);
+        iv.setImageResource(getActivityIcon(favActivities.get(0)));
+
+        iv = (ImageView) v.findViewById(R.id.m_fave_2);
+        iv.setImageResource(getActivityIcon(favActivities.get(1)));
+
+        iv = (ImageView) v.findViewById(R.id.m_fave_3);
+        iv.setImageResource(getActivityIcon(favActivities.get(2)));
+
+        iv = (ImageView) v.findViewById(R.id.p_fave_1);
+        iv.setImageResource(getActivityIcon(favActivities.get(3)));
+
+        iv = (ImageView) v.findViewById(R.id.p_fave_2);
+        iv.setImageResource(getActivityIcon(favActivities.get(4)));
+
+        iv = (ImageView) v.findViewById(R.id.p_fave_3);
+        iv.setImageResource(getActivityIcon(favActivities.get(5)));
+    }
+
+    private int getActivityIcon(String activityName) {
+        switch (activityName) {
+            case "Reading":
+                return R.drawable.ic_reading;
+            case "Journaling":
+                return R.drawable.ic_journaling;
+            case "Mindmaps":
+                return R.drawable.ic_mindmap;
+            case "Stretching":
+                return R.drawable.ic_stretching;
+            case "Meditating":
+                return R.drawable.ic_meditating;
+            case "Walking":
+                return R.drawable.ic_walking;
+            case "Biking":
+                return R.drawable.ic_biking;
+            case "Running":
+                return R.drawable.ic_running;
+            default:
+                return R.drawable.ic_workout;
+        }
     }
 
 }

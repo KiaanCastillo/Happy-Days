@@ -6,10 +6,10 @@ import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteException;
 import android.database.sqlite.SQLiteOpenHelper;
-import android.widget.ArrayAdapter;
-import android.widget.Toast;
-
+import java.time.LocalDate;
 import java.util.ArrayList;
+import java.util.Calendar;
+import java.util.Date;
 
 public class UserDatabaseHelper extends SQLiteOpenHelper {
 
@@ -82,7 +82,7 @@ public class UserDatabaseHelper extends SQLiteOpenHelper {
             activities_values.put("NAME", mActivity);
             activities_values.put("AVG", 5);
             if (favMental.contains(mActivity))
-                activities_values.put("FAVE", 1);
+                activities_values.put("FAV", 1);
             else
                 activities_values.put("FAV", 0);
             db.insert("MENTAL_ACTIVITIES_INFO", null, activities_values);
@@ -96,7 +96,7 @@ public class UserDatabaseHelper extends SQLiteOpenHelper {
             activitiesValues.put("NAME", pActivity);
             activitiesValues.put("AVG", 5);
             if (favPhysical.contains(pActivity))
-                activitiesValues.put("FAVE", 1);
+                activitiesValues.put("FAV", 1);
             else
                 activitiesValues.put("FAV", 0);
             db.insert("PHYSICAL_ACTIVITIES_INFO", null, activitiesValues);
@@ -120,7 +120,6 @@ public class UserDatabaseHelper extends SQLiteOpenHelper {
         logValues.put("ACTIVITIES", log.getActivities());
         logValues.put("ACTIVITIES_MOODS", log.getActivitiesMoods());
         logValues.put("OVERALL_MOOD", log.getOverallMood());
-        logValues.put("WATER_CONSUMPTION", log.getWaterConsumption());
         logValues.put("NOTES", log.getNotes());
         db.insert(LOGS, null, logValues);
     }
@@ -130,9 +129,26 @@ public class UserDatabaseHelper extends SQLiteOpenHelper {
         logValues.put("ACTIVITIES", log.getActivities());
         logValues.put("ACTIVITIES_MOOD", log.getActivitiesMoods());
         logValues.put("OVERALL_MOOD", log.getOverallMood());
-        logValues.put("WATER_CONSUMPTION", log.getWaterConsumption());
         logValues.put("NOTES", log.getNotes());
         db.update(LOGS, logValues, "_id = " + log_id, null);
+    }
+
+    public void addFinishedActivity(SQLiteDatabase db, String activityName, int activityMood, String notes) {
+
+        try {
+            db = getReadableDatabase();
+            Cursor cursor = db.rawQuery("SELECT ACTIVITIES, ACTIVITIES_MOOD, NOTES FROM LOGS",null);
+
+            // move to the first record
+            if (cursor.moveToFirst()) {
+//                user = new User(
+//                        cursor.getString(0),
+//                        cursor.getString(1));
+            }
+            cursor.close();
+        } catch (SQLiteException sqlex) {
+            sqlex.printStackTrace();
+        }
     }
 
     private String createUserInfoTable() {
@@ -175,7 +191,6 @@ public class UserDatabaseHelper extends SQLiteOpenHelper {
         sql += "ACTIVITIES TEXT, ";
         sql += "ACTIVITIES_MOODS TEXT, ";
         sql += "OVERALL_MOOD INTEGER, ";
-        sql += "WATER_CONSUMPTION INTEGER, ";
         sql += "NOTES TEXT);";
         return sql;
     }
@@ -210,6 +225,40 @@ public class UserDatabaseHelper extends SQLiteOpenHelper {
         return user;
     }
 
+    public ArrayList<String> getFavouriteActivities() {
+        ArrayList<String> favActivities = new ArrayList<>();
+
+        try {
+            SQLiteDatabase db = getReadableDatabase();
+            Cursor cursor = db.rawQuery("SELECT NAME FROM MENTAL_ACTIVITIES_INFO WHERE FAV = 1",null);
+
+            // move to the first record
+            if (cursor.moveToFirst()) {
+                while (!cursor.isAfterLast()) {
+                    favActivities.add(cursor.getString(0));
+                    cursor.moveToNext();
+                }
+            }
+
+            cursor = db.rawQuery("SELECT NAME FROM PHYSICAL_ACTIVITIES_INFO WHERE FAV = 1",null);
+
+            // move to the first record
+            if (cursor.moveToFirst()) {
+                while (!cursor.isAfterLast()) {
+                    favActivities.add(cursor.getString(0));
+                    cursor.moveToNext();
+                }
+            }
+
+            cursor.close();
+        } catch (SQLiteException sqlex) {
+            sqlex.printStackTrace();
+        }
+
+
+        return favActivities;
+    }
+
     public ArrayList<Log> getAllLogs() {
         ArrayList<Log> logs = new ArrayList<>();
         try {
@@ -226,8 +275,7 @@ public class UserDatabaseHelper extends SQLiteOpenHelper {
                             cursor.getInt(4),
                             cursor.getString(5),
                             cursor.getString(6),
-                            cursor.getInt(7),
-                            cursor.getString(8));
+                            cursor.getString(7));
                     log.setID(cursor.getInt(0));
                     logs.add(log);
                     cursor.moveToNext();
@@ -239,5 +287,37 @@ public class UserDatabaseHelper extends SQLiteOpenHelper {
         }
 
         return logs;
+    }
+
+    public Log getTodayLog() {
+        Log todayLog = null;
+        Calendar calendar = Calendar.getInstance();
+        calendar.setTimeInMillis(System.currentTimeMillis());
+        int year = calendar.get(Calendar.YEAR);
+        int month = calendar.get(Calendar.MONTH);
+        int day = calendar.get(Calendar.DAY_OF_MONTH);
+
+        try {
+            SQLiteDatabase db = getReadableDatabase();
+            Cursor cursor = db.rawQuery("SELECT * FROM LOGS WHERE MONTH = " + month + " AND DAY = " + day + " AND YEAR = " + year, null);
+
+            // move to the first record
+            if (cursor.moveToFirst()) {
+                todayLog = new Log(
+                        cursor.getInt(1),
+                        cursor.getInt(2),
+                        cursor.getInt(3),
+                        cursor.getInt(4),
+                        cursor.getString(5),
+                        cursor.getString(6),
+                        cursor.getString(7));
+                todayLog.setID(cursor.getInt(0));
+            }
+            cursor.close();
+        } catch (SQLiteException sqlex) {
+            sqlex.printStackTrace();
+        }
+
+        return todayLog;
     }
 }
