@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <android.support.v4.view.ViewPager
+        android:id="@+id/onboarding_viewPager"
+        android:layout_width="match_parent"
+        android:layout_height="615dp">
+
+    </android.support.v4.view.ViewPager>
+
+    <Button
+        android:id="@+id/slide_back_btn"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentBottom="true"
+        android:layout_marginStart="0dp"
+        android:layout_marginBottom="0dp"
+        android:background="@android:color/transparent"
+        android:text="@string/back_btn"
+        android:textAppearance="@style/heading1"
+        android:visibility="invisible" />
+
+    <Button
+        android:id="@+id/slide_next_btn"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentEnd="true"
+        android:layout_alignParentBottom="true"
+        android:background="@android:color/transparent"
+        android:text="@string/next_btn"
+        android:textAppearance="@style/heading1" />
+
+    <LinearLayout
+        android:id="@+id/dots_layout"
+        android:layout_width="wrap_content"
+        android:layout_height="match_parent"
+        android:layout_below="@+id/onboarding_viewPager"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="0dp"
+        android:orientation="horizontal"
+        android:padding="20dp"></LinearLayout>
+
+</RelativeLayout>

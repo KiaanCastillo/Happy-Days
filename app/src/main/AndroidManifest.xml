@@ -21,6 +21,15 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+        <activity android:name=".OnboardingActivity">
+
+        </activity>
+        <activity android:name=".UserInitializationActivity">
+
+        </activity>
+        <activity android:name=".CheckinActivity">
+
+        </activity>
         <receiver
             android:name=".SchedulerBroadcastReceiver"
             android:enabled="true">

@@ -41,14 +41,14 @@ public class LogsAdapter extends ArrayAdapter<Log> {
             case 2:
                 iv.setImageResource(R.drawable.ic_mood_2);
                 break;
-            case 3:
-                iv.setImageResource(R.drawable.ic_mood_3);
+            case 5:
+                iv.setImageResource(R.drawable.ic_mood_5);
                 break;
             case 4:
                 iv.setImageResource(R.drawable.ic_mood_4);
                 break;
             default:
-                iv.setImageResource(R.drawable.ic_mood_5);
+                iv.setImageResource(R.drawable.ic_mood_3);
                 break;
         }
 
@@ -66,7 +66,7 @@ public class LogsAdapter extends ArrayAdapter<Log> {
                 return R.drawable.ic_reading;
             case "Journaling":
                 return R.drawable.ic_journaling;
-            case "Mindmaps":
+            case "Mindmap":
                 return R.drawable.ic_mindmap;
             case "Stretching":
                 return R.drawable.ic_stretching;
@@ -84,15 +84,19 @@ public class LogsAdapter extends ArrayAdapter<Log> {
     }
 
     private void populateBestDisplays(int num, String topActivities[], View listItem) {
-        ImageView iv = (ImageView)listItem.findViewById(R.id.logs_best_1);
-        iv.setImageResource(getActivityIcon(topActivities[0]));
+        ImageView iv;
 
-        if (num > 1) {
+        if (topActivities[0] != null) {
+            iv = (ImageView) listItem.findViewById(R.id.logs_best_1);
+            iv.setImageResource(getActivityIcon(topActivities[0]));
+        }
+
+        if (topActivities[1] != null) {
             iv = (ImageView)listItem.findViewById(R.id.logs_best_2);
             iv.setImageResource(getActivityIcon(topActivities[1]));
         }
 
-        if (num > 2) {
+        if (topActivities[2] != null) {
             iv = (ImageView)listItem.findViewById(R.id.logs_best_3);
             iv.setImageResource(getActivityIcon(topActivities[2]));
         }
@@ -101,37 +105,37 @@ public class LogsAdapter extends ArrayAdapter<Log> {
     private String dateMaker(int month, int day) {
         String date =  "";
         switch (month) {
-            case 1:
+            case 0:
                 date += "Jan";
                 break;
-            case 2:
+            case 1:
                 date += "Feb";
                 break;
-            case 3:
+            case 2:
                 date += "Mar";
                 break;
-            case 4:
+            case 3:
                 date += "Apr";
                 break;
-            case 5:
+            case 4:
                 date += "May";
                 break;
-            case 6:
+            case 5:
                 date += "Jun";
                 break;
-            case 7:
+            case 6:
                 date += "Jul";
                 break;
-            case 8:
+            case 7:
                 date += "Aug";
                 break;
-            case 9:
+            case 8:
                 date += "Sep";
                 break;
-            case 10:
+            case 9:
                 date += "Oct";
                 break;
-            case 11:
+            case 10:
                 date += "Nov";
                 break;
             default:

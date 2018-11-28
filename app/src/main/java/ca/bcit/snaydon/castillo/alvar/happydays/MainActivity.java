@@ -25,52 +25,53 @@ import java.util.List;
 
 public class MainActivity extends AppCompatActivity implements BottomNavigationView.OnNavigationItemSelectedListener {
 
-    public static final int MAX_FAVOURITES = 6;
     private SQLiteDatabase db;
     private Cursor cursor;
     static final String CHANNEL_ID = "happy_days";
     private UserDatabaseHelper dbHelper;
+    String FRAGMENT_TAG = "Fragment";
     BottomNavigationView bottomNavigationView;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
-        //CHECK IF LOG ALREADY EXISTS FOR THIS DAY
-        //IF NOT, PROMPT FOR BUSY-NESS THEN MAKE A NEW LOG
-        dbHelper = new UserDatabaseHelper(this);
-        User user = new User("Bob", "Parker");
-        dbHelper.initializeUser(dbHelper.getReadableDatabase(), user);
-        Log log = new Log(11, 2, 2018, 3, "Running Biking Mindmap Stretching", "5 5 4 2", 4, "Yeet");
-        dbHelper.insertLog(dbHelper.getReadableDatabase(), log);
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_home);
-        bottomNavigationView = findViewById(R.id.navigation);
-        bottomNavigationView.setOnNavigationItemSelectedListener(this);
-        createNotificationChannel(this);
-
-        Intent intent = getIntent();
-        boolean fromNotification = intent.getBooleanExtra("NOTIFICATION", false);
-        int activityId = intent.getIntExtra("ACTIVITY_ID", 0);
-
-        if (fromNotification) {
-
-            ActivitiesFragment actFrag = new ActivitiesFragment();
-            Bundle bundle = new Bundle();
-            bundle.putBoolean("NOTIFICATION", true);
-            bundle.putInt("ID", activityId);
-            actFrag.setArguments(bundle);
-
-            loadFragment(actFrag);
+        dbHelper = new UserDatabaseHelper(this);
+        if (dbHelper.getUser() == null) {
+            Intent i = new Intent(MainActivity.this, OnboardingActivity.class);
+            startActivity(i);
+        } else if (dbHelper.getTodayLog() == null) {
+            Intent i = new Intent(MainActivity.this, CheckinActivity.class);
+            startActivity(i);
         } else {
+            bottomNavigationView = findViewById(R.id.navigation);
+            bottomNavigationView.setOnNavigationItemSelectedListener(this);
+            createNotificationChannel(this);
 
-            loadFragment(new HomeFragment());
+            Intent intent = getIntent();
+            boolean fromNotification = intent.getBooleanExtra("NOTIFICATION", false);
+            int activityId = intent.getIntExtra("ACTIVITY_ID", 0);
+
+            if (fromNotification) {
+
+                ActivitiesFragment actFrag = new ActivitiesFragment();
+                Bundle bundle = new Bundle();
+                bundle.putBoolean("NOTIFICATION", true);
+                bundle.putInt("ID", activityId);
+                actFrag.setArguments(bundle);
+
+                loadFragment(actFrag);
+            } else {
+
+                loadFragment(new HomeFragment());
+            }
         }
-
     }
 
     public boolean loadFragment(Fragment fragment) {
         if (fragment != null) {
             FragmentTransaction ft = getSupportFragmentManager().beginTransaction();
-            ft.replace(R.id.fragment_container, fragment);
+            ft.replace(R.id.fragment_container, fragment, FRAGMENT_TAG);
             ft.setTransition(FragmentTransaction.TRANSIT_FRAGMENT_FADE).commit();
             return true;
         }
@@ -163,10 +164,6 @@ public class MainActivity extends AppCompatActivity implements BottomNavigationV
         loadFragment(promptFragment);
     }
 
-    public void finishActivityClick(View view) {
-        // Save Activity in Database
-        loadFragment(new HomeFragment());
-    }
 
     public void onDebugClick(View view) {
         ActivityScheduler scheduler = new ActivityScheduler(this);
