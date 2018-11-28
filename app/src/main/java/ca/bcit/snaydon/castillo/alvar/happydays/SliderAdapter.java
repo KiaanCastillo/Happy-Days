@@ -35,7 +35,7 @@ public class SliderAdapter extends PagerAdapter {
     };
 
     public String[] slide_text = {
-            "Welcome to Happy Days, your personal companion for your\n journey in self care!",
+            "Welcome to Happy Days, your personal\ncompanion for your journey in self care!",
             "Put work on pause and make way for\nsome love with many self-care\nactivities for you to choose from!",
             "Every time you finish an activity, rate how it goes! \nEach day has an overall mood that you can look\nback at to see how your happiness-level-per-day\nprogresses and which activities made it happen!",
             "No matter how busy you get, you need\nsome self-love and, luckily, we've got you\n covered with scheduled reminders \n based on your day's busy-ness level."

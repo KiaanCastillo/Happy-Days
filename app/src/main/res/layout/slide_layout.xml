@@ -28,10 +28,9 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_below="@+id/slide_title"
-        android:layout_alignParentBottom="true"
         android:layout_centerHorizontal="true"
         android:layout_marginTop="1dp"
-        android:layout_marginBottom="140dp"
-        android:text="TextView" />
+        android:text="TextView"
+        android:textAlignment="center" />
 
 </RelativeLayout>
