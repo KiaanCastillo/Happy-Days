@@ -24,6 +24,7 @@ import com.mapbox.android.core.location.LocationEngineProvider;
 import com.mapbox.android.core.permissions.PermissionsListener;
 import com.mapbox.android.core.permissions.PermissionsManager;
 import com.mapbox.mapboxsdk.Mapbox;
+import com.mapbox.mapboxsdk.annotations.PolylineOptions;
 import com.mapbox.mapboxsdk.camera.CameraUpdateFactory;
 import com.mapbox.mapboxsdk.geometry.LatLng;
 import com.mapbox.mapboxsdk.maps.MapView;
@@ -32,6 +33,8 @@ import com.mapbox.mapboxsdk.maps.OnMapReadyCallback;
 import com.mapbox.mapboxsdk.plugins.locationlayer.LocationLayerPlugin;
 import com.mapbox.mapboxsdk.plugins.locationlayer.modes.CameraMode;
 import com.mapbox.mapboxsdk.plugins.locationlayer.modes.RenderMode;;
+import java.lang.reflect.Array;
+import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -46,6 +49,7 @@ public class ActivityMapFragment extends Fragment implements OnMapReadyCallback,
     private PermissionsManager permissionsManager;
     private LocationEngine locationEngine;
     private LocationLayerPlugin locationLayerPlugin;
+    private ArrayList<LatLng> points = new ArrayList<>();
     private Location originLocation;
 
     public ActivityMapFragment() {
@@ -69,6 +73,9 @@ public class ActivityMapFragment extends Fragment implements OnMapReadyCallback,
             myActivity = (Activity) getArguments().getSerializable("myActivity");
         }
 
+        points.add(new LatLng(49.18785839047904, -122.95712421852141));
+        points.add(new LatLng(49.28715887127316, -122.9771206742634));
+
         return v;
     }
 
@@ -85,17 +92,16 @@ public class ActivityMapFragment extends Fragment implements OnMapReadyCallback,
         map = mapboxMap;
         enableLocation();
 
-
+        points = initPoints();
         // Load and Draw GeoJSON
-//        new DrawGeoJson().execute();
-//        if (points.size() > 0) {
-//
-//            // Draw polyline on map
-//            map.addPolyline(new PolylineOptions()
-//                    .addAll(points)
-//                    .color(Color.parseColor("#3bb2d0"))
-//                    .width(2));
-//        }
+        if (points.size() > 0) {
+
+            // Draw polyline on map
+            map.addPolyline(new PolylineOptions()
+                    .addAll(points)
+                    .color(Color.parseColor("#3bb2d0"))
+                    .width(4));
+        }
     }
 
     private void enableLocation() {
@@ -224,6 +230,33 @@ public class ActivityMapFragment extends Fragment implements OnMapReadyCallback,
         ActivityFinishFragment mapFragment = new ActivityFinishFragment();
         mapFragment.setArguments(routeBundle);
         ((MainActivity) getActivity()).loadFragment(mapFragment);
+    }
+
+    public ArrayList<LatLng> initPoints() {
+        ArrayList<LatLng> newPoints = new ArrayList<>();
+        newPoints.add(new LatLng(49.20105168346303, -122.95759787805977));
+        newPoints.add(new LatLng(49.20166130033205, -122.95647309982671));
+        newPoints.add(new LatLng(49.20271053628306, -122.95452550115124));
+        newPoints.add(new LatLng(49.20377475115951, -122.95256182903869));
+        newPoints.add(new LatLng(49.20468903752043, -122.95085324129026));
+        newPoints.add(new LatLng(49.204796619703586, -122.95065547581157));
+        newPoints.add(new LatLng(49.205089682435414, -122.95103285228488));
+        newPoints.add(new LatLng(49.2062487721426, -122.94887189823));
+        newPoints.add(new LatLng(49.207353046789464, -122.94682550639115));
+        newPoints.add(new LatLng(49.20830846686669, -122.94504500868656));
+        newPoints.add(new LatLng(49.20919306152897, -122.94341591478401));
+        newPoints.add(new LatLng(49.210112167937545, -122.94171040246218));
+        newPoints.add(new LatLng(49.21103361665923, -122.94000330276188));
+        newPoints.add(new LatLng(49.21152906830311, -122.93908262761788));
+        newPoints.add(new LatLng(49.211866627469824, -122.93846204540431));
+        newPoints.add(new LatLng(49.21191078434635, -122.93836572896139));
+        newPoints.add(new LatLng(49.212696512481465, -122.93691100116735));
+        newPoints.add(new LatLng(49.21369106411142, -122.93507788121889));
+        newPoints.add(new LatLng(49.21466546611929, -122.93327326166487));
+        newPoints.add(new LatLng(49.21392370038678, -122.93233090059634));
+        newPoints.add(new LatLng(49.21543919966537, -122.92952009996682));
+
+        return newPoints;
     }
 
 }

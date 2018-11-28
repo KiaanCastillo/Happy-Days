@@ -36,11 +36,21 @@ public class ActivityBrowseFragment extends ListFragment {
 
     private Activity myActivity;
     private ArrayList<Route> routeList;
-    private ArrayList<String> routeNames = new ArrayList<>();
+//    private ArrayList<Route> selectedRoutes;
+
 
     public ActivityBrowseFragment() {
         // Required empty public constructor
     }
+
+//    private ArrayList<Route> initBikingRoutes() {
+//        ArrayList<Route> biking = new ArrayList<>();
+//        biking.add(new Route("London Dublin Greenway"))
+//    }
+//
+//    private ArrayList<Route> initNonBikingRoutes() {
+//
+//    }
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -52,9 +62,16 @@ public class ActivityBrowseFragment extends ListFragment {
             myActivity = (Activity) getArguments().getSerializable("myActivity");
         }
 
+//        ArrayList<Route> selectedRoute;
+//        if (myActivity.getName().equals("Biking")) {
+//            selectedRoute = initBikingRoutes();
+//        } else {
+//            selectedRoute = initNonBikingRoutes();
+//        }
+
         String stringJSON = loadJSONFromAsset(getJSONFileName());
-        HashMap<String, List<String>> routeMap = parseJSONString(stringJSON);
-        routeList = initRouteList(routeMap);
+//        HashMap<String, List<String>> routeMap = parseJSONString(stringJSON);
+        routeList = parseJSONString(stringJSON);
         BrowseItemAdapter itemAdapter = new BrowseItemAdapter(getActivity(), routeList);
         setListAdapter(itemAdapter);
         return v;
@@ -74,15 +91,16 @@ public class ActivityBrowseFragment extends ListFragment {
     public ArrayList<Route> initRouteList(HashMap<String, List<String>> routeMap) {
         ArrayList<Route> tempList = new ArrayList<>();
         for (String key : routeMap.keySet()) {
-            Route newRoute = new Route(key, routeMap.get(key));
+//            Route newRoute = new Route(key, routeMap.get(key));
+            Route newRoute = new Route(key);
             tempList.add(newRoute);
         }
         return tempList;
     }
 
-    public HashMap<String, List<String>> parseJSONString(String json) {
+    public ArrayList<Route> parseJSONString(String json) {
         HashMap<String, List<String>> tempMap = new HashMap<>();
-
+        ArrayList<Route> routeList = new ArrayList<>();
         try {
             JSONObject obj = new JSONObject(json);
             JSONArray features = obj.getJSONArray("features");
@@ -101,23 +119,28 @@ public class ActivityBrowseFragment extends ListFragment {
                 if (routeName.equals(""))
                     routeName = "Other";
 
-                if (tempMap.containsKey(routeName)) {
-                    List<String> featureStringList = tempMap.get(routeName);
-                    featureStringList.add(geometry.toString());
-                    tempMap.put(routeName, featureStringList);
+                Route myRoute = new Route(routeName);
+                if (!routeList.contains(myRoute)) {
+                    routeList.add(myRoute);
                 }
-                else {
-                    List<String> featureStringList = new ArrayList<>();
-                    featureStringList.add(geometry.toString());
-                    tempMap.put(routeName, featureStringList);
-                }
+
+//                if (tempMap.containsKey(routeName)) {
+//                    List<String> featureStringList = tempMap.get(routeName);
+//                    featureStringList.add(geometry.toString());
+//                    tempMap.put(routeName, featureStringList);
+//                }
+//                else {
+//                    List<String> featureStringList = new ArrayList<>();
+//                    featureStringList.add(geometry.toString());
+//                    tempMap.put(routeName, featureStringList);
+//                }
             }
 
         } catch (JSONException e) {
             e.printStackTrace();
         }
 
-        return tempMap;
+        return routeList;
     }
 
     public String loadJSONFromAsset(String fileName) {
@@ -141,21 +164,9 @@ public class ActivityBrowseFragment extends ListFragment {
         if (myActivity.getName().equals("Biking")) {
             fileName = "PARKS_MAJOR_NAMED_GREENWAYS.json";
         } else {
-            fileName = "PARKS_TRAILS.json";
+            fileName = "PARKS_MAJOR_NAMED_GREENWAYS.json";
         }
         return fileName;
     }
-
-//    private class JSONParse extends AsyncTask<Void, Void, List<LatLng>> {
-//        @Override
-//        protected List<LatLng> doInBackground(Void... voids) {
-//
-//        }
-//
-//        @Override
-//        protected void onPostExecute(List<LatLng> points) {
-//            super.onPostExecute(points);
-//        }
-//    }
 
 }
