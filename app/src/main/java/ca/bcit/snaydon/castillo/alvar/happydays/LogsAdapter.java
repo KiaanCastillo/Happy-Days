@@ -41,14 +41,14 @@ public class LogsAdapter extends ArrayAdapter<Log> {
             case 2:
                 iv.setImageResource(R.drawable.ic_mood_2);
                 break;
-            case 3:
-                iv.setImageResource(R.drawable.ic_mood_3);
+            case 5:
+                iv.setImageResource(R.drawable.ic_mood_5);
                 break;
             case 4:
                 iv.setImageResource(R.drawable.ic_mood_4);
                 break;
             default:
-                iv.setImageResource(R.drawable.ic_mood_5);
+                iv.setImageResource(R.drawable.ic_mood_3);
                 break;
         }
 
@@ -145,7 +145,7 @@ public class LogsAdapter extends ArrayAdapter<Log> {
                 break;
         }
 
-        date += " " + (day - 1);
+        date += " " + day;
 
         return date;
     }

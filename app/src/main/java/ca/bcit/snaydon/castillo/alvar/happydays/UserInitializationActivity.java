@@ -39,26 +39,30 @@ public class UserInitializationActivity extends AppCompatActivity {
     }
 
     public void onCheckboxClickedMental(View view) {
-        if (favMental.size() == MAX_FAVS) {
-            CheckBox temp = (CheckBox) favMental.get(0);
-            favMental.remove(0);
-            temp.setChecked(false);
+        if (!favMental.contains(view)) {
+            if (favMental.size() == MAX_FAVS) {
+                CheckBox temp = (CheckBox) favMental.get(0);
+                favMental.remove(0);
+                temp.setChecked(false);
+            }
+
+
+            favMental.add((CheckBox) view);
+            ((CheckBox) view).setChecked(true);
         }
-
-
-        favMental.add((CheckBox) view);
-        ((CheckBox) view).setChecked(true);
     }
 
     public void onCheckboxClickedPhysical(View view) {
-        if (favPhysical.size() == MAX_FAVS) {
-            CheckBox temp = (CheckBox) favPhysical.get(0);
-            favPhysical.remove(0);
-            temp.setChecked(false);
-        }
+        if (!favPhysical.contains(view)) {
+            if (favPhysical.size() == MAX_FAVS) {
+                CheckBox temp = (CheckBox) favPhysical.get(0);
+                favPhysical.remove(0);
+                temp.setChecked(false);
+            }
 
-        favPhysical.add((CheckBox) view);
-        ((CheckBox) view).setChecked(true);
+            favPhysical.add((CheckBox) view);
+            ((CheckBox) view).setChecked(true);
+        }
     }
 
     public void createUser(View view) {
@@ -110,6 +114,8 @@ public class UserInitializationActivity extends AppCompatActivity {
                 return "Running";
             case R.id.pick_workout:
                 return "Workout";
+            case R.id.pick_journaling:
+                return "Journaling";
             default:
                 return "Walking";
         }

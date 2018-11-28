@@ -63,7 +63,7 @@ public class ProfileFragment extends Fragment {
                 return R.drawable.ic_reading;
             case "Journaling":
                 return R.drawable.ic_journaling;
-            case "Mindmaps":
+            case "Mindmap":
                 return R.drawable.ic_mindmap;
             case "Stretching":
                 return R.drawable.ic_stretching;

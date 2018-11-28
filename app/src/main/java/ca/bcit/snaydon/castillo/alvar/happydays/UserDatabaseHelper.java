@@ -42,7 +42,7 @@ public class UserDatabaseHelper extends SQLiteOpenHelper {
      */
     private Context context;
 
-    private static final String[] MENTAL_ACTIVITIES_LIST = {"Reading", "Journaling", "Mindmaps", "Stretching", "Meditating"};
+    private static final String[] MENTAL_ACTIVITIES_LIST = {"Reading", "Journaling", "Mindmap", "Stretching", "Meditating"};
 
     private static final String[] PHYSICAL_ACTIVITIES_LIST = {"Walking", "Biking","Running", "Workout"};
 
