@@ -25,53 +25,43 @@ import java.util.List;
 
 public class MainActivity extends AppCompatActivity implements BottomNavigationView.OnNavigationItemSelectedListener {
 
-    public static final int MAX_FAVOURITES = 6;
     private SQLiteDatabase db;
     private Cursor cursor;
     static final String CHANNEL_ID = "happy_days";
     private UserDatabaseHelper dbHelper;
     BottomNavigationView bottomNavigationView;
-    boolean firstTime;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_home);
-        //CHECK IF LOG ALREADY EXISTS FOR THIS DAY
-        //IF NOT, PROMPT FOR BUSY-NESS THEN MAKE A NEW LOG
-        firstTime = true;
-        if (!firstTime) {
         dbHelper = new UserDatabaseHelper(this);
-        User user = new User("Bob", "Parker");
-        dbHelper.initializeUser(dbHelper.getReadableDatabase(), user);
-        Log log = new Log(11, 2, 2018, 3, "Running Biking Mindmap Stretching", "5 5 4 2", 4, "Yeet");
-        dbHelper.insertLog(dbHelper.getReadableDatabase(), log);
-        bottomNavigationView = findViewById(R.id.navigation);
-        bottomNavigationView.setOnNavigationItemSelectedListener(this);
-        createNotificationChannel(this);
-
-        Intent intent = getIntent();
-        boolean fromNotification = intent.getBooleanExtra("NOTIFICATION", false);
-        int activityId = intent.getIntExtra("ACTIVITY_ID", 0);
-
-        if (fromNotification) {
-
-            ActivitiesFragment actFrag = new ActivitiesFragment();
-            Bundle bundle = new Bundle();
-            bundle.putBoolean("NOTIFICATION", true);
-            bundle.putInt("ID", activityId);
-            actFrag.setArguments(bundle);
-
-            loadFragment(actFrag);
-        } else {
-
-            loadFragment(new HomeFragment());
-        }
-        } else {
+        if (dbHelper.getUser() == null) {
             Intent i = new Intent(MainActivity.this, OnboardingActivity.class);
             startActivity(i);
-        }
+        } else {
+            bottomNavigationView = findViewById(R.id.navigation);
+            bottomNavigationView.setOnNavigationItemSelectedListener(this);
+            createNotificationChannel(this);
 
+            Intent intent = getIntent();
+            boolean fromNotification = intent.getBooleanExtra("NOTIFICATION", false);
+            int activityId = intent.getIntExtra("ACTIVITY_ID", 0);
+
+            if (fromNotification) {
+
+                ActivitiesFragment actFrag = new ActivitiesFragment();
+                Bundle bundle = new Bundle();
+                bundle.putBoolean("NOTIFICATION", true);
+                bundle.putInt("ID", activityId);
+                actFrag.setArguments(bundle);
+
+                loadFragment(actFrag);
+            } else {
+
+                loadFragment(new HomeFragment());
+            }
+        }
     }
 
     public boolean loadFragment(Fragment fragment) {

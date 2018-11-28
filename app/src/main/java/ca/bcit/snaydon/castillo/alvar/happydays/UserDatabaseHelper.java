@@ -69,30 +69,36 @@ public class UserDatabaseHelper extends SQLiteOpenHelper {
         db.execSQL(createNotifScheduleTable());
     }
 
-    public void initializeUser(SQLiteDatabase db, User user) {
+    public void initializeUser(SQLiteDatabase db, User user, ArrayList<String> favMental, ArrayList<String> favPhysical) {
         insertUser(db, user);
-        initializeMentalActivitiesTable(db);
-        initializePhysicalActivitiesTable(db);
+        initializeMentalActivitiesTable(db, favMental);
+        initializePhysicalActivitiesTable(db, favPhysical);
     }
 
-    private void initializeMentalActivitiesTable(SQLiteDatabase db) {
+    private void initializeMentalActivitiesTable(SQLiteDatabase db, ArrayList<String> favMental) {
         //Storing activity info in MENTAL_ACTIVITIES_INFO table
         for (String mActivity : MENTAL_ACTIVITIES_LIST) {
             ContentValues activities_values = new ContentValues();
             activities_values.put("NAME", mActivity);
             activities_values.put("AVG", 5);
-            activities_values.put("FAV", 0);
+            if (favMental.contains(mActivity))
+                activities_values.put("FAVE", 1);
+            else
+                activities_values.put("FAV", 0);
             db.insert("MENTAL_ACTIVITIES_INFO", null, activities_values);
         }
     }
 
-    private void initializePhysicalActivitiesTable(SQLiteDatabase db) {
+    private void initializePhysicalActivitiesTable(SQLiteDatabase db, ArrayList<String> favPhysical) {
         //Storing activity info in MENTAL_ACTIVITIES_INFO table
         for (String pActivity : PHYSICAL_ACTIVITIES_LIST) {
             ContentValues activitiesValues = new ContentValues();
             activitiesValues.put("NAME", pActivity);
             activitiesValues.put("AVG", 5);
-            activitiesValues.put("FAV", 0);
+            if (favPhysical.contains(pActivity))
+                activitiesValues.put("FAVE", 1);
+            else
+                activitiesValues.put("FAV", 0);
             db.insert("PHYSICAL_ACTIVITIES_INFO", null, activitiesValues);
         }
     }
@@ -128,8 +134,6 @@ public class UserDatabaseHelper extends SQLiteOpenHelper {
         logValues.put("NOTES", log.getNotes());
         db.update(LOGS, logValues, "_id = " + log_id, null);
     }
-
-    /**********************************************TABLE CREATION**************************************************************/
 
     private String createUserInfoTable() {
         String sql = "";
