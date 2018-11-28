@@ -1,6 +1,8 @@
 package ca.bcit.snaydon.castillo.alvar.happydays;
 
 
+import android.content.Intent;
+import android.os.AsyncTask;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.ListFragment;
@@ -11,6 +13,8 @@ import android.widget.ArrayAdapter;
 import android.widget.ListView;
 import android.widget.TextView;
 import android.widget.Toast;
+
+import com.mapbox.mapboxsdk.geometry.LatLng;
 
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -32,6 +36,7 @@ public class ActivityBrowseFragment extends ListFragment {
 
     private Activity myActivity;
     private ArrayList<Route> routeList;
+    private ArrayList<String> routeNames = new ArrayList<>();
 
     public ActivityBrowseFragment() {
         // Required empty public constructor
@@ -60,6 +65,7 @@ public class ActivityBrowseFragment extends ListFragment {
         super.onListItemClick(l, v, position, id);
         Bundle routeBundle = new Bundle();
         routeBundle.putSerializable("myRoute", routeList.get(position));
+        routeBundle.putSerializable("myActivity", myActivity);
         ActivityMapFragment mapFragment = new ActivityMapFragment();
         mapFragment.setArguments(routeBundle);
         ((MainActivity) getActivity()).loadFragment(mapFragment);
@@ -84,6 +90,7 @@ public class ActivityBrowseFragment extends ListFragment {
             for (int i = 0; i < features.length(); i++) {
                 JSONObject featureObj = features.getJSONObject(i);
                 JSONObject properties = featureObj.getJSONObject("properties");
+                JSONObject geometry = featureObj.getJSONObject("geometry");
 
                 String routeName;
                 if (properties.has("FullName"))
@@ -96,12 +103,12 @@ public class ActivityBrowseFragment extends ListFragment {
 
                 if (tempMap.containsKey(routeName)) {
                     List<String> featureStringList = tempMap.get(routeName);
-                    featureStringList.add(featureObj.toString());
+                    featureStringList.add(geometry.toString());
                     tempMap.put(routeName, featureStringList);
                 }
                 else {
                     List<String> featureStringList = new ArrayList<>();
-                    featureStringList.add(featureObj.toString());
+                    featureStringList.add(geometry.toString());
                     tempMap.put(routeName, featureStringList);
                 }
             }
@@ -138,5 +145,17 @@ public class ActivityBrowseFragment extends ListFragment {
         }
         return fileName;
     }
+
+//    private class JSONParse extends AsyncTask<Void, Void, List<LatLng>> {
+//        @Override
+//        protected List<LatLng> doInBackground(Void... voids) {
+//
+//        }
+//
+//        @Override
+//        protected void onPostExecute(List<LatLng> points) {
+//            super.onPostExecute(points);
+//        }
+//    }
 
 }

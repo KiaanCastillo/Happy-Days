@@ -71,7 +71,7 @@
     <!-- Activity Browse Fragment -->
     <string name="text_routes">Routes</string>
     <string name="text_no_route">No Route</string>
-  
+
     <!--Notifications-->
     <string name="note_title">Happy Days</string>
     <string name="note_checkin">Ready to start your day?</string>
@@ -81,4 +81,7 @@
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
 
+    <!-- MapBox Access Token -->
+    <string name="access_token">pk.eyJ1IjoiYWx2YXJ2aWt0b3IiLCJhIjoiY2pueXVhMTQxMHNxejNrbDZ4MnZnY3VhaSJ9.0PzIj-YLF8uC0dOtzGNx-g</string>
+    <string name="title_activity_route_map">RouteMapActivity</string>
 </resources>
